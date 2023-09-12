@@ -25,3 +25,5 @@ My personal blog using issues and GitHub Actions
 - [感谢yihong老师的gitblog项目](https://github.com/hadleysu/gitblog/issues/2)--2023-09-10
 ## 一些记录
 - [感谢yihong老师的gitblog项目](https://github.com/hadleysu/gitblog/issues/2)--2023-09-10
+## 技术相关
+- [Markdown相关](https://github.com/hadleysu/gitblog/issues/3)--2023-09-12
