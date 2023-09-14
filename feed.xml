@@ -1,10 +1,124 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-12T14:16:48.485056+00:00</updated><author><name>hadleysu</name><email>hadley.susu@gmail.com</email></author><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-12T14:16:48.657004+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-14T08:21:06.695681+00:00</updated><author><name>hadleysu</name><email>hadley.susu@gmail.com</email></author><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-14T08:21:07.034943+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记</h1>
+<h2>2 变量和简单的数据类型</h2>
+<ul>
+<li>
+<p><a href="https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html">Is Python interpreted or compiled? Yes.</a></p>
+</li>
+<li>
+<p>变量(variable)：变量是可以被赋值的标签，也可以说变量指向特定的值(value)。</p>
+<ul>
+<li>变量的命名：变量名只能包含字⺟、数字和下划线 。变量名能以字⺟或下划线打头，但不能以数字打头。变量名不能包含空格，但能使⽤下划线来分隔其中的单词。</li>
+<li>注意：应使⽤⼩写的 Python 变量名。全大写定义常量。</li>
+</ul>
+</li>
+<li>
+<p>字符串(string)：。在 Python 中，⽤引号引起的都是字符串，其中的引号可以是单引号，也可以是双引号.</p>
+<ul>
+<li>
+<p>使⽤⽅法修改字符串的⼤⼩写:</p>
+<pre><code class="language-python">name = &quot;ada lovelace&quot;
+print(name.title()) # title() ⽅法以⾸字⺟⼤写的⽅式显⽰每个单词
+name = &quot;Ada Lovelace&quot;
+print(name.upper()) # upper() 方法以全大写显示字符串
+print(name.lower()) # lower() 方法以全小写显示字符串
+</code></pre>
+</li>
+<li>
+<p>f 字符串：将要插⼊的变量放在花括号内</p>
+<pre><code class="language-python">first_name = &quot;ada&quot;
+last_name = &quot;lovelace&quot;
+full_name = f&quot;{first_name} {last_name}&quot;
+print(full_name)
+print(f&quot;Hello, {full_name.title()}!&quot;)
+# 这种字符串称为 f 字符串。f 是 format（设置格式）的简写，因为 Python 通过把花括号内的变量替换为其值来设置字符串的格式。
+</code></pre>
+</li>
+<li>
+<p>使⽤制表符或换⾏符来添加空⽩</p>
+<pre><code class="language-python"># 制表符 \t ; 换行符 \n ;
+&gt;&gt;&gt; print(&quot;Languages:\n\tPython\n\tC\n\tJavaScript&quot;)
+Languages:
+    Python
+    C
+    JavaScript
+</code></pre>
+</li>
+<li>
+<p>删除空⽩</p>
+<pre><code class="language-python"># rstrip() lstrip() strip()分别为删除字符串右端的空⽩、删除字符串左端的空⽩、同时删除字符串两端的空⽩
+&gt;&gt;&gt; favorite_language = &#x27; python &#x27;
+&gt;&gt;&gt; favorite_language.rstrip()
+&#x27; python&#x27;
+&gt;&gt;&gt; favorite_language.lstrip()
+&#x27;python &#x27;
+&gt;&gt;&gt; favorite_language.strip()
+&#x27;python&#x27;
+</code></pre>
+</li>
+<li>
+<p>删除前缀</p>
+<pre><code class="language-python"># removeprefix() ⽅法
+&gt;&gt;&gt; nostarch_url = &#x27;https://nostarch.com&#x27;
+&gt;&gt;&gt; nostarch_url.removeprefix(&#x27;https://&#x27;)
+&#x27;nostarch.com&#x27;
+# 如果想保留删除前缀后的值，既可将其重新赋给原来的变量，也可将其赋给另⼀个变量
+&gt;&gt;&gt; simple_url = nostarch_url.removeprefix(&#x27;https://&#x27;)
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>数(number)</p>
+<ul>
+<li>
+<p>整数(integer)</p>
+<pre><code class="language-python"># Python 使⽤两个乘号（**）表⽰乘⽅运算
+&gt;&gt;&gt; 3 ** 2
+9
+</code></pre>
+</li>
+<li>
+<p>浮点数(float)</p>
+<pre><code class="language-python"># 将任意两个数相除，结果总是浮点数，即便这两个数都是整数且能整除：
+&gt;&gt;&gt; 4/2
+2.0
+# 在 Python 中，⽆论是哪种运算，只要有操作数是浮点数，默认得到的就总是浮点数，即便结果原本为整数。
+&gt;&gt;&gt; 1 + 2.0
+3.0
+&gt;&gt;&gt; 2 * 3.0
+6.0
+&gt;&gt;&gt; 3.0 ** 2
+9.0
+</code></pre>
+</li>
+<li>
+<p>数中的下划线</p>
+<pre><code class="language-python"># 为在存储这种数时，Python 会忽略其中的下划线。在对数字位分组时，即便不是将每三位分成⼀组，也不会影响最终的值。
+&gt;&gt;&gt; universe_age = 14_000_000_000
+&gt;&gt;&gt; print(universe_age)
+14000000000
+# 这种表⽰法既适⽤于整数，也适⽤于浮点数。
+</code></pre>
+</li>
+<li>
+<p>常数(constant)：是在程序的整个⽣命周期内都保持不变的变量。其变量名全⼤写。</p>
+<pre><code class="language-python">MAX_CONNECTIONS = 5000
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>注释(comment)：注释⽤井号（#）标识。批量注释CTRL + /</p>
+</li>
+</ul>
+<h2>3 列表简介</h2>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-14T08:21:07.248300+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-12T14:16:48.764293+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-14T08:21:07.417521+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
