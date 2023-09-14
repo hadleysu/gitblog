@@ -88,7 +88,7 @@
     6.0
     >>> 3.0 ** 2
     9.0
-    ``` 
+    ```
 
   * 数中的下划线
   
@@ -110,5 +110,180 @@
   
 ## 3 列表简介
 
+* 列表(list)：由⼀系列按特定顺序排列的元素组成。在 Python 中，⽤⽅括号（[]）表⽰列表，⽤逗号分隔其中的元素。
+  * Python 为访问最后⼀个列表元素提供了⼀种特殊语法。通过将索引指定为-1，可让 Python 返回最后⼀个列表元素。
 
+    ```python
+    bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+    print(bicycles[-1])
+    # 这些代码返回 'specialized'。
+    ```
 
+  * 这种语法很有⽤，因为你经常需要在不知道列表⻓度的情况下访问最后的元素。这种约定也适⽤于其他负数索引，例如，索引 -2 返回倒数第⼆个列表元素，索引 -3 返回倒数第三个列表元素，依此类推。
+
+* 修改、添加和删除元素
+  * 修改列表元素
+
+    ```python
+    motorcycles = ['honda', 'yamaha', 'suzuki']
+    print(motorcycles)
+    motorcycles[0] = 'ducati'
+    print(motorcycles)
+    ```
+
+  * 在列表中添加元素
+    * 在列表末尾添加元素
+  
+      ```python
+      # 在列表中添加新元素时，最简单的⽅式是将元素追加（append）到列表末尾。
+      motorcycles = ['honda', 'yamaha', 'suzuki']
+      print(motorcycles)
+      motorcycles.append('ducati')
+      print(motorcycles)
+      # append() ⽅法让动态地创建列表易如反掌。例如，你可以先创建⼀个空列表，再使⽤⼀系列函数调⽤ append() 添加元素。
+      motorcycles = []
+      motorcycles.append('honda')
+      motorcycles.append('yamaha')
+      motorcycles.append('suzuki')
+      print(motorcycles)
+      ```
+
+    * 在列表中插⼊元素
+
+      ```python
+      # 使⽤ insert() ⽅法可在列表的任意位置添加新元素。
+      motorcycles = ['honda', 'yamaha', 'suzuki']
+      motorcycles.insert(0, 'ducati')
+      print(motorcycles)
+      #这种操作将列表中的每个既有元素都右移⼀个位置。
+      ['ducati', 'honda', 'yamaha', 'suzuki']
+      ```
+
+  * 从列表中删除元素
+    * 使⽤ del 语句删除元素
+
+      ```python
+      #如果知道要删除的元素在列表中的位置，可使⽤ del 语句
+      #使⽤ del 可删除任意位置的列表元素，只需要知道其索引即可。
+      motorcycles = ['honda', 'yamaha', 'suzuki']
+      print(motorcycles)
+      del motorcycles[1]
+      print(motorcycles)
+      ```
+
+    * 使⽤ pop() ⽅法删除元素
+  
+      ```python
+      # pop() ⽅法删除列表末尾的元素，并让你能够接着使⽤它。每当你使⽤ pop() 时，被弹出的元素就不再在列表中了。
+      motorcycles = ['honda', 'yamaha', 'suzuki']
+      print(motorcycles)
+      popped_motorcycle = motorcycles.pop()
+      print(motorcycles)
+      print(popped_motorcycle)
+      # 输出表明，列表末尾的值 'suzuki' 已删除，它现在被赋给了变量popped_motorcycle
+      ['honda', 'yamaha', 'suzuki']
+      ['honda', 'yamaha']
+      suzuki
+      ```
+
+    * 删除列表中任意位置的元素
+  
+      ```python
+      # 也可以使⽤ pop() 删除列表中任意位置的元素，只需要在括号中指定要删除的元素的索引即可。
+      motorcycles = ['honda', 'yamaha', 'suzuki']
+      first_owned = motorcycles.pop(0)
+      print(f"The first motorcycle I owned was a {first_owned.title()}.")
+      # ⾸先弹出列表中的第⼀款摩托⻋，然后打印⼀条有关这辆摩托⻋的消息。
+      The first motorcycle I owned was a Honda.
+      # 如果不确定该使⽤ del 语句还是 pop() ⽅法，下⾯是⼀个简单的判断标准：如果要从列表中删除⼀个元素，且不再以任何⽅式使⽤它，就使⽤ del 语句；如果要在删除元素后继续使⽤它，就使⽤ pop() ⽅法。
+      ```
+  
+    * 根据值删除元素
+  
+      ```python
+      # 有时候，你不知道要从列表中删除的值在哪个位置。如果只知道要删除的元素的值，可使⽤ remove() ⽅法。
+      motorcycles = ['honda', 'yamaha', 'suzuki', 'ducati']
+      print(motorcycles)
+      motorcycles.remove('ducati')
+      print(motorcycles)
+      # remove() ⽅法让 Python 确定 'ducati' 出现在列表的什么地⽅，并将该元素删除：
+      ['honda', 'yamaha', 'suzuki', 'ducati']
+      ['honda', 'yamaha', 'suzuki']
+      # 注意：remove() ⽅法只删除第⼀个指定的值。如果要删除的值可能在列表中出现多次，就需要使⽤循环，确保将每个值都删除。这将在第 7 章介绍。
+      ```
+
+* 管理列表
+  * 使⽤ sort() ⽅法对列表进⾏永久排序
+  
+    ```python
+    cars = ['bmw', 'audi', 'toyota', 'subaru']
+    cars.sort()
+    print(cars)
+    # sort() ⽅法能永久地修改列表元素的排列顺序。现在，汽⻋是按字⺟顺序排列的，再也⽆法恢复到原来的排列顺序：
+    ['audi', 'bmw', 'subaru', 'toyota']
+    # 还可以按与字⺟顺序相反的顺序排列列表元素，只需向 sort() ⽅法传递参数 reverse=True 即可。下⾯的⽰例将汽⻋列表按与字⺟顺序相反的顺序排列：
+    cars.sort(reverse=True)
+    # 同样，对列表元素排列顺序的修改也是永久的：
+    ['toyota', 'subaru', 'bmw', 'audi']
+    ```
+
+  * 使⽤ sorted() 函数对列表进⾏临时排序
+
+    ```python
+    # 要保留列表元素原来的排列顺序，并以特定的顺序呈现它们，可使⽤sorted() 函数。
+    cars = ['bmw', 'audi', 'toyota', 'subaru']
+    ❶ print("Here is the original list:")
+    print(cars)
+    ❷ print("\nHere is the sorted list:")
+    print(sorted(cars))
+    ❸ print("\nHere is the original list again:")
+    print(cars)
+    # 注意，在调⽤ sorted() 函数后，列表元素的排列顺序并没有变:
+    Here is the original list:
+    ['bmw', 'audi', 'toyota', 'subaru']
+    Here is the sorted list:
+    ['audi', 'bmw', 'subaru', 'toyota']
+    Here is the original list again:
+    ['bmw', 'audi', 'toyota', 'subaru']
+    # 如果要按与字⺟顺序相反的顺序显⽰列表，也可向 sorted() 函数传递参数 reverse=True。
+    # 注意：在并⾮所有的值都是全⼩写的时，按字⺟顺序排列列表要复杂⼀些。在确定排列顺序时，有多种解读⼤写字⺟的⽅式，此时要指定准确的排列顺序，可能会⽐这⾥所做的更加复杂。然⽽，⼤多数排序⽅式是以本节介绍的知识为基础的。
+    ```
+
+  * 反向打印列表
+
+    ```python
+    # 要反转列表元素的排列顺序，可使⽤ reverse() ⽅法。
+    cars = ['bmw', 'audi', 'toyota', 'subaru']
+    print(cars)
+    cars.reverse()
+    print(cars)
+    #请注意，reverse() 不是按与字⺟顺序相反的顺序排列列表元素，只是反转列表元素的排列顺序：
+    ['bmw', 'audi', 'toyota', 'subaru']
+    ['subaru', 'toyota', 'audi', 'bmw']
+    # reverse() ⽅法会永久地修改列表元素的排列顺序，但可随时恢复到原来的排列顺序，只需对列表再次调⽤ reverse() 即可。
+    ```
+
+  * 确定列表的⻓度
+
+    ```python
+    # 使⽤ len() 函数可快速获悉列表的⻓度。
+    >>> cars = ['bmw', 'audi', 'toyota', 'subaru']
+    >>> len(cars)
+    4
+    # 注意：Python 在计算列表元素数时从 1 开始，因此你在确定列表⻓度时应该不会遇到差⼀错误。
+    ```
+
+* 使⽤列表时避免索引错误
+  
+   ```python
+    # 仅当列表为空时，这种访问最后⼀个元素的⽅式才会导致错误：
+    motorcycles = []
+    print(motorcycles[-1])
+    # 列表 motorcycles 不包含任何元素，因此 Python 返回⼀条索引错误消息：
+    Traceback (most recent call last):
+      File "motorcyles.py", line 3, in <module>
+        print(motorcycles[-1])
+              ~~~~~~~~~~~^^^^
+    IndexError: list index out of range
+    # 注意：在发⽣索引错误却找不到解决办法时，请尝试将列表或其⻓度打印出来。列表可能与你以为的截然不同，在程序对其进⾏了动态处理时尤其如此。查看列表或其包含的元素数，可帮助你排查这种逻辑错误。
+    ```
