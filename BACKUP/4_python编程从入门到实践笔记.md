@@ -20,6 +20,10 @@
   - [元组](#元组)
   - [设置代码格式](#设置代码格式)
 - [5 if语句](#5-if语句)
+  - [条件测试（布尔表达式）](#条件测试布尔表达式)
+  - [if 语句/ if-else 语句/ if-elif-else 语句](#if-语句-if-else-语句-if-elif-else-语句)
+  - [使⽤ if 语句处理列表](#使-if-语句处理列表)
+- [6 字典](#6-字典)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
@@ -536,4 +540,86 @@ IndexError: list index out of range
   将程序的不同部分分开，可使⽤空⾏。
 
 ## 5 if语句
+
+### 条件测试（布尔表达式）
+  
+- 布尔表达式的结果要么为 True，要么为 False。  
+- 检查是否相等 ==
+  - 在 Python 中检查是否相等时是区分⼤⼩写的。
+- 检查是否不等 !=
+- 数值⽐较 == / != / < / <= / > / >=
+- 检查多个条件时的且或 and / or
+- 检查特定的值是否在列表中 in
+- 检查特定的值是否不在列表中 not in
+
+### if 语句/ if-else 语句/ if-elif-else 语句
+  
+- if 语句/ if-else 语句/ if-elif-else 语句
+  - if-elif-else 语句中可以使⽤多个 elif 代码块
+  - Python 并不要求 if-elif 结构后⾯必须有 else 代码块。可省略 else 代码块。
+
+  ```python
+  age = 12
+  if age < 4:
+  price = 0
+  elif age < 18:
+  price = 25
+  else:
+  price = 40
+  print(f"Your admission cost is ${price}.")
+  ```
+
+### 使⽤ if 语句处理列表  
+  
+- 检查特殊元素
+
+  ```python
+  requested_toppings = ['mushrooms', 'green peppers', 'extra cheese']
+  for requested_topping in requested_toppings:
+      if requested_topping == 'green peppers':
+          print("Sorry, we are out of green peppers right now.")
+      else:
+          print(f"Adding {requested_topping}.")
+  ```
+
+- 确定列表⾮空
+
+  ```python
+  requested_toppings = []
+  if requested_toppings:
+      for requested_topping in requested_toppings:
+          print(f"Adding {requested_topping}.")
+      print("\nFinished making your pizza!")
+  else:
+      print("Are you sure you want a plain pizza?")
+  # 这⾥的列表为空，因此输出如下——询问顾客是否确实要点原味⽐萨：
+  Are you sure you want a plain pizza?
+  ```
+
+  - 在 if 语句中将列表名⽤作条件表达式时，Python将在列表⾄少包含⼀个元素时返回 True，在列表为空时返回 False 。
+  - 对于数值 0、空值 None、单引号空字符串 ''、双引号空字符串 ""、空列表 []、空元组 ()、空字典 {}，Python 都会返回 False。
+
+- 使⽤多个列表
+
+  ```python
+  available_toppings = ['mushrooms', 'olives', 'green peppers','pepperoni', 'pineapple', 'extra cheese']
+  requested_toppings = ['mushrooms', 'french fries', 'extra cheese']
+
+  for requested_topping in requested_toppings:
+      if requested_topping in available_toppings:
+         print(f"Adding {requested_topping}.")
+      else:
+         print(f"Sorry, we don't have {requested_topping}.")
+  print("\nFinished making your pizza!")
+  # 输出
+  Adding mushrooms.
+  Sorry, we don't have french fries.
+  Adding extra cheese.
+  Finished making your pizza!
+  ```
+
+## 6 字典
+
+- 
+
 

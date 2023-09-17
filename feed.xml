@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-16T12:11:24.092261+00:00</updated><author><name>hadleysu</name><email>hadley.susu@gmail.com</email></author><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-16T12:11:24.291664+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-17T12:45:56.037283+00:00</updated><author><name>hadleysu</name><email>hadley.susu@gmail.com</email></author><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-17T12:45:56.254370+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -27,7 +27,14 @@
 <li><a href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F">设置代码格式</a></li>
 </ul>
 </li>
-<li><a href="#5-if%E8%AF%AD%E5%8F%A5">5 if语句</a></li>
+<li>
+<a href="#5-if%E8%AF%AD%E5%8F%A5">5 if语句</a><ul>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95%E5%B8%83%E5%B0%94%E8%A1%A8%E8%BE%BE%E5%BC%8F">条件测试（布尔表达式）</a></li>
+<li><a href="#if-%E8%AF%AD%E5%8F%A5-if-else-%E8%AF%AD%E5%8F%A5-if-elif-else-%E8%AF%AD%E5%8F%A5">if 语句/ if-else 语句/ if-elif-else 语句</a></li>
+<li><a href="#%E4%BD%BF-if-%E8%AF%AD%E5%8F%A5%E5%A4%84%E7%90%86%E5%88%97%E8%A1%A8">使⽤ if 语句处理列表</a></li>
+</ul>
+</li>
+<li><a href="#6-%E5%AD%97%E5%85%B8">6 字典</a></li>
 </ul>
 <h2><a href="https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html">Is Python interpreted or compiled? Yes.</a></h2>
 <h2>2 变量和简单的数据类型</h2>
@@ -525,7 +532,93 @@ dimensions = (400, 100)
 </li>
 </ul>
 <h2>5 if语句</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-16T12:11:24.424848+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+<h3>条件测试（布尔表达式）</h3>
+<ul>
+<li>布尔表达式的结果要么为 True，要么为 False。  </li>
+<li>
+检查是否相等 ==<ul>
+<li>在 Python 中检查是否相等时是区分⼤⼩写的。</li>
+</ul>
+</li>
+<li>检查是否不等 !=</li>
+<li>数值⽐较 == / != / &lt; / &lt;= / &gt; / &gt;=</li>
+<li>检查多个条件时的且或 and / or</li>
+<li>检查特定的值是否在列表中 in</li>
+<li>检查特定的值是否不在列表中 not in</li>
+</ul>
+<h3>if 语句/ if-else 语句/ if-elif-else 语句</h3>
+<ul>
+<li>
+<p>if 语句/ if-else 语句/ if-elif-else 语句</p>
+<ul>
+<li>if-elif-else 语句中可以使⽤多个 elif 代码块</li>
+<li>Python 并不要求 if-elif 结构后⾯必须有 else 代码块。可省略 else 代码块。</li>
+</ul>
+<pre><code class="language-python">age = 12
+if age &lt; 4:
+price = 0
+elif age &lt; 18:
+price = 25
+else:
+price = 40
+print(f&quot;Your admission cost is ${price}.&quot;)
+</code></pre>
+</li>
+</ul>
+<h3>使⽤ if 语句处理列表</h3>
+<ul>
+<li>
+<p>检查特殊元素</p>
+<pre><code class="language-python">requested_toppings = [&#x27;mushrooms&#x27;, &#x27;green peppers&#x27;, &#x27;extra cheese&#x27;]
+for requested_topping in requested_toppings:
+    if requested_topping == &#x27;green peppers&#x27;:
+        print(&quot;Sorry, we are out of green peppers right now.&quot;)
+    else:
+        print(f&quot;Adding {requested_topping}.&quot;)
+</code></pre>
+</li>
+<li>
+<p>确定列表⾮空</p>
+<pre><code class="language-python">requested_toppings = []
+if requested_toppings:
+    for requested_topping in requested_toppings:
+        print(f&quot;Adding {requested_topping}.&quot;)
+    print(&quot;\nFinished making your pizza!&quot;)
+else:
+    print(&quot;Are you sure you want a plain pizza?&quot;)
+# 这⾥的列表为空，因此输出如下——询问顾客是否确实要点原味⽐萨：
+Are you sure you want a plain pizza?
+</code></pre>
+<ul>
+<li>在 if 语句中将列表名⽤作条件表达式时，Python将在列表⾄少包含⼀个元素时返回 True，在列表为空时返回 False 。</li>
+<li>对于数值 0、空值 None、单引号空字符串 ''、双引号空字符串 &quot;&quot;、空列表 []、空元组 ()、空字典 {}，Python 都会返回 False。</li>
+</ul>
+</li>
+<li>
+<p>使⽤多个列表</p>
+<pre><code class="language-python">available_toppings = [&#x27;mushrooms&#x27;, &#x27;olives&#x27;, &#x27;green peppers&#x27;,&#x27;pepperoni&#x27;, &#x27;pineapple&#x27;, &#x27;extra cheese&#x27;]
+requested_toppings = [&#x27;mushrooms&#x27;, &#x27;french fries&#x27;, &#x27;extra cheese&#x27;]
+
+for requested_topping in requested_toppings:
+    if requested_topping in available_toppings:
+       print(f&quot;Adding {requested_topping}.&quot;)
+    else:
+       print(f&quot;Sorry, we don&#x27;t have {requested_topping}.&quot;)
+print(&quot;\nFinished making your pizza!&quot;)
+# 输出
+Adding mushrooms.
+Sorry, we don&#x27;t have french fries.
+Adding extra cheese.
+Finished making your pizza!
+</code></pre>
+</li>
+</ul>
+<h2>6 字典</h2>
+<ul>
+<li>
+</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-17T12:45:56.392723+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -539,7 +632,7 @@ dimensions = (400, 100)
 <ul>
 <li>CTRL + shift + p --&gt; Create Table of Contents</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-16T12:11:24.514638+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-17T12:45:56.472374+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
