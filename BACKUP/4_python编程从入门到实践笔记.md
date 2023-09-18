@@ -10,20 +10,23 @@
   - [注释](#注释)
 - [3 列表简介](#3-列表简介)
   - [列表](#列表)
-  - [管理列表 \[ sort(),sorted(),len() \]](#管理列表--sortsortedlen-)
+  - [管理列表 ( sort(),sorted(),len() )](#管理列表--sortsortedlen-)
   - [使⽤列表时避免索引错误](#使列表时避免索引错误)
 - [4 操作列表](#4-操作列表)
   - [遍历整个列表（for）](#遍历整个列表for)
   - [避免缩进错误](#避免缩进错误)
-  - [创建数值列表 \[ list(range()) \]](#创建数值列表--listrange-)
+  - [创建数值列表 ( list(range()) )](#创建数值列表--listrange-)
   - [使用列表的一部分（切片）](#使用列表的一部分切片)
   - [元组](#元组)
   - [设置代码格式](#设置代码格式)
-- [5 if语句](#5-if语句)
+- [5 if 语句](#5-if-语句)
   - [条件测试（布尔表达式）](#条件测试布尔表达式)
   - [if 语句/ if-else 语句/ if-elif-else 语句](#if-语句-if-else-语句-if-elif-else-语句)
   - [使⽤ if 语句处理列表](#使-if-语句处理列表)
 - [6 字典](#6-字典)
+  - [字典定义（ { key : value , key : value } ）](#字典定义--key--value--key--value--)
+  - [使⽤字典](#使字典)
+  - [遍历字典](#遍历字典)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
@@ -246,7 +249,7 @@
       # 注意：remove() ⽅法只删除第⼀个指定的值。如果要删除的值可能在列表中出现多次，就需要使⽤循环，确保将每个值都删除。这将在第 7 章介绍。
       ```
 
-### 管理列表 [ sort(),sorted(),len() ]
+### 管理列表 ( sort(),sorted(),len() )
 
 - 使⽤ sort() ⽅法对列表进⾏永久排序
   
@@ -347,7 +350,7 @@ IndexError: list index out of range
 - 位于 for 语句后⾯且属于循环组成部分的代码⾏，⼀定要缩进。为避免意外的缩进错误，请只缩进需要缩进的代码。
 - 不要遗漏*冒号*。for 语句末尾的冒号告诉 Python，下⼀⾏是循环的第⼀⾏。
 
-### 创建数值列表 [ list(range()) ]
+### 创建数值列表 ( list(range()) )
 
 - range() 函数。Python 函数 range() 能⽣成⼀系列的数。可以传一个参数、两个参数、三个参数。
 
@@ -539,7 +542,7 @@ IndexError: list index out of range
 
   将程序的不同部分分开，可使⽤空⾏。
 
-## 5 if语句
+## 5 if 语句
 
 ### 条件测试（布尔表达式）
   
@@ -620,6 +623,188 @@ IndexError: list index out of range
 
 ## 6 字典
 
-- 
+### 字典定义（ { key : value , key : value } ）  
+
+- 在 Python 中，字典（dictionary）是⼀系列**键值对**。每个**键**都与⼀个值关联，可以使⽤键来访问与之关联的值。与键相关联的值可以是数、字符串、列表乃⾄字典。事实上，可将任意 Python 对象⽤作字典中的值。
+- 在 Python 中，字典⽤放在**花括号**（{}）中的⼀系列键值对表⽰。
+- **键值对**包含两个相互关联的值。当你指定键时，Python 将返回与之关联的值。键和值之间⽤**冒号**分隔，⽽键值对之间⽤**逗号**分隔。在字典中，你想存储多少个键值对都可以。
+
+```python
+alien_0 = {'color': 'green', 'points': 5}
+```
+
+### 使⽤字典
+
+- 访问字典中的值
+  
+  ```python
+  # 要获取与键关联的值，可指定字典名并把键放在后⾯的⽅括号内，如下所⽰：
+  alien_0 = {'color': 'green'}
+  print(alien_0['color'])
+  green
+  ```
+
+- 添加键值对
+  
+  ```python
+  # 字典是⼀种动态结构，可随时在其中添加键值对。要添加键值对，可依次指定字典名、⽤⽅括号括起来的键和与该键关联的值。
+  alien_0 = {'color': 'green', 'points': 5}
+  print(alien_0)
+  alien_0['x_position'] = 0
+  alien_0['y_position'] = 25
+  print(alien_0)
+  # 字典会保留定义时的元素排列顺序。如果将字典打印出来或遍历其元素，将发现元素的排列顺序与其添加顺序相同。
+  {'color': 'green', 'points': 5}
+  {'color': 'green', 'points': 5, 'x_position': 0, 'y_position': 25}
+  ```
+
+- 创建⼀个空字典
+  
+  ```python
+  alien_0 = {}
+  alien_0['color'] = 'green'
+  alien_0['points'] = 5
+  ```
+
+- 修改字典中的值
+  
+  ```python
+  # 要修改字典中的值，可依次指定字典名、⽤⽅括号括起来的键和与该键关联的新值。
+  alien_0 = {'color': 'green'}
+  alien_0['color'] = 'yellow'
+  ```
+
+- 删除键值对
+  
+  ```python
+  #对于字典中不再需要的信息，可使⽤ del 语句将相应的键值对彻底删除。在使⽤ del 语句时，必须指定字典名和要删除的键。
+  alien_0 = {'color': 'green', 'points': 5}
+  del alien_0['points']
+  print(alien_0)
+  # 注意：删除的键值对永远消失了。
+  {'color': 'green', 'points': 5}
+  {'color': 'green'}
+  ```
+
+- 由类似的对象组成的字典
+  
+  ```python
+  # 当确定需要使⽤多⾏来定义字典时，先在输⼊左花括号后按回⻋键，再在下⼀⾏缩进 4 个空格，指定第⼀个键值对，并在它后⾯加上⼀个逗号。
+  favorite_languages = {
+      'jen': 'python',
+      'sarah': 'c',
+      'edward': 'rust',
+      'phil': 'python',
+      }
+  # 定义好字典后，在最后⼀个键值对的下⼀⾏添加⼀个右花括号，并且也缩进 4 个空格，使其与字典中的键对⻬。
+  # ⼀种不错的做法是，在最后⼀个键值对后⾯也加上逗号，为以后添加键值对做好准备。
+  ```
+
+- 使⽤ get() 来访问值
+  
+  - 如果指定的键有可能不存在，应考虑使⽤ get() ⽅法，⽽不要使⽤⽅括号表⽰法，因为会报错。
+  - get() ⽅法在指定的键不存在时返回⼀个默认值。get() ⽅法的第⼀个参数⽤于指定键，是必不可少的；第⼆个参数为当指定的键不存在时要返回的值，是可选的。
+  - 注意：在调⽤ get() 时，如果没有指定第⼆个参数且指定的键不存在，Python 将返回值 None，这个特殊的值表⽰没有相应的值。这并⾮错误，None 只是⼀个表⽰所需值不存在的特殊值，第 8 章将介绍它的其他⽤途。
+
+    ```python
+    alien_0 = {'color': 'green', 'speed': 'slow'}
+    point_value = alien_0.get('points', 'No point value assigned.')
+    print(point_value)
+    # 如果字典中有键 'points'，将获得与之关联的值；如果没有，将获得指定的默认值。虽然这⾥没有键 'points'，但是我们将获得⼀条清晰的消息，不会引发错误：
+    No point value assigned.
+    ```
+
+### 遍历字典
+
+- 遍历所有的键值对 ( items() )  
+  字典名.items()，这个⽅法返回⼀个键值对列表。  
+
+  ```python
+  favorite_languages = {
+      'jen': 'python',
+      'sarah': 'c',
+      'edward': 'rust',
+      'phil': 'python',
+      }
+  for name, language in favorite_languages.items():
+      print(f"{name.title()}'s favorite language is {language.title()}.")
+  # 这些代码让 Python 遍历字典中的每个键值对，并将键赋给变量 name，将值赋给变量 language。
+  Jen's favorite language is Python.
+  Sarah's favorite language is C.
+  Edward's favorite language is Rust.
+  Phil's favorite language is Python.
+  ```
+
+- 遍历字典中的所有键 ( keys() )
+
+  ```python
+  favorite_languages = {
+      'jen': 'python',
+      'sarah': 'c',
+      'edward': 'rust',
+      'phil': 'python',
+      }
+  for name in favorite_languages.keys():
+      print(name.title())
+  # keys() ⽅法并⾮只能⽤于遍历：实际上，它会返回⼀个列表，其中包含字典中的所有键。
+  if 'erin' not in favorite_languages.keys():
+      print("Erin, please take our poll!")
+  # 输出
+  Erin, please take our poll!
+  ```
+
+- 按特定的顺序遍历字典中的所有键 ( sorted() )
+  
+  ```python
+  favorite_languages = {
+        'jen': 'python',
+        'sarah': 'c',
+        'edward': 'rust',
+        'phil': 'python',
+        }
+  for name in sorted(favorite_languages.keys()):
+      print(f"{name.title()}, thank you for taking the poll.")
+  # 对⽅法 dictionary.keys() 的结果调⽤了 sorted() 函数。这让 Python 获取字典中的所有键，并在遍历前对这个列表进⾏排序。输出表明，按字⺟顺序显⽰了所有被调查者的名字：
+  Edward, thank you for taking the poll.
+  Jen, thank you for taking the poll.
+  Phil, thank you for taking the poll.
+  Sarah, thank you for taking the poll.
+  ```
+
+- 遍历字典中的所有值 ( values() ，set() )
+
+  ```python
+  favorite_languages = {
+      'jen': 'python',
+      'sarah': 'c',
+      'edward': 'rust',
+      'phil': 'python',
+      }
+  for language in favorite_languages.values():
+      print(language.title())
+  # 这条 for 语句提取字典中的每个值，并将它们依次赋给变量 language。
+  Python
+  C
+  Rust
+  Python
+  # 这种做法提取字典中所有的值，⽽没有考虑值是否有重复。这种做法提取字典中所有的值，⽽没有考虑值是否有重复。
+  for language in set(favorite_languages.values()):
+      print(language.title())
+  # 通过将包含重复元素的列表传⼊ set()，可让 Python 找出列表中独⼀⽆⼆的元素，并使⽤这些元素来创建⼀个集合。
+  Python
+  C
+  Rust
+  ```
+
+  - 注意：可以使⽤⼀对花括号直接创建集合，并在其中⽤逗号分隔元素：
+  
+    ```python
+    >>> languages = {'python', 'rust', 'python', 'c'}
+    >>> languages
+    {'rust', 'python', 'c'}
+    ```
+  
+  - 集合和字典很容易混淆，因为它们都是⽤⼀对花括号定义的。当花括号内没有键值对时，定义的很可能是集合。
+  - 不同于列表和字典，集合不会以特定的顺序存储元素（集合本质上是无序的）。
 
 
