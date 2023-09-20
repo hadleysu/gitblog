@@ -27,6 +27,9 @@
   - [字典定义（ { key : value , key : value } ）](#字典定义--key--value--key--value--)
   - [使⽤字典](#使字典)
   - [遍历字典](#遍历字典)
+  - [嵌套](#嵌套)
+- [7 ⽤户输⼊和 while 循环](#7-户输和-while-循环)
+  - [input() 函数的⼯作原理](#input-函数的作原理)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
@@ -807,4 +810,85 @@ alien_0 = {'color': 'green', 'points': 5}
   - 集合和字典很容易混淆，因为它们都是⽤⼀对花括号定义的。当花括号内没有键值对时，定义的很可能是集合。
   - 不同于列表和字典，集合不会以特定的顺序存储元素（集合本质上是无序的）。
 
+### 嵌套
 
+- 字典列表
+
+  ```python
+  # 创建⼀个⽤于存储外星⼈的空列表
+  aliens = []
+  # 创建 30 个绿⾊的外星⼈
+  # range() 函数返回⼀个数字序列，告诉 Python 要重复这个循环多少次。
+  for alien_number in range(30):
+      new_alien = {'color': 'green', 'points': 5, 'speed': 'slow'}
+      aliens.append(new_alien)
+  # 使⽤⼀个切⽚来打印前 5 个外星⼈。
+  for alien in aliens[:5]:
+      print(alien)
+  # 显⽰创建了多少个外星⼈
+  print(f"Total number of aliens: {len(aliens)}")
+  ```
+
+- 在字典中存储列表  
+  
+  每当需要在字典中将⼀个键关联到多个值时，都可以在字典中嵌套⼀个列表。
+
+  ```python
+  # 在这⾥，与每个名字关联的值都是⼀个列表。请注意，有些⼈喜欢的语⾔只有⼀种，⽽有些⼈喜欢的不⽌⼀种。
+  favorite_languages = {
+      'jen': ['python', 'rust'],
+      'sarah': ['c'],
+      'edward': ['rust', 'go'],
+      'phil': ['python', 'haskell'],
+      }
+  for name, languages in favorite_languages.items():
+      print(f"\n{name.title()}'s favorite languages are:")
+      for language in languages:
+          print(f"\t{language.title()}")
+  # 注意：列表和字典的嵌套层级不应太多。
+  ```
+
+- 在字典中存储字典
+
+  ```python
+  users = {
+      'aeinstein': {
+          'first': 'albert',
+          'last': 'einstein',
+          'location': 'princeton',
+          },
+      'mcurie': {
+          'first': 'marie',
+          'last': 'curie',
+          'location': 'paris',
+          },
+      }
+  for username, user_info in users.items():
+      print(f"\nUsername: {username}")
+      full_name = f"{user_info['first']} {user_info['last']}"
+      location = user_info['location']
+      print(f"\tFull name: {full_name.title()}")
+      print(f"\tLocation: {location.title()}")
+  # 输出
+
+  Username: aeinstein
+      Full name: Albert Einstein
+      Location: Princeton
+
+  Username: mcurie
+      Full name: Marie Curie
+      Location: Paris
+  # ⾸先定义⼀个名为 users 的字典，其中包含两个键：⽤户名'aeinstein' 和 'mcurie'。与每个键关联的值都是⼀个字典，其中包含⽤户的名、姓和居住地。然后，遍历字典 users，让 Python 依次将每个键赋给变量 username，并依次将与当前键相关联的字典赋给变量 user_info。在循环内部，将⽤户名打印出来了。接下来，开始访问内部的字典。变量user_info 包含⽤户信息字典，⽽该字典包含三个键：'first'、'last' 和 'location'。对于每个⽤户，都使⽤这些键来⽣成整洁的姓名和居住地，然后打印有关⽤户的简要信息
+  ```
+
+## 7 ⽤户输⼊和 while 循环
+
+### input() 函数的⼯作原理
+
+- input() 函数让程序暂停运⾏，等待⽤户输⼊⼀些⽂本。获取⽤户输⼊后，Python 将其赋给⼀个变量，以便使⽤。
+  
+  ```python
+  message = input("Tell me something, and I will repeat it back to you: ")
+  print(message)
+  # input() 函数接受⼀个参数，即要向⽤户显⽰的提⽰（prompt），让⽤户知道该输⼊什么样的信息。
+  ```
