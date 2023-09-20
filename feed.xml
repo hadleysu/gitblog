@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-18T13:32:25.588790+00:00</updated><author><name>hadleysu</name><email>hadley.susu@gmail.com</email></author><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-18T13:32:25.782012+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-20T09:17:54.197364+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-20T09:17:54.504331+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -39,6 +39,12 @@
 <li><a href="#%E5%AD%97%E5%85%B8%E5%AE%9A%E4%B9%89--key--value--key--value--">字典定义（ { key : value , key : value } ）</a></li>
 <li><a href="#%E4%BD%BF%E5%AD%97%E5%85%B8">使⽤字典</a></li>
 <li><a href="#%E9%81%8D%E5%8E%86%E5%AD%97%E5%85%B8">遍历字典</a></li>
+<li><a href="#%E5%B5%8C%E5%A5%97">嵌套</a></li>
+</ul>
+</li>
+<li>
+<a href="#7-%E6%88%B7%E8%BE%93%E5%92%8C-while-%E5%BE%AA%E7%8E%AF">7 ⽤户输⼊和 while 循环</a><ul>
+<li><a href="#input-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E5%8E%9F%E7%90%86">input() 函数的⼯作原理</a></li>
 </ul>
 </li>
 </ul>
@@ -804,7 +810,88 @@ Rust
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-18T13:32:25.956427+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+<h3>嵌套</h3>
+<ul>
+<li>
+<p>字典列表</p>
+<pre><code class="language-python"># 创建⼀个⽤于存储外星⼈的空列表
+aliens = []
+# 创建 30 个绿⾊的外星⼈
+# range() 函数返回⼀个数字序列，告诉 Python 要重复这个循环多少次。
+for alien_number in range(30):
+    new_alien = {&#x27;color&#x27;: &#x27;green&#x27;, &#x27;points&#x27;: 5, &#x27;speed&#x27;: &#x27;slow&#x27;}
+    aliens.append(new_alien)
+# 使⽤⼀个切⽚来打印前 5 个外星⼈。
+for alien in aliens[:5]:
+    print(alien)
+# 显⽰创建了多少个外星⼈
+print(f&quot;Total number of aliens: {len(aliens)}&quot;)
+</code></pre>
+</li>
+<li>
+<p>在字典中存储列表  </p>
+<p>每当需要在字典中将⼀个键关联到多个值时，都可以在字典中嵌套⼀个列表。</p>
+<pre><code class="language-python"># 在这⾥，与每个名字关联的值都是⼀个列表。请注意，有些⼈喜欢的语⾔只有⼀种，⽽有些⼈喜欢的不⽌⼀种。
+favorite_languages = {
+    &#x27;jen&#x27;: [&#x27;python&#x27;, &#x27;rust&#x27;],
+    &#x27;sarah&#x27;: [&#x27;c&#x27;],
+    &#x27;edward&#x27;: [&#x27;rust&#x27;, &#x27;go&#x27;],
+    &#x27;phil&#x27;: [&#x27;python&#x27;, &#x27;haskell&#x27;],
+    }
+for name, languages in favorite_languages.items():
+    print(f&quot;\n{name.title()}&#x27;s favorite languages are:&quot;)
+    for language in languages:
+        print(f&quot;\t{language.title()}&quot;)
+# 注意：列表和字典的嵌套层级不应太多。
+</code></pre>
+</li>
+<li>
+<p>在字典中存储字典</p>
+<pre><code class="language-python">users = {
+    &#x27;aeinstein&#x27;: {
+        &#x27;first&#x27;: &#x27;albert&#x27;,
+        &#x27;last&#x27;: &#x27;einstein&#x27;,
+        &#x27;location&#x27;: &#x27;princeton&#x27;,
+        },
+    &#x27;mcurie&#x27;: {
+        &#x27;first&#x27;: &#x27;marie&#x27;,
+        &#x27;last&#x27;: &#x27;curie&#x27;,
+        &#x27;location&#x27;: &#x27;paris&#x27;,
+        },
+    }
+for username, user_info in users.items():
+    print(f&quot;\nUsername: {username}&quot;)
+    full_name = f&quot;{user_info[&#x27;first&#x27;]} {user_info[&#x27;last&#x27;]}&quot;
+    location = user_info[&#x27;location&#x27;]
+    print(f&quot;\tFull name: {full_name.title()}&quot;)
+    print(f&quot;\tLocation: {location.title()}&quot;)
+# 输出
+
+Username: aeinstein
+    Full name: Albert Einstein
+    Location: Princeton
+
+Username: mcurie
+    Full name: Marie Curie
+    Location: Paris
+# ⾸先定义⼀个名为 users 的字典，其中包含两个键：⽤户名&#x27;aeinstein&#x27; 和 &#x27;mcurie&#x27;。与每个键关联的值都是⼀个字典，其中包含⽤户的名、姓和居住地。然后，遍历字典 users，让 Python 依次将每个键赋给变量 username，并依次将与当前键相关联的字典赋给变量 user_info。在循环内部，将⽤户名打印出来了。接下来，开始访问内部的字典。变量user_info 包含⽤户信息字典，⽽该字典包含三个键：&#x27;first&#x27;、&#x27;last&#x27; 和 &#x27;location&#x27;。对于每个⽤户，都使⽤这些键来⽣成整洁的姓名和居住地，然后打印有关⽤户的简要信息
+</code></pre>
+</li>
+</ul>
+<h2>7 ⽤户输⼊和 while 循环</h2>
+<h3>input() 函数的⼯作原理</h3>
+<ul>
+<li>
+<p>input() 函数让程序暂停运⾏，等待⽤户输⼊⼀些⽂本。获取⽤户输⼊后，Python 将其赋给⼀个变量，以便使⽤。</p>
+<pre><code class="language-python">message = input(&quot;Tell me something, and I will repeat it back to you: &quot;)
+print(message)
+# input() 函数接受⼀个参数，即要向⽤户显⽰的提⽰（prompt），让⽤户知道该输⼊什么样的信息。
+</code></pre>
+</li>
+<li>
+</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-20T09:17:54.819138+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -818,7 +905,7 @@ Rust
 <ul>
 <li>CTRL + shift + p --&gt; Create Table of Contents</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-18T13:32:26.056851+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-20T09:17:54.955935+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
