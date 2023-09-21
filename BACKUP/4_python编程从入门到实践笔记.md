@@ -30,6 +30,8 @@
   - [嵌套](#嵌套)
 - [7 ⽤户输⼊和 while 循环](#7-户输和-while-循环)
   - [input() 函数的⼯作原理](#input-函数的作原理)
+  - [while 循环](#while-循环)
+  - [使⽤ while 循环处理列表和字典](#使-while-循环处理列表和字典)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
@@ -892,3 +894,97 @@ alien_0 = {'color': 'green', 'points': 5}
   print(message)
   # input() 函数接受⼀个参数，即要向⽤户显⽰的提⽰（prompt），让⽤户知道该输⼊什么样的信息。
   ```
+
+- 使⽤ int() 来获取数值输⼊  
+  
+  在使⽤ input() 函数时，Python 会将⽤户输⼊解读为字符串。  
+  在将数值输⼊⽤于计算和⽐较前，务必将其转换为数值表⽰。
+
+  ```python
+  height = input("How tall are you, in inches? ")
+  height = int(height)
+  if height >= 48:
+   print("\nYou're tall enough to ride!")
+  else:
+   print("\nYou'll be able to ride when you're a little older.")
+  # 在⽐较前，height = int(height) 将输⼊转换成了数值表⽰。
+  # 如果输⼊的数⼤于或等于 48，就指出⽤户满⾜⾝⾼条件：
+  How tall are you, in inches? 71
+  You're tall enough to ride!
+  ```
+
+- 求模运算符 ( % )  
+
+  它将两个数相除并返回余数。求模运算符不会指出⼀个数是另⼀个数的多少倍，只指出余数是多少。
+
+  ```python
+  >>> 4 % 3
+  1
+  >>> 5 % 3
+  2
+  >>> 6 % 3
+  0
+  >>> 7 % 3
+  1
+  ```
+
+  如果⼀个数可被另⼀个数整除，余数就为 0，因此求模运算将返回 0。可利⽤这⼀点来判断⼀个数是奇数还是偶数：
+
+  ```python
+  number = input("Enter a number, and I'll tell you if it's even or odd: ")
+  number = int(number)
+  if number % 2 == 0:
+      print(f"\nThe number {number} is even.")
+  else:
+      print(f"\nThe number {number} is odd.")
+
+  ```
+
+### while 循环
+
+- 使⽤标志（flag）
+
+  **注意：python 中 True 和 False 要开头大写**
+  
+  ```python
+  # 这个变量称为标志（flag），充当程序的交通信号灯。可以让程序在标志为 True 时继续运⾏，并在任何事件导致标志的值为 False 时让程序停⽌运⾏。
+  prompt = "\nTell me something, and I will repeat it back to you:"
+  prompt += "\nEnter 'quit' to end the program. "
+  active = True
+  while active:
+      message = input(prompt)
+      if message == 'quit':
+          active = False
+      else:
+          print(message)
+  ```
+
+- 使⽤ break 退出循环
+  
+  ```python
+  # 在所有 Python 循环中都可使⽤ break 语句。例如，可使⽤break 语句来退出遍历列表或字典的 for 循环。
+  prompt = "\nPlease enter the name of a city you have visited:"
+  prompt += "\n(Enter 'quit' when you are finished.) "
+  while True:
+      city = input(prompt)
+      if city == 'quit':
+          break
+      else:
+          print(f"I'd love to go to {city.title()}!")
+
+  ```
+
+- 在循环中使⽤ continue
+  
+  ```python
+  # 执⾏ continue 语句，让 Python 忽略余下的代码，并返回循环的开头。
+  # 打印1-10奇数
+  current_number = 0
+  while current_number < 10:
+      current_number += 1
+      if current_number % 2 == 0:
+          continue
+      print(current_number)
+  ```
+  
+### 使⽤ while 循环处理列表和字典
