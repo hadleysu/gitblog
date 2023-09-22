@@ -988,3 +988,116 @@ alien_0 = {'color': 'green', 'points': 5}
   ```
   
 ### 使⽤ while 循环处理列表和字典
+
+- for 循环是⼀种遍历列表的有效⽅式，但不应该在 for 循环中修改列表，否则将导致 Python 难以跟踪其中的元素。要在遍历列表的同时修改它，可使⽤ while 循环。
+
+  ```python
+  # 错误操作一
+  a = [1, 2, 4, 4, 5]
+  for i, v in enumerate(a):
+      if v == 4:
+          del a[i]
+  # 结果为 
+  a = [1, 2, 4, 5]
+  # 这是因为 Python 的 for 循环存在自动填充，即在循环中自动填充列表中的下一个元素，如果在循环中修改列表的值，可能会引发错误。
+  # 由于在遍历的过程中，删除了其中一个元素，导致后面的元素整体前移，导致有个元素成了漏网之鱼。
+  a  0 1 2 3 4   -->     0 1 2 3
+     1 2 4 4 5   -->     1 2 4 5
+  ```
+
+  ```python
+  # 错误操作二
+  a = [1, 2, 4, 4, 5]
+  for i in range(len(a)):
+      if a[i] == 4:
+          del a[i]
+  # 直接报错
+  IndexError: list index out of range
+  i 最大取值为4，但删除操作后的列表长度为4，最大下标为3，所以报错 list index out of range
+  ```
+
+  ```python
+  # 正确操作
+  a = [1, 2, 4, 4, 5]
+  i = 0
+  while i < len(a):
+      if a[i] == 4:
+          del a[i]
+      else:
+          i += 1
+  ```
+
+- 在列表之间移动元素
+
+  ```python
+  # ⾸先，创建⼀个待验证⽤户列表
+  # 和⼀个⽤于存储已验证⽤户的空列表
+  unconfirmed_users = ['alice', 'brian', 'candace']
+  confirmed_users = []
+  # 验证每个⽤户，直到没有未验证⽤户为⽌
+  # 将每个经过验证的⽤户都移到已验证⽤户列表中
+  # while 循环将不断地运⾏，直到列表 unconfirmed_users 变成空的。
+  while unconfirmed_users:
+      current_user = unconfirmed_users.pop()
+      print(f"Verifying user: {current_user.title()}")
+      confirmed_users.append(current_user)
+  # 显⽰所有的已验证⽤户
+  print("\nThe following users have been confirmed:")
+  for confirmed_user in confirmed_users:
+      print(confirmed_user.title())
+  # 输出
+  Verifying user: Candace
+  Verifying user: Brian
+  Verifying user: Alice
+  The following users have been confirmed:
+  Candace
+  Brian
+  Alice
+  ```
+
+- 删除为特定值的所有列表元素
+
+  ```python
+  pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+  print(pets)
+  while 'cat' in pets:
+      pets.remove('cat')
+  print(pets)
+  # 输出
+  ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+  ['dog', 'dog', 'goldfish', 'rabbit']
+  ```
+
+- 使⽤⽤户输⼊填充字典
+
+  ```python
+  # 可以使⽤ while 循环提⽰⽤户输⼊任意多的信息。下⾯创建⼀个调查程序，其中的循环在每次执⾏时都提⽰输⼊被调查者的名字和回答。我们将收集到的数据存储在⼀个字典中，以便将回答与被调查者关联起来：
+  responses = {}
+  # 设置⼀个标志，指出调查是否继续
+  polling_active = True
+  while polling_active:
+      # 提⽰输⼊被调查者的名字和回答
+      name = input("\nWhat is your name? ")
+      response = input("Which mountain would you like to climb someday? ")
+      # 将回答存储在字典中
+      responses[name] = response
+      # 看看是否还有⼈要参与调查
+      repeat = input("Would you like to let another person respond? (yes/no) ")
+      if repeat == 'no':
+          polling_active = False
+  # 调查结束，显⽰结果
+  print("\n--- Poll Results ---")
+  for name, response in responses.items():
+      print(f"{name} would like to climb {response}.")
+  # 输出
+
+  What is your name? Eric
+  Which mountain would you like to climb someday? Denali
+  Would you like to let another person respond? (yes/no) yes
+  What is your name? Lynn
+  Which mountain would you like to climb someday? Devil's Thumb
+  Would you like to let another person respond? (yes/no) no
+  --- Poll Results ---
+  Eric would like to climb Denali.
+  Lynn would like to climb Devil's Thumb.
+  ```
