@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-22T15:04:50.261137+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-22T15:04:50.460998+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-23T14:07:32.681673+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-23T14:07:33.040386+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -44,9 +44,16 @@
 </li>
 <li>
 <a href="#7-%E6%88%B7%E8%BE%93%E5%92%8C-while-%E5%BE%AA%E7%8E%AF">7 ⽤户输⼊和 while 循环</a><ul>
-<li><a href="#input-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%9C%E5%8E%9F%E7%90%86">input() 函数的⼯作原理</a></li>
-<li><a href="#while-%E5%BE%AA%E7%8E%AF">while 循环</a></li>
+<li><a href="#%E4%BD%BF-input-%E6%9D%A5%E8%AE%A9%E6%88%B7%E6%8F%90%E4%BE%9B%E4%BF%A1%E6%81%AF">使⽤ input() 来让⽤户提供信息</a></li>
+<li><a href="#%E6%8E%A7%E5%88%B6-while-%E5%BE%AA%E7%8E%AF%E6%B5%81%E7%A8%8B%E7%9A%84%E5%BC%8F">控制 while 循环流程的⽅式</a></li>
 <li><a href="#%E4%BD%BF-while-%E5%BE%AA%E7%8E%AF%E5%A4%84%E7%90%86%E5%88%97%E8%A1%A8%E5%92%8C%E5%AD%97%E5%85%B8">使⽤ while 循环处理列表和字典</a></li>
+</ul>
+</li>
+<li>
+<a href="#8-%E5%87%BD%E6%95%B0">8 函数</a><ul>
+<li><a href="#%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%AE%9E%E5%8F%82%E5%BD%A2%E5%8F%82">定义函数、实参形参</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%AE%9E%E5%8F%82">如何传递实参</a></li>
+<li><a href="#%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</a></li>
 </ul>
 </li>
 </ul>
@@ -881,7 +888,7 @@ Username: mcurie
 </li>
 </ul>
 <h2>7 ⽤户输⼊和 while 循环</h2>
-<h3>input() 函数的⼯作原理</h3>
+<h3>使⽤ input() 来让⽤户提供信息</h3>
 <ul>
 <li>
 <p>input() 函数让程序暂停运⾏，等待⽤户输⼊⼀些⽂本。获取⽤户输⼊后，Python 将其赋给⼀个变量，以便使⽤。</p>
@@ -891,7 +898,7 @@ print(message)
 </code></pre>
 </li>
 <li>
-<p>使⽤ int() 来获取数值输⼊  </p>
+<p>使⽤ int() 来获取数值输⼊（如何处理⽂本和数的输⼊）</p>
 <p>在使⽤ input() 函数时，Python 会将⽤户输⼊解读为字符串。<br />
 在将数值输⼊⽤于计算和⽐较前，务必将其转换为数值表⽰。</p>
 <pre><code class="language-python">height = input(&quot;How tall are you, in inches? &quot;)
@@ -929,7 +936,7 @@ else:
 </code></pre>
 </li>
 </ul>
-<h3>while 循环</h3>
+<h3>控制 while 循环流程的⽅式</h3>
 <ul>
 <li>
 <p>使⽤标志（flag）</p>
@@ -1081,7 +1088,101 @@ Lynn would like to climb Devil&#x27;s Thumb.
 </code></pre>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-22T15:04:50.642112+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+<h2>8 函数</h2>
+<h3>定义函数、实参形参</h3>
+<ul>
+<li>
+<p>函数（function）是带名字的代码块，⽤于完成具体的⼯作。要执⾏函数定义的特定任务，可调⽤（call）该函数。</p>
+</li>
+<li>
+<p>使⽤关键字 def 定义函数。这是函数定义，向 Python 指出了函数名，还可以在括号内指出函数为完成任务需要什么样的信息。最后，定义以冒号结尾。</p>
+</li>
+<li>
+<p>紧跟在 def greet_user(): 后⾯的所有缩进⾏构成了函数体。第⼆⾏的⽂本是称为⽂档字符串（docstring）的注释，描述了函数是做什么的。Python 在为程序中的函数⽣成⽂档时，会查找紧跟在函数定义后的字符串。这些字符串通常前后分别⽤三个双引号引起，能够包含多⾏。</p>
+</li>
+<li>
+<p>函数调⽤让 Python 执⾏函数中的代码。要调⽤函数，可依次指定函数名以及⽤括号括起的必要信息。</p>
+<pre><code class="language-python">def greet_user(username):
+    &quot;&quot;&quot;显⽰简单的问候语&quot;&quot;&quot;
+    print(f&quot;Hello, {username.title()}!&quot;)
+greet_user(&#x27;jesse&#x27;)
+# 输出
+Hello, Jesse!
+</code></pre>
+</li>
+<li>
+<p>在 greet_user() 函数的定义中，变量 username 是⼀个形参（parameter），即函数完成⼯作所需的信息。在代码greet_user('jesse') 中，值 'jesse' 是⼀个实参（argument），即在调⽤函数时传递给函数的信息。</p>
+</li>
+</ul>
+<h3>如何传递实参</h3>
+<ul>
+<li>
+<p>位置实参</p>
+<pre><code class="language-python">def describe_pet(animal_type, pet_name):
+    &quot;&quot;&quot;显⽰宠物的信息&quot;&quot;&quot;
+    print(f&quot;\nI have a {animal_type}.&quot;)
+    print(f&quot;My {animal_type}&#x27;s name is {pet_name. title()}.&quot;)
+describe_pet(&#x27;hamster&#x27;, &#x27;harry&#x27;)
+describe_pet(&#x27;dog&#x27;, &#x27;willie&#x27;)
+# 位置实参的顺序很重要
+</code></pre>
+</li>
+<li>
+<p>关键字实参</p>
+<pre><code class="language-python">def describe_pet(animal_type, pet_name):
+    &quot;&quot;&quot;显⽰宠物的信息&quot;&quot;&quot;
+    print(f&quot;\nI have a {animal_type}.&quot;)
+    print(f&quot;My {animal_type}&#x27;s name is {pet_name.title()}.&quot;)
+# 下⾯两个函数调⽤是等效的 
+describe_pet(animal_type=&#x27;hamster&#x27;, pet_name=&#x27;harry&#x27;)
+describe_pet(pet_name=&#x27;harry&#x27;, animal_type=&#x27;hamster&#x27;)
+# 注意：在使⽤关键字实参时，务必准确地指定函数定义中的形参名。
+</code></pre>
+</li>
+<li>
+<p>默认值</p>
+<p>在编写函数时，可以给每个形参指定默认值。如果在调⽤函数中给形参提供了实参，Python 将使⽤指定的实参值；否则，将使⽤形参的默认值。因此，给形参指定默认值后，可在函数调⽤中省略相应的实参。使⽤默认值不仅能简化函数调⽤，还能清楚地指出函数的典型⽤法。</p>
+<pre><code class="language-python">def describe_pet(pet_name, animal_type=&#x27;dog&#x27;):
+ &quot;&quot;&quot;显⽰宠物的信息&quot;&quot;&quot;
+ print(f&quot;\nI have a {animal_type}.&quot;)
+ print(f&quot;My {animal_type}&#x27;s name is {pet_name.title()}.&quot;)
+describe_pet(pet_name=&#x27;willie&#x27;)
+describe_pet(&#x27;willie&#x27;)
+describe_pet(pet_name=&#x27;harry&#x27;, animal_type=&#x27;hamster&#x27;)
+</code></pre>
+<p>注意：当使⽤默认值时，必须在形参列表中先列出没有默认值的形参，再列出有默认值的形参。这让 Python 依然能够正确地解读位置实参。</p>
+</li>
+<li>
+<p>等效的函数调⽤</p>
+<pre><code class="language-python">def describe_pet(pet_name, animal_type=&#x27;dog&#x27;):
+# 下⾯对这个函数的所有调⽤都可⾏：
+
+# ⼀条名为 Willie 的⼩狗
+describe_pet(&#x27;willie&#x27;)
+describe_pet(pet_name=&#x27;willie&#x27;)
+# ⼀只名为 Harry 的仓⿏
+describe_pet(&#x27;harry&#x27;, &#x27;hamster&#x27;)
+describe_pet(pet_name=&#x27;harry&#x27;, animal_type=&#x27;hamster&#x27;)
+describe_pet(animal_type=&#x27;hamster&#x27;, pet_name=&#x27;harry&#x27;)
+</code></pre>
+</li>
+</ul>
+<h3>返回值</h3>
+<ul>
+<li>
+<p>返回简单的值</p>
+<pre><code class="language-python">def get_formatted_name(first_name, last_name):
+    &quot;&quot;&quot;返回标准格式的姓名&quot;&quot;&quot;
+    full_name = f&quot;{first_name} {last_name}&quot;
+    return full_name.title()
+musician = get_formatted_name(&#x27;jimi&#x27;, &#x27;hendrix&#x27;)
+print(musician)
+</code></pre>
+</li>
+<li>
+</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-23T14:07:33.253961+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -1095,7 +1196,7 @@ Lynn would like to climb Devil&#x27;s Thumb.
 <ul>
 <li>CTRL + shift + p --&gt; Create Table of Contents</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-22T15:04:50.739016+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-23T14:07:33.451458+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>

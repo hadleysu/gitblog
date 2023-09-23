@@ -29,9 +29,13 @@
   - [遍历字典](#遍历字典)
   - [嵌套](#嵌套)
 - [7 ⽤户输⼊和 while 循环](#7-户输和-while-循环)
-  - [input() 函数的⼯作原理](#input-函数的作原理)
-  - [while 循环](#while-循环)
+  - [使⽤ input() 来让⽤户提供信息](#使-input-来让户提供信息)
+  - [控制 while 循环流程的⽅式](#控制-while-循环流程的式)
   - [使⽤ while 循环处理列表和字典](#使-while-循环处理列表和字典)
+- [8 函数](#8-函数)
+  - [定义函数、实参形参](#定义函数实参形参)
+  - [如何传递实参](#如何传递实参)
+  - [返回值](#返回值)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
@@ -885,7 +889,7 @@ alien_0 = {'color': 'green', 'points': 5}
 
 ## 7 ⽤户输⼊和 while 循环
 
-### input() 函数的⼯作原理
+### 使⽤ input() 来让⽤户提供信息
 
 - input() 函数让程序暂停运⾏，等待⽤户输⼊⼀些⽂本。获取⽤户输⼊后，Python 将其赋给⼀个变量，以便使⽤。
   
@@ -895,7 +899,7 @@ alien_0 = {'color': 'green', 'points': 5}
   # input() 函数接受⼀个参数，即要向⽤户显⽰的提⽰（prompt），让⽤户知道该输⼊什么样的信息。
   ```
 
-- 使⽤ int() 来获取数值输⼊  
+- 使⽤ int() 来获取数值输⼊（如何处理⽂本和数的输⼊）
   
   在使⽤ input() 函数时，Python 会将⽤户输⼊解读为字符串。  
   在将数值输⼊⽤于计算和⽐较前，务必将其转换为数值表⽰。
@@ -940,7 +944,7 @@ alien_0 = {'color': 'green', 'points': 5}
 
   ```
 
-### while 循环
+### 控制 while 循环流程的⽅式
 
 - 使⽤标志（flag）
 
@@ -1101,3 +1105,99 @@ alien_0 = {'color': 'green', 'points': 5}
   Eric would like to climb Denali.
   Lynn would like to climb Devil's Thumb.
   ```
+  
+## 8 函数
+
+### 定义函数、实参形参
+
+- 函数（function）是带名字的代码块，⽤于完成具体的⼯作。要执⾏函数定义的特定任务，可调⽤（call）该函数。
+
+- 使⽤关键字 def 定义函数。这是函数定义，向 Python 指出了函数名，还可以在括号内指出函数为完成任务需要什么样的信息。最后，定义以冒号结尾。
+
+- 紧跟在 def greet_user(): 后⾯的所有缩进⾏构成了函数体。第⼆⾏的⽂本是称为⽂档字符串（docstring）的注释，描述了函数是做什么的。Python 在为程序中的函数⽣成⽂档时，会查找紧跟在函数定义后的字符串。这些字符串通常前后分别⽤三个双引号引起，能够包含多⾏。
+
+- 函数调⽤让 Python 执⾏函数中的代码。要调⽤函数，可依次指定函数名以及⽤括号括起的必要信息。
+
+  ```python
+  def greet_user(username):
+      """显⽰简单的问候语"""
+      print(f"Hello, {username.title()}!")
+  greet_user('jesse')
+  # 输出
+  Hello, Jesse!
+  ```
+
+- 在 greet_user() 函数的定义中，变量 username 是⼀个形参（parameter），即函数完成⼯作所需的信息。在代码greet_user('jesse') 中，值 'jesse' 是⼀个实参（argument），即在调⽤函数时传递给函数的信息。
+
+### 如何传递实参
+
+- 位置实参
+
+  ```python
+  def describe_pet(animal_type, pet_name):
+      """显⽰宠物的信息"""
+      print(f"\nI have a {animal_type}.")
+      print(f"My {animal_type}'s name is {pet_name. title()}.")
+  describe_pet('hamster', 'harry')
+  describe_pet('dog', 'willie')
+  # 位置实参的顺序很重要
+  ```
+
+- 关键字实参
+
+  ```python
+  def describe_pet(animal_type, pet_name):
+      """显⽰宠物的信息"""
+      print(f"\nI have a {animal_type}.")
+      print(f"My {animal_type}'s name is {pet_name.title()}.")
+  # 下⾯两个函数调⽤是等效的 
+  describe_pet(animal_type='hamster', pet_name='harry')
+  describe_pet(pet_name='harry', animal_type='hamster')
+  # 注意：在使⽤关键字实参时，务必准确地指定函数定义中的形参名。
+  ```
+
+- 默认值
+
+   在编写函数时，可以给每个形参指定默认值。如果在调⽤函数中给形参提供了实参，Python 将使⽤指定的实参值；否则，将使⽤形参的默认值。因此，给形参指定默认值后，可在函数调⽤中省略相应的实参。使⽤默认值不仅能简化函数调⽤，还能清楚地指出函数的典型⽤法。
+
+  ```python
+  def describe_pet(pet_name, animal_type='dog'):
+   """显⽰宠物的信息"""
+   print(f"\nI have a {animal_type}.")
+   print(f"My {animal_type}'s name is {pet_name.title()}.")
+  describe_pet(pet_name='willie')
+  describe_pet('willie')
+  describe_pet(pet_name='harry', animal_type='hamster')
+  ```
+
+  注意：当使⽤默认值时，必须在形参列表中先列出没有默认值的形参，再列出有默认值的形参。这让 Python 依然能够正确地解读位置实参。
+
+- 等效的函数调⽤
+
+  ```python
+  def describe_pet(pet_name, animal_type='dog'):
+  # 下⾯对这个函数的所有调⽤都可⾏：
+
+  # ⼀条名为 Willie 的⼩狗
+  describe_pet('willie')
+  describe_pet(pet_name='willie')
+  # ⼀只名为 Harry 的仓⿏
+  describe_pet('harry', 'hamster')
+  describe_pet(pet_name='harry', animal_type='hamster')
+  describe_pet(animal_type='hamster', pet_name='harry')
+  ```
+
+### 返回值
+
+- 返回简单的值
+
+  ```python
+  def get_formatted_name(first_name, last_name):
+      """返回标准格式的姓名"""
+      full_name = f"{first_name} {last_name}"
+      return full_name.title()
+  musician = get_formatted_name('jimi', 'hendrix')
+  print(musician)
+  ```
+
+- 
