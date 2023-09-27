@@ -10,12 +10,12 @@
   - [注释](#注释)
 - [3 列表简介](#3-列表简介)
   - [列表](#列表)
-  - [管理列表 ( sort(),sorted(),len() )](#管理列表--sortsortedlen-)
+  - [管理列表 ( sort() , sorted() , len() )](#管理列表--sort--sorted--len-)
   - [使⽤列表时避免索引错误](#使列表时避免索引错误)
 - [4 操作列表](#4-操作列表)
   - [遍历整个列表（for）](#遍历整个列表for)
   - [避免缩进错误](#避免缩进错误)
-  - [创建数值列表 ( list(range()) )](#创建数值列表--listrange-)
+  - [创建数值列表 ( list ( range() ) )](#创建数值列表--list--range--)
   - [使用列表的一部分（切片）](#使用列表的一部分切片)
   - [元组](#元组)
   - [设置代码格式](#设置代码格式)
@@ -36,6 +36,12 @@
   - [定义函数、实参形参](#定义函数实参形参)
   - [如何传递实参](#如何传递实参)
   - [返回值](#返回值)
+  - [传递列表](#传递列表)
+  - [传递任意数量的实参 （\*形参 / \*\*形参）](#传递任意数量的实参-形参--形参)
+  - [将函数存储在模块中，再将模块导⼊主程序](#将函数存储在模块中再将模块导主程序)
+  - [函数编写指南](#函数编写指南)
+- [类](#类)
+  - [创建和使⽤类](#创建和使类)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
@@ -258,7 +264,7 @@
       # 注意：remove() ⽅法只删除第⼀个指定的值。如果要删除的值可能在列表中出现多次，就需要使⽤循环，确保将每个值都删除。这将在第 7 章介绍。
       ```
 
-### 管理列表 ( sort(),sorted(),len() )
+### 管理列表 ( sort() , sorted() , len() )
 
 - 使⽤ sort() ⽅法对列表进⾏永久排序
   
@@ -359,7 +365,7 @@ IndexError: list index out of range
 - 位于 for 语句后⾯且属于循环组成部分的代码⾏，⼀定要缩进。为避免意外的缩进错误，请只缩进需要缩进的代码。
 - 不要遗漏*冒号*。for 语句末尾的冒号告诉 Python，下⼀⾏是循环的第⼀⾏。
 
-### 创建数值列表 ( list(range()) )
+### 创建数值列表 ( list ( range() ) )
 
 - range() 函数。Python 函数 range() 能⽣成⼀系列的数。可以传一个参数、两个参数、三个参数。
 
@@ -609,7 +615,7 @@ IndexError: list index out of range
   ```
 
   - 在 if 语句中将列表名⽤作条件表达式时，Python将在列表⾄少包含⼀个元素时返回 True，在列表为空时返回 False 。
-  - 对于数值 0、空值 None、单引号空字符串 ''、双引号空字符串 ""、空列表 []、空元组 ()、空字典 {}，Python 都会返回 False。
+  - **对于数值 0、空值 None、单引号空字符串 ''、双引号空字符串 ""、空列表 []、空元组 ()、空字典 {}，Python 都会返回 False。**
 
 - 使⽤多个列表
 
@@ -1200,4 +1206,262 @@ alien_0 = {'color': 'green', 'points': 5}
   print(musician)
   ```
 
-- 
+- 让实参变成可选的
+
+  可以使⽤默认值来让实参变成可选的。
+
+  ```python
+  def get_formatted_name(first_name, last_name, middle_name=''):
+      """返回标准格式的姓名"""
+      if middle_name:  # Python 将⾮空字符串解读为 True
+          full_name = f"{first_name} {middle_name} {last_name}"
+      else:
+          full_name = f"{first_name} {last_name}"
+      return full_name.title()
+
+  musician = get_formatted_name('jimi', 'hendrix')
+  print(musician)
+  musician = get_formatted_name('john', 'hooker', 'lee')
+  print(musician)
+  ```
+
+- 返回字典
+
+  ```python
+  def build_person(first_name, last_name, age=None):
+      """返回⼀个字典，其中包含有关⼀个⼈的信息"""
+      person = {'first': first_name, 'last': last_name}
+      if age:
+          person['age'] = age
+      return person
+
+  musician = build_person('jimi', 'hendrix', age=27)
+  print(musician)
+  ```
+
+  - 在函数定义中，新增了⼀个可选形参 age，其默认值被设置为特殊值 None（表⽰变量没有值）。可将 None 视为占位值。在条件测试中，None 相当于 False.
+
+### 传递列表
+
+- 在函数中修改列表
+
+  ```python
+  def print_models(unprinted_designs, completed_models):
+      """
+      模拟打印每个设计，直到没有未打印的设计为⽌
+      打印每个设计后，都将其移到列表 completed_models 中
+      """
+      while unprinted_designs:
+          current_design = unprinted_designs.pop()
+          print(f"Printing model: {current_design}")
+          completed_models.append(current_design)
+
+  def show_completed_models(completed_models):
+      """显⽰打印好的所有模型"""
+      print("\nThe following models have been printed:")
+      for completed_model in completed_models:
+          print(completed_model)
+
+  unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']
+  completed_models = []
+
+  print_models(unprinted_designs, completed_models)
+  show_completed_models(completed_models)
+  ```
+
+- 禁⽌函数修改列表（ 切片 [ : ] ）
+
+  有时候，需要禁⽌函数修改列表。可向函数传递列表的副本⽽不是原始列表。这样，函数所做的任何修改都只影响副本，⽽丝毫不影响原始列表。
+
+  ```python
+  # 要将列表的副本传递给函数，可以像下⾯这样做：
+  function_name(list_name[:])
+  # 切⽚表⽰法 [:] 创建列表的副本。
+  print_models(unprinted_designs[:], completed_models)
+  # 在上面的例子中，如果不想清空未打印的设计列表，可像下⾯这样调⽤ print_models()
+  ```
+
+  虽然向函数传递列表的副本可保留原始列表的内容，但除⾮有充分的理由，否则还是应该将原始列表传递给函数。这是因为，让函数使⽤现成的列表可避免花时间和内存创建副本，从⽽提⾼效率，在处理⼤型列表时尤其如此。
+
+### 传递任意数量的实参 （*形参 / **形参）
+
+```python
+# 下⾯的函数只有⼀个形参 *toppings，不管调⽤语句提供了多少实参，这个形参都会将其收⼊囊中。
+def make_pizza(*toppings):
+    """打印顾客点的所有配料"""
+    print(toppings)
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+# 形参名 *toppings 中的星号让 Python 创建⼀个名为 toppings 的元组，该元组包含函数收到的所有值。
+
+```
+
+- 结合使⽤位置实参和任意数量的实参  
+  
+  如果要让函数接受不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python 先匹配位置实参和关键字实参，再将余下的实参都收集到最后⼀个形参中。
+
+  ```python
+  def make_pizza(size, *toppings):
+      """概述要制作的⽐萨"""
+      print(f"\nMaking a {size}-inch pizza with the following toppings:")
+      for topping in toppings:
+          print(f"- {topping}")
+
+  make_pizza(16, 'pepperoni')
+  make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+  ```
+
+  注意：你经常会看到通⽤形参名 *args，它也这样收集任意数量的位置实参。
+
+- 使⽤任意数量的关键字实参
+
+  ```python
+  def build_profile(first, last, **user_info):
+      """创建⼀个字典，其中包含我们知道的有关⽤户的⼀切"""
+    ❶ user_info['first_name'] = first
+      user_info['last_name'] = last
+      return user_info
+  user_profile = build_profile('albert', 'einstein',
+                               location='princeton',
+                               field='physics')
+  print(user_profile)
+  # 输出
+  {'location': 'princeton', 'field': 'physics',
+  'first_name': 'albert', 'last_name': 'einstein'}
+  ```
+
+  你需要接受任意数量的实参，但预先不知道传递给函数的会是什么样的信息。在这种情况下，可将函数编写成能够接受任意数量的键值对——调⽤语句提供了多少就接受多少。  
+  
+  形参 **user_info 中的两个星号让 Python 创建⼀个名为 user_info 的字典，该字典包含函数收到的其他所有名对。
+
+  注意：你经常会看到形参名 **kwargs，它⽤于收集任意数量的关键字实参。
+
+### 将函数存储在模块中，再将模块导⼊主程序
+
+- 导⼊整个模块  
+  
+  只需编写⼀条 import 语句并在其中指定模块名，就可在程序中使⽤该模块中的所有函数。如果使⽤这种 import 语句导⼊了名为 module_name.py 的整个模块，就可使⽤下⾯的语法来使⽤其中的任意⼀个函数。
+
+  ```python
+  import module_name
+  module_name.function_name()
+  ```
+
+  要让函数是可导⼊的，得先创建模块。模块是扩展名为 .py 的⽂件，包含要导⼊程序的代码。下⾯来创建⼀个包含 make_pizza() 函数的模块。
+
+  pizza.py
+
+  ```python
+  def make_pizza(size, *toppings):
+      """概述要制作的⽐萨"""
+      print(f"\nMaking a {size}-inch pizza with the following toppings:")
+      for topping in toppings:
+          print(f"- {topping}")
+  ```
+
+  making_pizzas.py
+
+  ```python
+  import pizza
+
+  pizza.make_pizza(16, 'pepperoni')
+  pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+
+  ```
+
+  当 Python 读取这个⽂件时，代码⾏ import pizza 会让 Python 打开⽂件pizza.py，并将其中的所有函数都复制到这个程序中。
+
+- 导⼊模块中的特定函数
+  
+  ```python
+  from module_name import function_name
+  ```
+
+  ⽤逗号分隔函数名，可根据需要从模块中导⼊任意数量的函数：
+
+  ```python
+  from module_name import function_0, function_1, function_2
+  ```
+
+  ```python
+  from pizza import make_pizza
+  make_pizza(16, 'pepperoni')
+  make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+  ```
+  
+  如果使⽤这种语法，在调⽤函数时则⽆须使⽤句点。由于在 import 语句中显式地导⼊了 make_pizza() 函数，因此在调⽤时只需指定其名称即可。
+
+- 使⽤ as 给函数指定别名（alias）
+  
+  ```python
+  from module_name import function_name as fn
+  ```
+
+  如果要导⼊的函数的名称太⻓或者可能与程序中既有的名称冲突，可指定简短⽽独⼀⽆⼆的别名。
+
+  ```python
+  from pizza import make_pizza as mp
+  mp(16, 'pepperoni')
+  mp(12, 'mushrooms', 'green peppers', 'extra cheese')
+  ```
+
+- 使⽤ as 给模块指定别名
+  
+  ```python
+  import module_name as mn
+  ```
+
+  ```python
+  import pizza as p
+  p.make_pizza(16, 'pepperoni')
+  p.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+  ```
+
+- 导⼊模块中的所有函数（ * ）
+
+  ```python
+  from pizza import *
+  make_pizza(16, 'pepperoni')
+  make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+  ```
+
+  import 语句中的星号让 Python 将模块 pizza 中的每个函数都复制到这个程序⽂件中。由于导⼊了每个函数，可通过名称来调⽤每个函数，⽆须使⽤点号（dot notation）。  
+  最好不要用这种发放导入。最佳的做法是，要么只导⼊需要使⽤的函数，要么导⼊整个模块并使⽤点号。
+
+### 函数编写指南
+
+- 应给函数指定描述性名称，且只使⽤⼩写字⺟和下划线。。在给模块命名时也应遵循上述约定。
+- 每个函数都应包含简要阐述其功能的注释。该注释应紧跟在函数定义后⾯，并采⽤⽂档字符串的格式。
+- 在给形参指定默认值时，等号两边不要有空格：
+  
+  ```python
+  def function_name(parameter_0, parameter_1='default value')
+
+  ```
+
+- 函数调⽤中的关键字实参也应遵循这种约定：
+
+  ```python
+  function_name(value_0, parameter_1='value')
+  ```
+
+- 如果形参很多，导致函数定义的⻓度超过了 79 个
+字符，可在函数定义中输⼊左括号后按回⻋键，并在下⼀⾏连按两次制表符键，从⽽将形参列表和只缩进⼀层的函数体区分开来。
+
+  ```python
+  def function_name(
+          parameter_0, parameter_1, parameter_2,
+          parameter_3, parameter_4, parameter_5):
+      function body...
+  ```
+
+- 如果程序或模块包含多个函数，可使⽤两个空⾏将相邻的函数分开。
+- 所有的 import 语句都应放在⽂件开头。
+
+## 类
+
+### 创建和使⽤类
+
+```python
+
+```
