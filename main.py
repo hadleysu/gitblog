@@ -153,8 +153,9 @@ def add_md_top(repo, md, me):
 def add_md_firends(repo, md, me):
     s = FRIENDS_TABLE_HEAD
     friends_issues = list(repo.get_issues(labels=FRIENDS_LABELS))
-    if friends_issues:
-        friends_issue_number = friends_issues[0].number
+    if not FRIENDS_LABELS or not friends_issues:
+        return
+    friends_issue_number = friends_issues[0].number
     for issue in friends_issues:
         for comment in issue.get_comments():
             if is_hearted_by_me(comment, me):
@@ -165,12 +166,9 @@ def add_md_firends(repo, md, me):
                     pass
     s = markdown.markdown(s, output_format="html", extensions=["extra"])
     with open(md, "a+", encoding="utf-8") as md:
-        if friends_issues:
-            md.write(
-                f"## [友情链接](https://github.com/{str(me)}/gitblog/issues/{friends_issue_number})\n"
-            )
-        else:
-            md.write("## 友情链接\n")
+        md.write(
+            f"## [友情链接](https://github.com/{str(me)}/gitblog/issues/{friends_issue_number})\n"
+        )
         md.write(s)
         md.write("\n\n")
 
