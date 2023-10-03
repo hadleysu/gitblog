@@ -40,10 +40,27 @@
   - [传递任意数量的实参 （\*形参 / \*\*形参）](#传递任意数量的实参-形参--形参)
   - [将函数存储在模块中，再将模块导⼊主程序](#将函数存储在模块中再将模块导主程序)
   - [函数编写指南](#函数编写指南)
-- [类](#类)
-  - [创建和使⽤类](#创建和使类)
+- [9 类](#9-类)
+  - [创建和使⽤类创建实例](#创建和使类创建实例)
+  - [给类的属性指定默认值，修改实例的属性的值](#给类的属性指定默认值修改实例的属性的值)
+  - [继承](#继承)
+  - [导⼊类](#导类)
+  - [Python 标准库](#python-标准库)
+  - [类的编程⻛格](#类的编程格)
+- [10 ⽂件和异常](#10-件和异常)
+  - [读取⽂件（ path对象 . read\_text() ）](#读取件-path对象--read_text-)
+  - [写⼊⽂件（ path对象 . write\_text() ）](#写件-path对象--write_text-)
+  - [异常](#异常)
+    - [使⽤ try-except 代码块](#使-try-except-代码块)
+    - [else 代码块](#else-代码块)
+    - [常见的异常类型有](#常见的异常类型有)
+  - [使⽤模块 json 来存储数据](#使模块-json-来存储数据)
+  - [重构](#重构)
+- [11 使⽤ pytest 工具库测试代码](#11-使-pytest-工具库测试代码)
+  - [使⽤ pip 安装 pytest](#使-pip-安装-pytest)
+  - [测试函数](#测试函数)
 
-## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
+## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_y0-es.html)
 
 ## 2 变量和简单的数据类型
 
@@ -1458,9 +1475,632 @@ make_pizza('mushrooms', 'green peppers', 'extra cheese')
 - 如果程序或模块包含多个函数，可使⽤两个空⾏将相邻的函数分开。
 - 所有的 import 语句都应放在⽂件开头。
 
-## 类
+## 9 类
 
-### 创建和使⽤类
+### 创建和使⽤类创建实例
+
+```python
+# 使⽤属性在类中存储信息，编写⽅法让类具备所需的⾏为
+class Dog:
+    """⼀次模拟⼩狗的简单尝试"""
+    def __init__(self, name, age):
+    """初始化属性 name 和 age"""
+        self.name = name
+        self.age = age
+    def sit(self):
+    """模拟⼩狗收到命令时坐下"""
+        print(f"{self.name} is now sitting.")
+    def roll_over(self):
+    """模拟⼩狗收到命令时打滚"""
+        print(f"{self.name} rolled over!")
+
+# 创建实例
+my_dog = Dog('Willie', 6)
+# 访问属性 my_dog.name
+print(f"My dog's name is {my_dog.name}.")
+print(f"My dog is {my_dog.age} years old.")
+# 调⽤⽅法
+my_dog.sit()
+my_dog.roll_over()
+# 创建多个实例
+my_dog = Dog('Willie', 6)
+your_dog = Dog('Lucy', 3)
+```
+
+```python
+__init__() ⽅法  
+
+1.  __init__() 是⼀个特殊⽅法，每当你根据 Dog 类创建新实例时，Python 都会⾃动运⾏它。  
+2.  在这个⽅法的名称中，开头和末尾各有两个下划线。  
+3.  这个⽅法的定义中，形参 self 必不可少，⽽且必须位于其他形参的前⾯。  
+4.  当 Python 调⽤这个⽅法来创建 Dog 实例时，将⾃动传⼊实参 self。每个与实例相关联的⽅法调⽤都会⾃动传递实参 self，该实参是⼀个指向实例本⾝的引⽤，让实例能够访问类中的属性和⽅法。  
+5.  在 __init__() ⽅法内定义的两个变量都有前缀 self 。以self 为前缀的变量可供类中的所有⽅法使⽤，可以通过类的任意实例来访问。像这样可通过实例访问的变量称为属性（attribute）。
+```  
+
+### 给类的属性指定默认值，修改实例的属性的值
+
+- 给属性指定默认值
+
+  ```python
+  # 有些属性⽆须通过形参来定义，可以在 __init__() ⽅法中为其指定默认值
+  class Car:
+      def __init__(self, make, model, year):
+      """初始化描述汽⻋的属性"""
+          self.make = make
+          self.model = model
+          self.year = year
+          self.odometer_reading = 0
+  ```
+
+- 修改实例的属性的值
+  
+  - 直接修改属性的值
+  
+    ```python
+    class Car:
+        --snip--
+
+    my_new_car = Car('audi', 'a4', 2024)
+
+    my_new_car.odometer_reading = 23
+    ```
+
+  - 通过⽅法修改属性的值
+
+    ```python
+    class Car:
+        --snip--
+        def update_odometer(self, mileage):
+            """将⾥程表读数设置为指定的值"""
+            self.odometer_reading = mileage
+
+    my_new_car = Car('audi', 'a4', 2024)
+    my_new_car.update_odometer(23)
+    ```
+
+  - 通过⽅法让属性的值递增
+
+    ```python
+    class Car:
+        --snip--
+        def update_odometer(self, mileage):
+        --snip--
+        def increment_odometer(self, miles):
+            """让⾥程表读数增加指定的量"""
+            self.odometer_reading += miles
+    ```
+
+### 继承  
+
+当⼀个类继承（inheritance）另⼀个类时，将⾃动获得后者的所有属性和⽅法。原有的类称为⽗类（parent class），⽽新类称为⼦类（child class）。⼦类不仅继承了⽗类的所有属性和⽅法，还可定义⾃⼰的属性和⽅法
+
+- ⼦类的 init() ⽅法
+
+  ```python
+  class Car:
+      """⼀次模拟汽⻋的简单尝试"""
+
+      def __init__(self, make, model, year):
+          """初始化描述汽⻋的属性"""
+          self.make = make
+          self.model = model
+          self.year = year
+          self.odometer_reading = 0
+
+      def get_descriptive_name(self):
+          """返回格式规范的描述性名称"""
+          long_name = f"{self.year} {self.make} {self.model}"
+          return long_name.title()
+
+      def read_odometer(self):
+          """打印⼀个句⼦，指出汽⻋的⾏驶⾥程"""
+          print(f"This car has {self.odometer_reading} miles on it.")
+
+      def update_odometer(self, mileage):
+          """将⾥程表读数设置为给定的值"""
+          if mileage >= self.odometer_reading:
+              self.odometer_reading = mileage
+          else:
+              print("You can't roll back an odometer!")
+
+      def increment_odometer(self, miles):
+          """让⾥程表读数增加给定的量"""
+          self.odometer_reading += miles
+
+  class ElectricCar(Car):
+      """电动汽⻋的独特之处"""
+
+      def __init__(self, make, model, year):
+          """初始化⽗类的属性"""
+          super().__init__(make, model, year)
+
+  my_leaf = ElectricCar('nissan', 'leaf', 2024)
+  print(my_leaf.get_descriptive_name()) 
+  ```
+
+  - 在创建⼦类时，⽗类必须包含在当前⽂件中，且位于⼦类前⾯。
+  - 定义⼦类 ElectricCar。在定义⼦类时，必须在括号内指定⽗类的名称。
+  - super() 是⼀个特殊的函数，让你能够调⽤⽗类的⽅法.⽗类也称为超类（superclass）。
+
+- 给⼦类定义属性和⽅法
+
+  ```python
+  # 下⾯添加⼀个电动汽⻋特有的属性（电池）
+  class Car:
+      --snip--
+
+  class ElectricCar(Car):
+      """电动汽⻋的独特之处"""
+      def __init__(self, make, model, year):
+          """
+          先初始化⽗类的属性，再初始化电动汽⻋特有的属性
+          """
+          super().__init__(make, model, year)
+          self.battery_size = 40
+
+      def describe_battery(self):
+          """打印⼀条描述电池容量的消息"""
+          print(f"This car has a {self.battery_size}-kWh battery.")
+
+  my_leaf = ElectricCar('nissan', 'leaf', 2024)
+  print(my_leaf.get_descriptive_name())
+  my_leaf.describe_battery()
+  ```
+
+- 重写⽗类中的⽅法
+
+  - 在⼦类中定义⼀个与要重写的⽗类⽅法同名的⽅法。这样，Python 将忽略这个⽗类⽅法，只关注你在⼦类中定义的相应⽅法。
+
+- 将⼀个类的实例⽤作另⼀个类的属性
+
+  ```python
+  class Car:
+      --snip--
+
+  class Battery:
+      """⼀次模拟电动汽⻋电池的简单尝试"""
+  ❶    def __init__(self, battery_size=40):
+            """初始化电池的属性"""
+            self.battery_size = battery_size
+
+  ❷     def describe_battery(self):
+            """打印⼀条描述电池容量的消息"""
+            print(f"This car has a {self.battery_size}-kWh battery.")
+
+  class ElectricCar(Car):
+      """电动汽⻋的独特之处"""
+      def __init__(self, make, model, year):
+          """
+          先初始化⽗类的属性，再初始化电动汽⻋特有的属性
+          """
+          super().__init__(make, model, year)
+  ❸       self.battery = Battery()
+
+   my_leaf = ElectricCar('nissan', 'leaf', 2024)
+   print(my_leaf.get_descriptive_name())
+   my_leaf.battery.describe_battery()
+  ```
+
+  - 将⼤型类拆分成多个协同⼯作的⼩类，这种⽅法称为组合（composition）。
+  - 在 ElectricCar 类中，添加⼀个名为 self.battery 的属性（⻅❸）。这⾏代码让 Python 创建⼀个新的 Battery 实例（因为没有指定容量，所以为默认值 40），并将该实例赋给属性 self.battery。
+  - 每当__init__() ⽅法被调⽤时，都将执⾏该操作，因此现在每个ElectricCar 实例都包含⼀个⾃动创建的 Battery 实例。
+
+  ```python
+  my_leaf.battery.describe_battery()
+  ```
+
+  - 这⾏代码让 Python 在实例 my_leaf 中查找属性 battery，并对存储在该属性中的 Battery 实例调⽤ describe_battery() ⽅法。
+
+### 导⼊类
+
+- 导⼊单个类
+
+  my_car.py
+
+  ```python
+  from car import Car
+
+  my_new_car = Car('audi', 'a4', 2024)
+  print(my_new_car.get_descriptive_name())
+
+  my_new_car.odometer_reading = 23
+  my_new_car.read_odometer()
+  ```
+
+- 从⼀个模块中导⼊多个类  
+  
+  在⼀个模块中能存储多个类，可根据需要导入所需的类。
+  
+  ```python
+   from car import Car, ElectricCar
+  ```
+
+- 导⼊整个模块  
+  
+  还可以先导⼊整个模块，再使⽤点号访问需要的类。  
+  由于创建类实例的代码都包含模块名，因此不会与当前⽂件使⽤的任何名称发⽣冲突。
+
+  ```python
+  import car
+  # 使⽤语法module_name.classname 访问需要的类
+  my_mustang = car.Car('ford', 'mustang', 2024)
+  print(my_mustang.get_descriptive_name())
+
+  my_leaf = car.ElectricCar('nissan', 'leaf', 2024)
+  print(my_leaf.get_descriptive_name())
+  ```
+
+- 导⼊模块中的所有类
+  
+  ```python
+  # 不推荐这种导⼊⽅式
+  from module_name import *
+  ```
+
+- 在⼀个模块中导⼊另⼀个模块
+  
+  在将类存储在多个模块中时，你可能会发现⼀个模块中的类依赖于另⼀个模块中的类。在这种情况下，可在前⼀个模块中导⼊必要的类。
+
+  car.py
+
+  ```python
+  """⼀个可⽤于表⽰汽⻋的类"""
+  class Car:
+      --snip--
+  ```
+
+  electric_car.py
+
+  ```python
+  """⼀组可⽤于表⽰电动汽⻋的类"""
+  from car import Car
+  class Battery:
+      --snip--
+  class ElectricCar(Car):
+      --snip--
+  # ElectricCar 类需要访问其⽗类 Car，因此直接将 Car 类导⼊该模块。
+  ```
+
+  my_cars.py
+
+  ```python
+  from car import Car
+  from electric_car import ElectricCar
+
+  my_mustang = Car('ford', 'mustang', 2024)
+  print(my_mustang.get_descriptive_name())
+
+  my_leaf = ElectricCar('nissan', 'leaf', 2024)
+  print(my_leaf.get_descriptive_name())
+  # 输出
+  2024 Ford Mustang
+  2024 Nissan Leaf
+  ```
+
+- 使⽤别名
+
+  ```python
+  # 给类指定别名。
+  from electric_car import ElectricCar as EC
+
+  my_leaf = EC('nissan', 'leaf', 2024)
+  ```
+
+  ```python
+  # 给模块指定别名。
+  import electric_car as ec
+
+  my_leaf = ec.ElectricCar('nissan', 'leaf', 2024)
+  ```
+
+### Python 标准库  
+
+  Python 标准库是⼀组模块，在安装 Python 时已经包含在内。你可以使⽤标准库中的任何函数和类，只需在程序开头添加⼀条简单的 import 语句即可。
+
+### 类的编程⻛格
+
+- 类名应采⽤驼峰命名法，即将类名中的每个单词的⾸字⺟都⼤写，并且不使⽤下划线。
+- 实例名和模块名都采⽤全⼩写格式，并在单词之间加上下划线。
+- 在类中，可以使⽤⼀个空⾏来分隔⽅法；⽽在模块中，可以使⽤两个空⾏来分隔类。
+
+## 10 ⽂件和异常
+
+### 读取⽂件（ path对象 . read_text() ）
+
+```python
+# 读取⽂件的全部内容
+from pathlib import Path
+
+path = Path('pi_digits.txt')
+contents = path.read_text()
+print(contents)
+# 相⽐于原始⽂件，该输出唯⼀不同的地⽅是末尾多了⼀个空⾏。因为 read_text() 在到达⽂件末尾时会返回⼀个空字符串，⽽这个空字符串会被显⽰为⼀个空⾏。
+# 要删除这个多出来的空⾏，可对字符串变量 contents 调⽤ rstrip()：
+contents = path.read_text().rstrip()
+# 这⾏代码先让 Python 对当前处理的⽂件调⽤ read_text() ⽅法，再对read_text() 返回的字符串调⽤ rstrip() ⽅法，然后将整理好的字符串赋给变量 contents。这种做法称为⽅法链式调⽤（method chaining）
+```
+
+- 相对⽂件路径让 Python 到相对于当前运⾏的程序所在⽬录的指定位置去查找。
+
+  ```python
+  # 由于⽂件夹 text_files 位于⽂件夹 python_work 中，因此需要创建⼀个以 text_files 打头并以⽂件名结尾的路径，如下所⽰：
+  path = Path('text_files/filename.txt')
+  # 绝对路径通常⽐相对路径⻓，因为它们以系统的根⽂件夹为起点
+  path = Path('/home/eric/data_files/text_files/filename.txt')
+  ```
+
+- 访问⽂件中的各⾏
+
+  使⽤ splitlines() ⽅法返回⼀个列表，其中包含⽂件中所有的⾏，再使⽤for 循环以每次⼀⾏的⽅式检查⽂件中的各⾏。
+
+  ```python
+  from pathlib import Path
+
+  path = Path('pi_digits.txt')
+  contents = path.read_text()
+  lines = contents.splitlines()
+  for line in lines:
+      print(line)
+  ```
+
+- 使⽤⽂件的内容
+  
+  ```python
+  from pathlib import Path
+
+  path = Path('pi_digits.txt')
+  contents = path.read_text()
+
+  lines = contents.splitlines()
+  pi_string = ''
+  for line in lines:
+      pi_string += line
+
+  print(pi_string)
+  print(len(pi_string))
+  ```
+
+  - 注意：在读取⽂本⽂件时，Python 将其中的所有⽂本都解释为字符串。如果读取的是数，并且要将其作为数值使⽤，就必须使⽤ int()函数将其转换为整数，或者使⽤ float() 函数将其转换为浮点数。
+
+### 写⼊⽂件（ path对象 . write_text() ）
+
+- 写⼊⼀⾏
+
+  ```python
+  from pathlib import Path
+  # write_text() ⽅法接受单个实参，即要写⼊⽂件的字符串。
+  path = Path('programming.txt')
+  path.write_text("I love programming.")
+  ```
+
+  - 注意：Python 只能将字符串写⼊⽂本⽂件。如果要将数值数据存储到⽂本⽂件中，必须先使⽤函数 str() 将其转换为字符串格式。
+
+- 写⼊多⾏
+
+  ```python
+  from pathlib import Path
+  # 可以通过添加空格、制表符和空⾏来设置输出的格式
+  contents = "I love programming.\n"
+  contents += "I love creating new games.\n"
+  contents += "I also love working with data.\n"
+
+  path = Path('programming.txt')
+  path.write_text(contents)
+
+  # 文本文件内容：
+  I love programming.
+  I love creating new games.
+  I also love working with data.
+  ```
+
+  - 注意：在对 path 对象调⽤ write_text() ⽅法时，务必谨慎。如果指定的⽂件已存在， write_text() 将删除其内容，并将指定的内容写⼊其中。本章后⾯将介绍如何使⽤ pathlib 检查指定的⽂件是否存在。
+
+### 异常
+  
+- Python 使⽤称为异常（exception）的特殊对象来管理程序执⾏期间发⽣的错误。
+  
+- 每当发⽣让 Python 不知所措的错误时，它都会创建⼀个异常对象。如果你编写了处理该异常的代码，程序将继续运⾏；如果你未对异常进⾏处理，程序将停⽌，并显⽰⼀个 traceback，其中包含有关异常的报告。
+  
+- 异常是使⽤ try-except 代码块处理的。
+  
+- try-except 代码块让 Python执⾏指定的操作，同时告诉 Python 在发⽣异常时应该怎么办。在使⽤try-except 代码块时，即便出现异常，程序也将继续运⾏：显⽰你编写的友好的错误消息，⽽不是令⽤户迷惑的 traceback。
+
+#### 使⽤ try-except 代码块
+
+只有可能引发异常的代码才需要放在 try 语句中。except 代码块告诉 Python，如果在尝试运⾏ try 代码块中的代码时引发了指定的异常该怎么办。
+
+```python
+try:
+    print(5/0)
+except ZeroDivisionError:
+    print("You can't divide by zero!")
+# 这⾥将导致错误的代码⾏ print(5/0) 放在⼀个 try 代码块中。
+#如果 try 代码块中的代码运⾏起来没有问题，Python 将跳过 except 代码块；
+#如果try 代码块中的代码导致错误，Python 将查找与之匹配的 except 代码块并运⾏其中的代码。
+```
+
+#### else 代码块
+
+只有 try代码块成功执⾏才需要继续执⾏的代码，都应放到 else 代码块中。
+
+```python
+--snip--
+while True:
+    --snip--
+    if second_number == 'q':
+        break
+    try:
+        answer = int(first_number) / int(second_number)
+    except ZeroDivisionError:
+        print("You can't divide by 0!")
+    else:
+        print(answer)
+```
+
+- 静默失败 （ pass ）
+
+  出现异常时，虽然仍将执⾏except 代码块中的代码，但什么都不会发⽣。。当这种错误发⽣时，既不会出现 traceback，也没有任何输出。
+
+  ```python
+  def count_words(path):
+      """计算⼀个⽂件⼤致包含多少个单词"""
+      try:
+          --snip--
+      except FileNotFoundError:
+          pass
+      else:
+          --snip--
+  ```
+
+#### 常见的异常类型有
+
+- StopIteration - 迭代器没有更多的值
+- ImportError - 导入模块失败
+- IndexError - 序列中找不到给定的索引
+- KeyError - 映射中找不到给定的键
+- ValueError - 传入无效的参数
+- TypeError - 对类型无效的操作
+- FileNotFoundError - 未找到文件
+- KeyboardInterrupt - 用户中断执行
+
+### 使⽤模块 json 来存储数据
+
+- 模块 json 让你能够将简单的 Python 数据结构转换为 JSON 格式的字符串，并在程序再次运⾏时从⽂件中加载数据。
+  
+- 使⽤ json.dumps() 和 json.loads()
+  
+  number_writer.py
+
+  ```python
+  # json.dumps() 函数接受⼀个实参，即要转换为 JSON 格式的数据。这个函数返回⼀个字符串，这样你就可将其写⼊数据⽂件了
+  from pathlib import Path
+  import json
+
+  numbers = [2, 3, 5, 7, 11, 13]
+
+  path = Path('numbers.json')
+  contents = json.dumps(numbers)
+  path.write_text(contents)
+  #输出
+  [2, 3, 5, 7, 11, 13]
+  ```
+
+  number_reader.py
+
+```python
+from pathlib import Path
+import json
+
+path = Path('numbers.json')
+contents = path.read_text()
+numbers = json.loads(contents)
+
+print(numbers)
+#输出
+[2, 3, 5, 7, 11, 13]
+```
+
+### 重构
+
+remember_me.py
+
+```python
+from pathlib import Path
+import json
+
+def greet_user():
+    """问候⽤户，并指出其名字"""
+    path = Path('username.json')
+    if path.exists():
+        contents = path.read_text()
+        username = json.loads(contents)
+        print(f"Welcome back, {username}!")
+    else:
+        username = input("What is your name? ")
+        contents = json.dumps(username)
+        path.write_text(contents)
+        print(f"We'll remember you when you come back, {username}!")
+
+greet_user()
+```
+
+remember_me.py 最终版（每个函数都执⾏单⼀⽽清晰的任务）
+
+```python
+from pathlib import Path
+import json
+
+def get_stored_username(path):
+    """如果存储了⽤户名，就获取它"""
+    --snip--
+
+def get_new_username(path):
+    """提⽰⽤户输⼊⽤户名"""
+    username = input("What is your name? ")
+    contents = json.dumps(username)
+    path.write_text(contents)
+    return username
+
+def greet_user():
+    """问候⽤户，并指出其名字"""
+    path = Path('username.json')
+    username = get_stored_username(path)
+    if username:
+        print(f"Welcome back, {username}!")
+    else:
+        username = get_new_username(path)
+        print(f"We'll remember you when you come back, {username}!")
+
+ greet_user()
+```
+
+## 11 使⽤ pytest 工具库测试代码
+
+### 使⽤ pip 安装 pytest
+
+- 更新 pip
+
+  ```python
+  python -m pip install --upgrade pip
+  # 这个命令的第⼀部分（python -m pip）让 Python 运⾏ pip 模块；
+  #第⼆部分（install --upgrade）让 pip 更新⼀个已安装的包；
+  #⽽最后⼀部分（pip）指定要更新哪个第三⽅包。
+  ```
+
+  可使⽤下⾯的命令更新系统中安装的任何包：
+
+  ```python
+   python -m pip install --upgrade package_name
+  ```
+
+- 安装 pytest
+
+  ```python
+  python -m pip install --user pytest
+  # --user 这个标志让 Python 只为当前⽤户安装指定的包。
+  ```
+
+  可使⽤下⾯的命令安装众多的第三⽅包：
+
+  ```python
+   python -m pip install --user package_name
+  ```
+
+  注意：如果在执⾏这个命令时遇到⿇烦，可尝试在不指定标志 --user 的情况下再次执⾏它。
+
+### 测试函数
+
+```python
+
+```
+
+```python
+
+```
+
+```python
+
+```
 
 ```python
 

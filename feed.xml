@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-03T15:35:17.287768+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-03T15:35:17.642868+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-03T15:45:26.600493+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-03T15:45:26.901628+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -85,7 +85,12 @@
 <li><a href="#%E9%87%8D%E6%9E%84">重构</a></li>
 </ul>
 </li>
-<li><a href="#11-%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81">11 测试代码</a></li>
+<li>
+<a href="#11-%E4%BD%BF-pytest-%E5%B7%A5%E5%85%B7%E5%BA%93%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81">11 使⽤ pytest 工具库测试代码</a><ul>
+<li><a href="#%E4%BD%BF-pip-%E5%AE%89%E8%A3%85-pytest">使⽤ pip 安装 pytest</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0">测试函数</a></li>
+</ul>
+</li>
 </ul>
 <h2><a href="https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_y0-es.html">Is Python interpreted or compiled? Yes.</a></h2>
 <h2>2 变量和简单的数据类型</h2>
@@ -1965,7 +1970,32 @@ def greet_user():
 
  greet_user()
 </code></pre>
-<h2>11 测试代码</h2>
+<h2>11 使⽤ pytest 工具库测试代码</h2>
+<h3>使⽤ pip 安装 pytest</h3>
+<ul>
+<li>
+<p>更新 pip</p>
+<pre><code class="language-python">python -m pip install --upgrade pip
+# 这个命令的第⼀部分（python -m pip）让 Python 运⾏ pip 模块；
+#第⼆部分（install --upgrade）让 pip 更新⼀个已安装的包；
+#⽽最后⼀部分（pip）指定要更新哪个第三⽅包。
+</code></pre>
+<p>可使⽤下⾯的命令更新系统中安装的任何包：</p>
+<pre><code class="language-python"> python -m pip install --upgrade package_name
+</code></pre>
+</li>
+<li>
+<p>安装 pytest</p>
+<pre><code class="language-python">python -m pip install --user pytest
+# --user 这个标志让 Python 只为当前⽤户安装指定的包。
+</code></pre>
+<p>可使⽤下⾯的命令安装众多的第三⽅包：</p>
+<pre><code class="language-python"> python -m pip install --user package_name
+</code></pre>
+<p>注意：如果在执⾏这个命令时遇到⿇烦，可尝试在不指定标志 --user 的情况下再次执⾏它。</p>
+</li>
+</ul>
+<h3>测试函数</h3>
 <pre><code class="language-python">
 </code></pre>
 <pre><code class="language-python">
@@ -1974,13 +2004,7 @@ def greet_user():
 </code></pre>
 <pre><code class="language-python">
 </code></pre>
-<pre><code class="language-python">
-</code></pre>
-<pre><code class="language-python">
-</code></pre>
-<pre><code class="language-python">
-</code></pre>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-03T15:35:17.938747+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-03T15:45:27.372488+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -1996,7 +2020,7 @@ def greet_user():
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-03T15:35:18.071632+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-03T15:45:27.550864+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
