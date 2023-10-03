@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-09-27T15:27:23.707802+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-09-27T15:27:23.923528+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-03T15:35:17.287768+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-03T15:35:17.642868+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -61,12 +61,33 @@
 </ul>
 </li>
 <li>
-<a href="#%E7%B1%BB">类</a><ul>
-<li><a href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%B1%BB">创建和使⽤类</a></li>
+<a href="#9-%E7%B1%BB">9 类</a><ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B">创建和使⽤类创建实例</a></li>
+<li><a href="#%E7%BB%99%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8C%87%E5%AE%9A%E9%BB%98%E8%AE%A4%E5%80%BC%E4%BF%AE%E6%94%B9%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC">给类的属性指定默认值，修改实例的属性的值</a></li>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+<li><a href="#%E5%AF%BC%E7%B1%BB">导⼊类</a></li>
+<li><a href="#python-%E6%A0%87%E5%87%86%E5%BA%93">Python 标准库</a></li>
+<li><a href="#%E7%B1%BB%E7%9A%84%E7%BC%96%E7%A8%8B%E6%A0%BC">类的编程⻛格</a></li>
 </ul>
 </li>
+<li>
+<a href="#10-%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8">10 ⽂件和异常</a><ul>
+<li><a href="#%E8%AF%BB%E5%8F%96%E4%BB%B6-path%E5%AF%B9%E8%B1%A1--read_text-">读取⽂件（ path对象 . read_text() ）</a></li>
+<li><a href="#%E5%86%99%E4%BB%B6-path%E5%AF%B9%E8%B1%A1--write_text-">写⼊⽂件（ path对象 . write_text() ）</a></li>
+<li>
+<a href="#%E5%BC%82%E5%B8%B8">异常</a><ul>
+<li><a href="#%E4%BD%BF-try-except-%E4%BB%A3%E7%A0%81%E5%9D%97">使⽤ try-except 代码块</a></li>
+<li><a href="#else-%E4%BB%A3%E7%A0%81%E5%9D%97">else 代码块</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B%E6%9C%89">常见的异常类型有</a></li>
 </ul>
-<h2><a href="https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html">Is Python interpreted or compiled? Yes.</a></h2>
+</li>
+<li><a href="#%E4%BD%BF%E6%A8%A1%E5%9D%97-json-%E6%9D%A5%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE">使⽤模块 json 来存储数据</a></li>
+<li><a href="#%E9%87%8D%E6%9E%84">重构</a></li>
+</ul>
+</li>
+<li><a href="#11-%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81">11 测试代码</a></li>
+</ul>
+<h2><a href="https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_y0-es.html">Is Python interpreted or compiled? Yes.</a></h2>
 <h2>2 变量和简单的数据类型</h2>
 <h3>变量</h3>
 <ul>
@@ -1408,11 +1429,558 @@ make_pizza(12, &#x27;mushrooms&#x27;, &#x27;green peppers&#x27;, &#x27;extra che
 <p>所有的 import 语句都应放在⽂件开头。</p>
 </li>
 </ul>
-<h2>类</h2>
-<h3>创建和使⽤类</h3>
+<h2>9 类</h2>
+<h3>创建和使⽤类创建实例</h3>
+<pre><code class="language-python"># 使⽤属性在类中存储信息，编写⽅法让类具备所需的⾏为
+class Dog:
+    &quot;&quot;&quot;⼀次模拟⼩狗的简单尝试&quot;&quot;&quot;
+    def __init__(self, name, age):
+    &quot;&quot;&quot;初始化属性 name 和 age&quot;&quot;&quot;
+        self.name = name
+        self.age = age
+    def sit(self):
+    &quot;&quot;&quot;模拟⼩狗收到命令时坐下&quot;&quot;&quot;
+        print(f&quot;{self.name} is now sitting.&quot;)
+    def roll_over(self):
+    &quot;&quot;&quot;模拟⼩狗收到命令时打滚&quot;&quot;&quot;
+        print(f&quot;{self.name} rolled over!&quot;)
+
+# 创建实例
+my_dog = Dog(&#x27;Willie&#x27;, 6)
+# 访问属性 my_dog.name
+print(f&quot;My dog&#x27;s name is {my_dog.name}.&quot;)
+print(f&quot;My dog is {my_dog.age} years old.&quot;)
+# 调⽤⽅法
+my_dog.sit()
+my_dog.roll_over()
+# 创建多个实例
+my_dog = Dog(&#x27;Willie&#x27;, 6)
+your_dog = Dog(&#x27;Lucy&#x27;, 3)
+</code></pre>
+<pre><code class="language-python">__init__() ⽅法  
+
+1.  __init__() 是⼀个特殊⽅法，每当你根据 Dog 类创建新实例时，Python 都会⾃动运⾏它。  
+2.  在这个⽅法的名称中，开头和末尾各有两个下划线。  
+3.  这个⽅法的定义中，形参 self 必不可少，⽽且必须位于其他形参的前⾯。  
+4.  当 Python 调⽤这个⽅法来创建 Dog 实例时，将⾃动传⼊实参 self。每个与实例相关联的⽅法调⽤都会⾃动传递实参 self，该实参是⼀个指向实例本⾝的引⽤，让实例能够访问类中的属性和⽅法。  
+5.  在 __init__() ⽅法内定义的两个变量都有前缀 self 。以self 为前缀的变量可供类中的所有⽅法使⽤，可以通过类的任意实例来访问。像这样可通过实例访问的变量称为属性（attribute）。
+</code></pre>
+<h3>给类的属性指定默认值，修改实例的属性的值</h3>
+<ul>
+<li>
+<p>给属性指定默认值</p>
+<pre><code class="language-python"># 有些属性⽆须通过形参来定义，可以在 __init__() ⽅法中为其指定默认值
+class Car:
+    def __init__(self, make, model, year):
+    &quot;&quot;&quot;初始化描述汽⻋的属性&quot;&quot;&quot;
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+</code></pre>
+</li>
+<li>
+<p>修改实例的属性的值</p>
+<ul>
+<li>
+<p>直接修改属性的值</p>
+<pre><code class="language-python">class Car:
+    --snip--
+
+my_new_car = Car(&#x27;audi&#x27;, &#x27;a4&#x27;, 2024)
+
+my_new_car.odometer_reading = 23
+</code></pre>
+</li>
+<li>
+<p>通过⽅法修改属性的值</p>
+<pre><code class="language-python">class Car:
+    --snip--
+    def update_odometer(self, mileage):
+        &quot;&quot;&quot;将⾥程表读数设置为指定的值&quot;&quot;&quot;
+        self.odometer_reading = mileage
+
+my_new_car = Car(&#x27;audi&#x27;, &#x27;a4&#x27;, 2024)
+my_new_car.update_odometer(23)
+</code></pre>
+</li>
+<li>
+<p>通过⽅法让属性的值递增</p>
+<pre><code class="language-python">class Car:
+    --snip--
+    def update_odometer(self, mileage):
+    --snip--
+    def increment_odometer(self, miles):
+        &quot;&quot;&quot;让⾥程表读数增加指定的量&quot;&quot;&quot;
+        self.odometer_reading += miles
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3>继承</h3>
+<p>当⼀个类继承（inheritance）另⼀个类时，将⾃动获得后者的所有属性和⽅法。原有的类称为⽗类（parent class），⽽新类称为⼦类（child class）。⼦类不仅继承了⽗类的所有属性和⽅法，还可定义⾃⼰的属性和⽅法</p>
+<ul>
+<li>
+<p>⼦类的 init() ⽅法</p>
+<pre><code class="language-python">class Car:
+    &quot;&quot;&quot;⼀次模拟汽⻋的简单尝试&quot;&quot;&quot;
+
+    def __init__(self, make, model, year):
+        &quot;&quot;&quot;初始化描述汽⻋的属性&quot;&quot;&quot;
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        &quot;&quot;&quot;返回格式规范的描述性名称&quot;&quot;&quot;
+        long_name = f&quot;{self.year} {self.make} {self.model}&quot;
+        return long_name.title()
+
+    def read_odometer(self):
+        &quot;&quot;&quot;打印⼀个句⼦，指出汽⻋的⾏驶⾥程&quot;&quot;&quot;
+        print(f&quot;This car has {self.odometer_reading} miles on it.&quot;)
+
+    def update_odometer(self, mileage):
+        &quot;&quot;&quot;将⾥程表读数设置为给定的值&quot;&quot;&quot;
+        if mileage &gt;= self.odometer_reading:
+            self.odometer_reading = mileage
+        else:
+            print(&quot;You can&#x27;t roll back an odometer!&quot;)
+
+    def increment_odometer(self, miles):
+        &quot;&quot;&quot;让⾥程表读数增加给定的量&quot;&quot;&quot;
+        self.odometer_reading += miles
+
+class ElectricCar(Car):
+    &quot;&quot;&quot;电动汽⻋的独特之处&quot;&quot;&quot;
+
+    def __init__(self, make, model, year):
+        &quot;&quot;&quot;初始化⽗类的属性&quot;&quot;&quot;
+        super().__init__(make, model, year)
+
+my_leaf = ElectricCar(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+print(my_leaf.get_descriptive_name()) 
+</code></pre>
+<ul>
+<li>在创建⼦类时，⽗类必须包含在当前⽂件中，且位于⼦类前⾯。</li>
+<li>定义⼦类 ElectricCar。在定义⼦类时，必须在括号内指定⽗类的名称。</li>
+<li>super() 是⼀个特殊的函数，让你能够调⽤⽗类的⽅法.⽗类也称为超类（superclass）。</li>
+</ul>
+</li>
+<li>
+<p>给⼦类定义属性和⽅法</p>
+<pre><code class="language-python"># 下⾯添加⼀个电动汽⻋特有的属性（电池）
+class Car:
+    --snip--
+
+class ElectricCar(Car):
+    &quot;&quot;&quot;电动汽⻋的独特之处&quot;&quot;&quot;
+    def __init__(self, make, model, year):
+        &quot;&quot;&quot;
+        先初始化⽗类的属性，再初始化电动汽⻋特有的属性
+        &quot;&quot;&quot;
+        super().__init__(make, model, year)
+        self.battery_size = 40
+
+    def describe_battery(self):
+        &quot;&quot;&quot;打印⼀条描述电池容量的消息&quot;&quot;&quot;
+        print(f&quot;This car has a {self.battery_size}-kWh battery.&quot;)
+
+my_leaf = ElectricCar(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+print(my_leaf.get_descriptive_name())
+my_leaf.describe_battery()
+</code></pre>
+</li>
+<li>
+<p>重写⽗类中的⽅法</p>
+<ul>
+<li>在⼦类中定义⼀个与要重写的⽗类⽅法同名的⽅法。这样，Python 将忽略这个⽗类⽅法，只关注你在⼦类中定义的相应⽅法。</li>
+</ul>
+</li>
+<li>
+<p>将⼀个类的实例⽤作另⼀个类的属性</p>
+<pre><code class="language-python">class Car:
+    --snip--
+
+class Battery:
+    &quot;&quot;&quot;⼀次模拟电动汽⻋电池的简单尝试&quot;&quot;&quot;
+❶    def __init__(self, battery_size=40):
+          &quot;&quot;&quot;初始化电池的属性&quot;&quot;&quot;
+          self.battery_size = battery_size
+
+❷     def describe_battery(self):
+          &quot;&quot;&quot;打印⼀条描述电池容量的消息&quot;&quot;&quot;
+          print(f&quot;This car has a {self.battery_size}-kWh battery.&quot;)
+
+class ElectricCar(Car):
+    &quot;&quot;&quot;电动汽⻋的独特之处&quot;&quot;&quot;
+    def __init__(self, make, model, year):
+        &quot;&quot;&quot;
+        先初始化⽗类的属性，再初始化电动汽⻋特有的属性
+        &quot;&quot;&quot;
+        super().__init__(make, model, year)
+❸       self.battery = Battery()
+
+ my_leaf = ElectricCar(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+ print(my_leaf.get_descriptive_name())
+ my_leaf.battery.describe_battery()
+</code></pre>
+<ul>
+<li>将⼤型类拆分成多个协同⼯作的⼩类，这种⽅法称为组合（composition）。</li>
+<li>在 ElectricCar 类中，添加⼀个名为 self.battery 的属性（⻅❸）。这⾏代码让 Python 创建⼀个新的 Battery 实例（因为没有指定容量，所以为默认值 40），并将该实例赋给属性 self.battery。</li>
+<li>每当__init__() ⽅法被调⽤时，都将执⾏该操作，因此现在每个ElectricCar 实例都包含⼀个⾃动创建的 Battery 实例。</li>
+</ul>
+<pre><code class="language-python">my_leaf.battery.describe_battery()
+</code></pre>
+<ul>
+<li>这⾏代码让 Python 在实例 my_leaf 中查找属性 battery，并对存储在该属性中的 Battery 实例调⽤ describe_battery() ⽅法。</li>
+</ul>
+</li>
+</ul>
+<h3>导⼊类</h3>
+<ul>
+<li>
+<p>导⼊单个类</p>
+<p>my_car.py</p>
+<pre><code class="language-python">from car import Car
+
+my_new_car = Car(&#x27;audi&#x27;, &#x27;a4&#x27;, 2024)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.odometer_reading = 23
+my_new_car.read_odometer()
+</code></pre>
+</li>
+<li>
+<p>从⼀个模块中导⼊多个类  </p>
+<p>在⼀个模块中能存储多个类，可根据需要导入所需的类。</p>
+<pre><code class="language-python"> from car import Car, ElectricCar
+</code></pre>
+</li>
+<li>
+<p>导⼊整个模块  </p>
+<p>还可以先导⼊整个模块，再使⽤点号访问需要的类。<br />
+由于创建类实例的代码都包含模块名，因此不会与当前⽂件使⽤的任何名称发⽣冲突。</p>
+<pre><code class="language-python">import car
+# 使⽤语法module_name.classname 访问需要的类
+my_mustang = car.Car(&#x27;ford&#x27;, &#x27;mustang&#x27;, 2024)
+print(my_mustang.get_descriptive_name())
+
+my_leaf = car.ElectricCar(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+print(my_leaf.get_descriptive_name())
+</code></pre>
+</li>
+<li>
+<p>导⼊模块中的所有类</p>
+<pre><code class="language-python"># 不推荐这种导⼊⽅式
+from module_name import *
+</code></pre>
+</li>
+<li>
+<p>在⼀个模块中导⼊另⼀个模块</p>
+<p>在将类存储在多个模块中时，你可能会发现⼀个模块中的类依赖于另⼀个模块中的类。在这种情况下，可在前⼀个模块中导⼊必要的类。</p>
+<p>car.py</p>
+<pre><code class="language-python">&quot;&quot;&quot;⼀个可⽤于表⽰汽⻋的类&quot;&quot;&quot;
+class Car:
+    --snip--
+</code></pre>
+<p>electric_car.py</p>
+<pre><code class="language-python">&quot;&quot;&quot;⼀组可⽤于表⽰电动汽⻋的类&quot;&quot;&quot;
+from car import Car
+class Battery:
+    --snip--
+class ElectricCar(Car):
+    --snip--
+# ElectricCar 类需要访问其⽗类 Car，因此直接将 Car 类导⼊该模块。
+</code></pre>
+<p>my_cars.py</p>
+<pre><code class="language-python">from car import Car
+from electric_car import ElectricCar
+
+my_mustang = Car(&#x27;ford&#x27;, &#x27;mustang&#x27;, 2024)
+print(my_mustang.get_descriptive_name())
+
+my_leaf = ElectricCar(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+print(my_leaf.get_descriptive_name())
+# 输出
+2024 Ford Mustang
+2024 Nissan Leaf
+</code></pre>
+</li>
+<li>
+<p>使⽤别名</p>
+<pre><code class="language-python"># 给类指定别名。
+from electric_car import ElectricCar as EC
+
+my_leaf = EC(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+</code></pre>
+<pre><code class="language-python"># 给模块指定别名。
+import electric_car as ec
+
+my_leaf = ec.ElectricCar(&#x27;nissan&#x27;, &#x27;leaf&#x27;, 2024)
+</code></pre>
+</li>
+</ul>
+<h3>Python 标准库</h3>
+<p>Python 标准库是⼀组模块，在安装 Python 时已经包含在内。你可以使⽤标准库中的任何函数和类，只需在程序开头添加⼀条简单的 import 语句即可。</p>
+<h3>类的编程⻛格</h3>
+<ul>
+<li>类名应采⽤驼峰命名法，即将类名中的每个单词的⾸字⺟都⼤写，并且不使⽤下划线。</li>
+<li>实例名和模块名都采⽤全⼩写格式，并在单词之间加上下划线。</li>
+<li>在类中，可以使⽤⼀个空⾏来分隔⽅法；⽽在模块中，可以使⽤两个空⾏来分隔类。</li>
+</ul>
+<h2>10 ⽂件和异常</h2>
+<h3>读取⽂件（ path对象 . read_text() ）</h3>
+<pre><code class="language-python"># 读取⽂件的全部内容
+from pathlib import Path
+
+path = Path(&#x27;pi_digits.txt&#x27;)
+contents = path.read_text()
+print(contents)
+# 相⽐于原始⽂件，该输出唯⼀不同的地⽅是末尾多了⼀个空⾏。因为 read_text() 在到达⽂件末尾时会返回⼀个空字符串，⽽这个空字符串会被显⽰为⼀个空⾏。
+# 要删除这个多出来的空⾏，可对字符串变量 contents 调⽤ rstrip()：
+contents = path.read_text().rstrip()
+# 这⾏代码先让 Python 对当前处理的⽂件调⽤ read_text() ⽅法，再对read_text() 返回的字符串调⽤ rstrip() ⽅法，然后将整理好的字符串赋给变量 contents。这种做法称为⽅法链式调⽤（method chaining）
+</code></pre>
+<ul>
+<li>
+<p>相对⽂件路径让 Python 到相对于当前运⾏的程序所在⽬录的指定位置去查找。</p>
+<pre><code class="language-python"># 由于⽂件夹 text_files 位于⽂件夹 python_work 中，因此需要创建⼀个以 text_files 打头并以⽂件名结尾的路径，如下所⽰：
+path = Path(&#x27;text_files/filename.txt&#x27;)
+# 绝对路径通常⽐相对路径⻓，因为它们以系统的根⽂件夹为起点
+path = Path(&#x27;/home/eric/data_files/text_files/filename.txt&#x27;)
+</code></pre>
+</li>
+<li>
+<p>访问⽂件中的各⾏</p>
+<p>使⽤ splitlines() ⽅法返回⼀个列表，其中包含⽂件中所有的⾏，再使⽤for 循环以每次⼀⾏的⽅式检查⽂件中的各⾏。</p>
+<pre><code class="language-python">from pathlib import Path
+
+path = Path(&#x27;pi_digits.txt&#x27;)
+contents = path.read_text()
+lines = contents.splitlines()
+for line in lines:
+    print(line)
+</code></pre>
+</li>
+<li>
+<p>使⽤⽂件的内容</p>
+<pre><code class="language-python">from pathlib import Path
+
+path = Path(&#x27;pi_digits.txt&#x27;)
+contents = path.read_text()
+
+lines = contents.splitlines()
+pi_string = &#x27;&#x27;
+for line in lines:
+    pi_string += line
+
+print(pi_string)
+print(len(pi_string))
+</code></pre>
+<ul>
+<li>注意：在读取⽂本⽂件时，Python 将其中的所有⽂本都解释为字符串。如果读取的是数，并且要将其作为数值使⽤，就必须使⽤ int()函数将其转换为整数，或者使⽤ float() 函数将其转换为浮点数。</li>
+</ul>
+</li>
+</ul>
+<h3>写⼊⽂件（ path对象 . write_text() ）</h3>
+<ul>
+<li>
+<p>写⼊⼀⾏</p>
+<pre><code class="language-python">from pathlib import Path
+# write_text() ⽅法接受单个实参，即要写⼊⽂件的字符串。
+path = Path(&#x27;programming.txt&#x27;)
+path.write_text(&quot;I love programming.&quot;)
+</code></pre>
+<ul>
+<li>注意：Python 只能将字符串写⼊⽂本⽂件。如果要将数值数据存储到⽂本⽂件中，必须先使⽤函数 str() 将其转换为字符串格式。</li>
+</ul>
+</li>
+<li>
+<p>写⼊多⾏</p>
+<pre><code class="language-python">from pathlib import Path
+# 可以通过添加空格、制表符和空⾏来设置输出的格式
+contents = &quot;I love programming.\n&quot;
+contents += &quot;I love creating new games.\n&quot;
+contents += &quot;I also love working with data.\n&quot;
+
+path = Path(&#x27;programming.txt&#x27;)
+path.write_text(contents)
+
+# 文本文件内容：
+I love programming.
+I love creating new games.
+I also love working with data.
+</code></pre>
+<ul>
+<li>注意：在对 path 对象调⽤ write_text() ⽅法时，务必谨慎。如果指定的⽂件已存在， write_text() 将删除其内容，并将指定的内容写⼊其中。本章后⾯将介绍如何使⽤ pathlib 检查指定的⽂件是否存在。</li>
+</ul>
+</li>
+</ul>
+<h3>异常</h3>
+<ul>
+<li>
+<p>Python 使⽤称为异常（exception）的特殊对象来管理程序执⾏期间发⽣的错误。</p>
+</li>
+<li>
+<p>每当发⽣让 Python 不知所措的错误时，它都会创建⼀个异常对象。如果你编写了处理该异常的代码，程序将继续运⾏；如果你未对异常进⾏处理，程序将停⽌，并显⽰⼀个 traceback，其中包含有关异常的报告。</p>
+</li>
+<li>
+<p>异常是使⽤ try-except 代码块处理的。</p>
+</li>
+<li>
+<p>try-except 代码块让 Python执⾏指定的操作，同时告诉 Python 在发⽣异常时应该怎么办。在使⽤try-except 代码块时，即便出现异常，程序也将继续运⾏：显⽰你编写的友好的错误消息，⽽不是令⽤户迷惑的 traceback。</p>
+</li>
+</ul>
+<h4>使⽤ try-except 代码块</h4>
+<p>只有可能引发异常的代码才需要放在 try 语句中。except 代码块告诉 Python，如果在尝试运⾏ try 代码块中的代码时引发了指定的异常该怎么办。</p>
+<pre><code class="language-python">try:
+    print(5/0)
+except ZeroDivisionError:
+    print(&quot;You can&#x27;t divide by zero!&quot;)
+# 这⾥将导致错误的代码⾏ print(5/0) 放在⼀个 try 代码块中。
+#如果 try 代码块中的代码运⾏起来没有问题，Python 将跳过 except 代码块；
+#如果try 代码块中的代码导致错误，Python 将查找与之匹配的 except 代码块并运⾏其中的代码。
+</code></pre>
+<h4>else 代码块</h4>
+<p>只有 try代码块成功执⾏才需要继续执⾏的代码，都应放到 else 代码块中。</p>
+<pre><code class="language-python">--snip--
+while True:
+    --snip--
+    if second_number == &#x27;q&#x27;:
+        break
+    try:
+        answer = int(first_number) / int(second_number)
+    except ZeroDivisionError:
+        print(&quot;You can&#x27;t divide by 0!&quot;)
+    else:
+        print(answer)
+</code></pre>
+<ul>
+<li>
+<p>静默失败 （ pass ）</p>
+<p>出现异常时，虽然仍将执⾏except 代码块中的代码，但什么都不会发⽣。。当这种错误发⽣时，既不会出现 traceback，也没有任何输出。</p>
+<pre><code class="language-python">def count_words(path):
+    &quot;&quot;&quot;计算⼀个⽂件⼤致包含多少个单词&quot;&quot;&quot;
+    try:
+        --snip--
+    except FileNotFoundError:
+        pass
+    else:
+        --snip--
+</code></pre>
+</li>
+</ul>
+<h4>常见的异常类型有</h4>
+<ul>
+<li>StopIteration - 迭代器没有更多的值</li>
+<li>ImportError - 导入模块失败</li>
+<li>IndexError - 序列中找不到给定的索引</li>
+<li>KeyError - 映射中找不到给定的键</li>
+<li>ValueError - 传入无效的参数</li>
+<li>TypeError - 对类型无效的操作</li>
+<li>FileNotFoundError - 未找到文件</li>
+<li>KeyboardInterrupt - 用户中断执行</li>
+</ul>
+<h3>使⽤模块 json 来存储数据</h3>
+<ul>
+<li>
+<p>模块 json 让你能够将简单的 Python 数据结构转换为 JSON 格式的字符串，并在程序再次运⾏时从⽂件中加载数据。</p>
+</li>
+<li>
+<p>使⽤ json.dumps() 和 json.loads()</p>
+<p>number_writer.py</p>
+<pre><code class="language-python"># json.dumps() 函数接受⼀个实参，即要转换为 JSON 格式的数据。这个函数返回⼀个字符串，这样你就可将其写⼊数据⽂件了
+from pathlib import Path
+import json
+
+numbers = [2, 3, 5, 7, 11, 13]
+
+path = Path(&#x27;numbers.json&#x27;)
+contents = json.dumps(numbers)
+path.write_text(contents)
+#输出
+[2, 3, 5, 7, 11, 13]
+</code></pre>
+<p>number_reader.py</p>
+</li>
+</ul>
+<pre><code class="language-python">from pathlib import Path
+import json
+
+path = Path(&#x27;numbers.json&#x27;)
+contents = path.read_text()
+numbers = json.loads(contents)
+
+print(numbers)
+#输出
+[2, 3, 5, 7, 11, 13]
+</code></pre>
+<h3>重构</h3>
+<p>remember_me.py</p>
+<pre><code class="language-python">from pathlib import Path
+import json
+
+def greet_user():
+    &quot;&quot;&quot;问候⽤户，并指出其名字&quot;&quot;&quot;
+    path = Path(&#x27;username.json&#x27;)
+    if path.exists():
+        contents = path.read_text()
+        username = json.loads(contents)
+        print(f&quot;Welcome back, {username}!&quot;)
+    else:
+        username = input(&quot;What is your name? &quot;)
+        contents = json.dumps(username)
+        path.write_text(contents)
+        print(f&quot;We&#x27;ll remember you when you come back, {username}!&quot;)
+
+greet_user()
+</code></pre>
+<p>remember_me.py 最终版（每个函数都执⾏单⼀⽽清晰的任务）</p>
+<pre><code class="language-python">from pathlib import Path
+import json
+
+def get_stored_username(path):
+    &quot;&quot;&quot;如果存储了⽤户名，就获取它&quot;&quot;&quot;
+    --snip--
+
+def get_new_username(path):
+    &quot;&quot;&quot;提⽰⽤户输⼊⽤户名&quot;&quot;&quot;
+    username = input(&quot;What is your name? &quot;)
+    contents = json.dumps(username)
+    path.write_text(contents)
+    return username
+
+def greet_user():
+    &quot;&quot;&quot;问候⽤户，并指出其名字&quot;&quot;&quot;
+    path = Path(&#x27;username.json&#x27;)
+    username = get_stored_username(path)
+    if username:
+        print(f&quot;Welcome back, {username}!&quot;)
+    else:
+        username = get_new_username(path)
+        print(f&quot;We&#x27;ll remember you when you come back, {username}!&quot;)
+
+ greet_user()
+</code></pre>
+<h2>11 测试代码</h2>
 <pre><code class="language-python">
 </code></pre>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-09-27T15:27:24.143612+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+<pre><code class="language-python">
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+<pre><code class="language-python">
+</code></pre>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-03T15:35:17.938747+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -1425,8 +1993,10 @@ make_pizza(12, &#x27;mushrooms&#x27;, &#x27;green peppers&#x27;, &#x27;extra che
 <p>Markdown All in One 生成TOC:</p>
 <ul>
 <li>CTRL + shift + p --&gt; Create Table of Contents</li>
+<li>生成目录后，每次更新保存后将自动更新目录。</li>
+<li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-09-27T15:27:24.243713+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-03T15:35:18.071632+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>

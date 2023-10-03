@@ -2,24 +2,6 @@
 My personal blog using issues and GitHub Actions 
 [RSS Feed](https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml)
 
-## 友情链接
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Link</th>
-<th>Desc</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
 ## 最近更新
 - [python编程从入门到实践笔记](https://github.com/hadleysu/gitblog/issues/4)--2023-09-14
 - [Markdown相关](https://github.com/hadleysu/gitblog/issues/3)--2023-09-12

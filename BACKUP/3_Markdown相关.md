@@ -7,8 +7,10 @@
 
 VS Code 安装 Extensions:
 
-- Markdown All in One
-- markdownlint
+-  Markdown All in One
+-  markdownlint
 
 Markdown All in One 生成TOC:
-- CTRL + shift + p --> Create Table of Contents
+-  CTRL + shift + p --> Create Table of Contents
+-  生成目录后，每次更新保存后将自动更新目录。
+-  测试
