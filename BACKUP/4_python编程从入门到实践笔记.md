@@ -59,6 +59,9 @@
 - [11 使⽤ pytest 工具库测试代码](#11-使-pytest-工具库测试代码)
   - [使⽤ pip 安装 pytest](#使-pip-安装-pytest)
   - [测试函数](#测试函数)
+  - [运⾏测试](#运测试)
+  - [测试类](#测试类)
+  - [使⽤夹具](#使夹具)
 
 ## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_y0-es.html)
 
@@ -2090,18 +2093,172 @@ def greet_user():
 
 ### 测试函数
 
-```python
-
-```
+name_function.py
 
 ```python
-
+def get_formatted_name(first, last):
+    """⽣成格式规范的姓名"""
+    full_name = f"{first} {last}"
+    return full_name.title()
 ```
+
+names.py
 
 ```python
+from name_function import get_formatted_name
 
+print("Enter 'q' at any time to quit.")
+while True:
+    first = input("\nPlease give me a first name: ")
+    if first == 'q':
+        break
+    last = input("Please give me a last name: ")
+    if last == 'q':
+        break
+    formatted_name = get_formatted_name(first, last)
+    print(f"\tNeatly formatted name: {formatted_name}.")
 ```
+
+测试⽤例（test case）是⼀组单元测试（unit test）。  
+全覆盖（full coverage）测试⽤例包含⼀整套单元测试，涵盖了各种可能的函数使⽤⽅式。
+
+test_name_function.py（测试）
 
 ```python
+# 编写⼀个测试函数，它会调⽤要测试的函数，并做出有关返回值的断⾔。
+# 如果断⾔正确，表⽰测试通过；如果断⾔不正确，表⽰测试未通过。
+from name_function import get_formatted_name
 
+def test_first_last_name():
+    """能够正确地处理像 Janis Joplin 这样的姓名吗？"""
+    formatted_name = get_formatted_name('janis', 'joplin')
+    assert formatted_name == 'Janis Joplin'
 ```
+
+- 测试⽂件的名称很重要，必须以test_打头。当你让 pytest 运⾏测试时，它将查找以 test_打头的⽂件，并运⾏其中的所有测试。
+- 测试函数必须以 test_打头。在测试过程中，pytest 将找出并运⾏所有以 test_ 打头的函数。且函数名要具有描述性。
+
+### 运⾏测试
+
+打开⼀个终端窗⼝，并切换到这个测试⽂件所在的⽂件夹。如果你使⽤的是 VS Code，可打开测试⽂件所在的⽂件夹，并使⽤该编辑器内嵌的终端。在终端窗⼝中执⾏命令 pytest，你将看到如下输出：
+
+```python
+$ pytest
+ ========================= test session starts
+=========================
+❶ platform darwin -- Python 3.x.x, pytest-7.x.x, pluggy-1.x.x
+❷ rootdir: /.../python_work/chapter_11
+❸ collected 1 item
+❹ test_name_function.py . 
+[100%]
+ ========================== 1 passed in 0.00s
+==========================
+```
+
+### 测试类
+
+- 测试中常⽤的断⾔语句
+  
+  | 断⾔                        |   ⽤途                    |
+  |-----------------------------|--------------------------|
+  | assert a == b               | 断⾔两个值相等            |
+  | assert a != b               | 断⾔两个值不等            |
+  | assert a                    | 断⾔ a 的布尔求值为 True  |
+  | assert not a                | 断⾔ a 的布尔求值为 False |
+  | assert element in list      | 断⾔元素在列表中          |
+  | assert element not in list  | 断⾔元素不在列表中        |
+
+survey.py
+
+```python
+class AnonymousSurvey:
+    """收集匿名调查问卷的答案"""
+
+    def __init__(self, question):
+        """存储⼀个问题，并为存储答案做准备"""
+        self.question = question
+        self.responses = []
+
+    def show_question(self):
+        """显⽰调查问卷"""
+        print(self.question)
+
+    def store_response(self, new_response):
+        """存储单份调查答卷"""
+        self.responses.append(new_response)
+
+    def show_results(self):
+        """显⽰收集到的所有答卷"""
+        print("Survey results:")
+        for response in self.responses:
+        print(f"- {response}")
+```
+
+test_survey.py
+
+```python
+from survey import AnonymousSurvey
+
+def test_store_single_response():
+    """测试单个答案会被妥善地存储"""
+    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+    language_survey.store_response('English')
+    assert 'English' in language_survey.responses
+
+def test_store_three_responses():
+    """测试三个答案会被妥善地存储"""
+    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+    responses = ['English', 'Spanish', 'Mandarin']
+
+    for response in responses:
+        language_survey.store_response(response)
+
+    for response in responses:
+        assert response in language_survey.responses
+```
+
+如果在执⾏命令 pytest 时没有指定任何参数，pytest 将运⾏它在当前⽬录中找到的所有测试。为了专注于⼀个测试⽂件，可将该测试⽂件的名称作为参数传递给 pytest。
+
+```python
+$ pytest test_survey.py
+========================= test session starts =========================
+--snip--
+test_survey.py .. [100%]
+========================== 2 passed in 0.01s ==========================
+```
+
+### 使⽤夹具
+
+```python
+import pytest
+from survey import AnonymousSurvey
+
+@pytest.fixture
+def language_survey():
+    """⼀个可供所有测试函数使⽤的 AnonymousSurvey 实例"""
+    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+    return language_survey
+
+def test_store_single_response(language_survey):
+    """测试单个答案会被妥善地存储"""
+    language_survey.store_response('English')
+    assert 'English' in language_survey.responses
+
+def test_store_three_responses(language_survey):
+    """测试三个答案会被妥善地存储"""
+    responses = ['English', 'Spanish', 'Mandarin']
+    for response in responses:
+        language_survey.store_response(response)
+
+    for response in responses:
+        assert response in language_survey.responses
+```
+
+- 在测试中，夹具（fixture）可帮助我们搭建测试环境。这通常意味着创建供多个测试使⽤的资源。
+- 在 pytest 中，要创建夹具，可编写⼀个使⽤装饰器 @pytest.fixture 装饰的函数。装饰器（decorator）是放在函数定义前⾯的指令。在运⾏函数前，Python 将该指令应⽤于函数，以修改函数代码的⾏为。
+- 当测试函数的⼀个形参与应⽤了装饰器 @pytest.fixture 的函数（夹具）同名时，将⾃动运⾏夹具，并将夹具返回的值传递给测试函数。
+- 在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。
+- 在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。

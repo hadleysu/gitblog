@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-03T15:45:26.600493+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-03T15:45:26.901628+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-06T14:53:17.166293+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-06T14:53:17.378483+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -89,6 +89,9 @@
 <a href="#11-%E4%BD%BF-pytest-%E5%B7%A5%E5%85%B7%E5%BA%93%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81">11 使⽤ pytest 工具库测试代码</a><ul>
 <li><a href="#%E4%BD%BF-pip-%E5%AE%89%E8%A3%85-pytest">使⽤ pip 安装 pytest</a></li>
 <li><a href="#%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0">测试函数</a></li>
+<li><a href="#%E8%BF%90%E6%B5%8B%E8%AF%95">运⾏测试</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E7%B1%BB">测试类</a></li>
+<li><a href="#%E4%BD%BF%E5%A4%B9%E5%85%B7">使⽤夹具</a></li>
 </ul>
 </li>
 </ul>
@@ -1996,15 +1999,178 @@ def greet_user():
 </li>
 </ul>
 <h3>测试函数</h3>
-<pre><code class="language-python">
+<p>name_function.py</p>
+<pre><code class="language-python">def get_formatted_name(first, last):
+    &quot;&quot;&quot;⽣成格式规范的姓名&quot;&quot;&quot;
+    full_name = f&quot;{first} {last}&quot;
+    return full_name.title()
 </code></pre>
-<pre><code class="language-python">
+<p>names.py</p>
+<pre><code class="language-python">from name_function import get_formatted_name
+
+print(&quot;Enter &#x27;q&#x27; at any time to quit.&quot;)
+while True:
+    first = input(&quot;\nPlease give me a first name: &quot;)
+    if first == &#x27;q&#x27;:
+        break
+    last = input(&quot;Please give me a last name: &quot;)
+    if last == &#x27;q&#x27;:
+        break
+    formatted_name = get_formatted_name(first, last)
+    print(f&quot;\tNeatly formatted name: {formatted_name}.&quot;)
 </code></pre>
-<pre><code class="language-python">
+<p>测试⽤例（test case）是⼀组单元测试（unit test）。<br />
+全覆盖（full coverage）测试⽤例包含⼀整套单元测试，涵盖了各种可能的函数使⽤⽅式。</p>
+<p>test_name_function.py（测试）</p>
+<pre><code class="language-python"># 编写⼀个测试函数，它会调⽤要测试的函数，并做出有关返回值的断⾔。
+# 如果断⾔正确，表⽰测试通过；如果断⾔不正确，表⽰测试未通过。
+from name_function import get_formatted_name
+
+def test_first_last_name():
+    &quot;&quot;&quot;能够正确地处理像 Janis Joplin 这样的姓名吗？&quot;&quot;&quot;
+    formatted_name = get_formatted_name(&#x27;janis&#x27;, &#x27;joplin&#x27;)
+    assert formatted_name == &#x27;Janis Joplin&#x27;
 </code></pre>
-<pre><code class="language-python">
+<ul>
+<li>测试⽂件的名称很重要，必须以test_打头。当你让 pytest 运⾏测试时，它将查找以 test_打头的⽂件，并运⾏其中的所有测试。</li>
+<li>测试函数必须以 test_打头。在测试过程中，pytest 将找出并运⾏所有以 test_ 打头的函数。且函数名要具有描述性。</li>
+</ul>
+<h3>运⾏测试</h3>
+<p>打开⼀个终端窗⼝，并切换到这个测试⽂件所在的⽂件夹。如果你使⽤的是 VS Code，可打开测试⽂件所在的⽂件夹，并使⽤该编辑器内嵌的终端。在终端窗⼝中执⾏命令 pytest，你将看到如下输出：</p>
+<pre><code class="language-python">$ pytest
+ ========================= test session starts
+=========================
+❶ platform darwin -- Python 3.x.x, pytest-7.x.x, pluggy-1.x.x
+❷ rootdir: /.../python_work/chapter_11
+❸ collected 1 item
+❹ test_name_function.py . 
+[100%]
+ ========================== 1 passed in 0.00s
+==========================
 </code></pre>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-03T15:45:27.372488+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+<h3>测试类</h3>
+<ul>
+<li>
+<p>测试中常⽤的断⾔语句</p>
+<table>
+<thead>
+<tr>
+<th>断⾔</th>
+<th>⽤途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assert a == b</td>
+<td>断⾔两个值相等</td>
+</tr>
+<tr>
+<td>assert a != b</td>
+<td>断⾔两个值不等</td>
+</tr>
+<tr>
+<td>assert a</td>
+<td>断⾔ a 的布尔求值为 True</td>
+</tr>
+<tr>
+<td>assert not a</td>
+<td>断⾔ a 的布尔求值为 False</td>
+</tr>
+<tr>
+<td>assert element in list</td>
+<td>断⾔元素在列表中</td>
+</tr>
+<tr>
+<td>assert element not in list</td>
+<td>断⾔元素不在列表中</td>
+</tr>
+</tbody></table></li>
+</ul>
+<p>survey.py</p>
+<pre><code class="language-python">class AnonymousSurvey:
+    &quot;&quot;&quot;收集匿名调查问卷的答案&quot;&quot;&quot;
+
+    def __init__(self, question):
+        &quot;&quot;&quot;存储⼀个问题，并为存储答案做准备&quot;&quot;&quot;
+        self.question = question
+        self.responses = []
+
+    def show_question(self):
+        &quot;&quot;&quot;显⽰调查问卷&quot;&quot;&quot;
+        print(self.question)
+
+    def store_response(self, new_response):
+        &quot;&quot;&quot;存储单份调查答卷&quot;&quot;&quot;
+        self.responses.append(new_response)
+
+    def show_results(self):
+        &quot;&quot;&quot;显⽰收集到的所有答卷&quot;&quot;&quot;
+        print(&quot;Survey results:&quot;)
+        for response in self.responses:
+        print(f&quot;- {response}&quot;)
+</code></pre>
+<p>test_survey.py</p>
+<pre><code class="language-python">from survey import AnonymousSurvey
+
+def test_store_single_response():
+    &quot;&quot;&quot;测试单个答案会被妥善地存储&quot;&quot;&quot;
+    question = &quot;What language did you first learn to speak?&quot;
+    language_survey = AnonymousSurvey(question)
+    language_survey.store_response(&#x27;English&#x27;)
+    assert &#x27;English&#x27; in language_survey.responses
+
+def test_store_three_responses():
+    &quot;&quot;&quot;测试三个答案会被妥善地存储&quot;&quot;&quot;
+    question = &quot;What language did you first learn to speak?&quot;
+    language_survey = AnonymousSurvey(question)
+    responses = [&#x27;English&#x27;, &#x27;Spanish&#x27;, &#x27;Mandarin&#x27;]
+
+    for response in responses:
+        language_survey.store_response(response)
+
+    for response in responses:
+        assert response in language_survey.responses
+</code></pre>
+<p>如果在执⾏命令 pytest 时没有指定任何参数，pytest 将运⾏它在当前⽬录中找到的所有测试。为了专注于⼀个测试⽂件，可将该测试⽂件的名称作为参数传递给 pytest。</p>
+<pre><code class="language-python">$ pytest test_survey.py
+========================= test session starts =========================
+--snip--
+test_survey.py .. [100%]
+========================== 2 passed in 0.01s ==========================
+</code></pre>
+<h3>使⽤夹具</h3>
+<pre><code class="language-python">import pytest
+from survey import AnonymousSurvey
+
+@pytest.fixture
+def language_survey():
+    &quot;&quot;&quot;⼀个可供所有测试函数使⽤的 AnonymousSurvey 实例&quot;&quot;&quot;
+    question = &quot;What language did you first learn to speak?&quot;
+    language_survey = AnonymousSurvey(question)
+    return language_survey
+
+def test_store_single_response(language_survey):
+    &quot;&quot;&quot;测试单个答案会被妥善地存储&quot;&quot;&quot;
+    language_survey.store_response(&#x27;English&#x27;)
+    assert &#x27;English&#x27; in language_survey.responses
+
+def test_store_three_responses(language_survey):
+    &quot;&quot;&quot;测试三个答案会被妥善地存储&quot;&quot;&quot;
+    responses = [&#x27;English&#x27;, &#x27;Spanish&#x27;, &#x27;Mandarin&#x27;]
+    for response in responses:
+        language_survey.store_response(response)
+
+    for response in responses:
+        assert response in language_survey.responses
+</code></pre>
+<ul>
+<li>在测试中，夹具（fixture）可帮助我们搭建测试环境。这通常意味着创建供多个测试使⽤的资源。</li>
+<li>在 pytest 中，要创建夹具，可编写⼀个使⽤装饰器 @pytest.fixture 装饰的函数。装饰器（decorator）是放在函数定义前⾯的指令。在运⾏函数前，Python 将该指令应⽤于函数，以修改函数代码的⾏为。</li>
+<li>当测试函数的⼀个形参与应⽤了装饰器 @pytest.fixture 的函数（夹具）同名时，将⾃动运⾏夹具，并将夹具返回的值传递给测试函数。</li>
+<li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
+<li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-06T14:53:17.665093+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -2020,7 +2186,7 @@ def greet_user():
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-03T15:45:27.550864+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-06T14:53:17.757390+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
