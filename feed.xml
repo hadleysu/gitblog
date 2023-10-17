@@ -1,6 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-16T14:20:08.298985+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2023-10-16T14:20:08.714883+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2023-10-17T13:50:29.946872+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="0.9.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2023-10-17T13:50:30.256074+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+<ul>
+<li>
+<a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95">学习方法</a></li>
+<li>
+<a href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">第一部分：基础知识</a><ul>
+<li>
+<a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0">设计模式概述</a><ul>
+<li><a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8E%E4%BD%95%E8%80%8C%E6%9D%A5">设计模式从何而来</a></li>
+<li><a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88">设计模式是什么</a></li>
+<li><a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8">设计模式有什么用</a></li>
+</ul>
+</li>
+<li>
+<a href="#uml%E7%B1%BB%E5%9B%BE%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E4%B8%8E%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99">UML类图相关知识与面向对象设计原则</a><ul>
+<li><a href="#uml%E7%B1%BB%E5%9B%BE%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86">UML类图相关知识</a></li>
+<li><a href="#%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB">类之间的关系</a></li>
+<li><a href="#7%E4%B8%AA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99">7个面向对象设计原则</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%9E%8B">第二部分：创建型模型</a></li>
+</ul>
+</li>
+</ul>
 <p>书籍：设计模式的艺术</p>
+<h2>学习方法</h2>
+<p>在学习每个设计模式时至少应该掌握如下几点：这个设计模式的意图是什么，它要解决一个什么问题，什么时候可以使用它；它是如何解决问题的，掌握它的结构图，记住它的关键代码；能够想到至少两个它的应用实例，一个生活中的，一个软件中的；这个模式的优缺点是什么，在使用时要注意什么。</p>
 <h2>第一部分：基础知识</h2>
 <h3>设计模式概述</h3>
 <ul>
@@ -12,14 +40,43 @@
 <p>建筑学</p>
 <h4>设计模式是什么</h4>
 <p>设计模式是软件设计过程中常见问题的典型解决方案。</p>
-<h3>设计模式有什么用</h3>
+<h4>设计模式有什么用</h4>
 <p>设计模式提供了一种通用语言，可以帮助您的团队更有效地沟通。可以避免做一些重复性的工作，有助于提高设计和开发效率。</p>
 <h3>UML类图相关知识与面向对象设计原则</h3>
 <ul>
 <li>UML类图相关知识</li>
 <li>7个面向对象设计原则</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5" rel="alternate"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-16T14:20:08.837208+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+<h4>UML类图相关知识</h4>
+<p>UML（Unified Modeling Language，统一建模语言）。<br />
+UML结构主要包括以下几个部分：</p>
+<ul>
+<li>视图（View）：UML视图用于从不同的角度来表示待建模系统。包括用户视图、结构视图、行为视图、实现视图和环境视图。</li>
+<li>图（Diagram）：UML图是描述UML视图内容的图形。13种图，分别是/用例图（Use Case Diagram）/、/类图（Class Diagram）、对象图（Object Diagram）、包图（Package Diagram）、组合结构图（Composite Structure Diagram）/、/状态图（State Diagram）、活动图（Activity Diagram）、顺序图（Sequence Diagram）、通信图（Communication Diagram）、定时图（Timing Diagram）、交互概览图（Interaction Overview Diagram）/、/组件图（Component Diagram）/和/部署图（Deployment Diagram）/，通过它们之间的相互结合可提供待建模系统的所有视图。</li>
+<li>模型元素（Model Element）：模型元素是指UML图中所使用的一些概念，它们对应于普通的面向对象概念，如类、对象、消息以及这些概念之间的关系，如关联关系、依赖关系、泛化关系等。</li>
+<li>通用机制（General Mechanism）：UML提供的通用机制为模型元素提供额外的注释、信息和语义，这些通用机制也提供了扩展机制，允许用户对UML进行扩展，如定义新的建模元素等等。</li>
+</ul>
+<h4>类之间的关系</h4>
+<p>关联关系</p>
+<ul>
+<li>双向关联</li>
+<li>单向关联</li>
+<li>自关联</li>
+<li>多重性关联（表示两个关联对象在数量上的对应关系）</li>
+<li>聚合关系（表示整体与部分的关系）</li>
+<li>组合关系（也表示类之间整体和部分的关系，但是在组合关系中整体对象可以控制成员对象的生命周期）</li>
+</ul>
+<p>依赖关系</p>
+<ul>
+<li>在需要表示一个事物使用另一个事物时使用依赖关系。大多数情况下，依赖关系体现在某个类的方法使用另一个类的对象作为参数。</li>
+</ul>
+<p>泛化关系</p>
+<ul>
+<li>也就是继承关系，用于描述父类与子类之间的关系，父类又称作基类或超类，子类又称作派生类。在代码实现时，使用面向对象的继承机制来实现泛化关系，如在Java语言中使用extends关键字</li>
+</ul>
+<h4>7个面向对象设计原则</h4>
+<h2>第二部分：创建型模型</h2>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5" rel="alternate"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2023-10-17T13:50:30.412708+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -2190,7 +2247,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-16T14:20:09.284122+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4" rel="alternate"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2023-10-17T13:50:30.687796+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -2206,7 +2263,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-16T14:20:09.456211+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3" rel="alternate"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2023-10-17T13:50:30.835489+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2" rel="alternate"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
