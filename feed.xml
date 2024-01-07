@@ -1,5 +1,497 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-01-07T16:57:43.878884+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-01-07T16:57:44.085667+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-01-07T17:06:26.135740+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-01-07T17:06:26.515081+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
+<ul>
+<li>
+<a href="#css-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">CSS 基础笔记</a><ul>
+<li><a href="#css%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E9%97%AE%E9%A2%98">CSS能解决什么样的问题</a></li>
+<li>
+<a href="#%E5%88%86%E7%B1%BB">分类</a><ul>
+<li><a href="#inline-styling">inline styling</a></li>
+<li><a href="#internal-css">internal CSS</a></li>
+<li><a href="#external-css">external CSS</a></li>
+</ul>
+</li>
+<li>
+<a href="#features">features</a><ul>
+<li><a href="#paddingmargin">padding/margin</a></li>
+<li><a href="#font">font</a></li>
+<li><a href="#multiple-element-selector">Multiple Element Selector</a></li>
+<li><a href="#id">id</a></li>
+<li><a href="#class">class</a></li>
+<li><a href="#%E4%BC%98%E5%85%88%E7%BA%A7">优先级</a></li>
+<li><a href="#css-selector">CSS Selector</a></li>
+<li><a href="#child-selector">Child Selector</a></li>
+<li><a href="#descendant-selector">Descendant Selector</a></li>
+<li><a href="#attribute-selector">Attribute Selector</a></li>
+<li>
+<a href="#pseudo-class">Pseudo Class</a><ul>
+<li><a href="#hover--%E6%82%AC%E5%81%9C%E6%97%B6">hover  (悬停时)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#responsive-design">Responsive Design</a><ul>
+<li><a href="#viewport">viewport</a></li>
+<li><a href="#media-queries">Media Queries</a></li>
+<li><a href="#flexbox">Flexbox</a></li>
+<li><a href="#grids">Grids</a></li>
+</ul>
+</li>
+<li>
+<a href="#bootstrap">Bootstrap</a><ul>
+<li><a href="#bootstraps-grid-system">Bootstrap’s grid system</a></li>
+</ul>
+</li>
+<li>
+<a href="#sass">Sass</a><ul>
+<li><a href="#sass%E6%94%AF%E6%8C%81%E5%8F%98%E9%87%8F">Sass支持变量</a></li>
+<li><a href="#sass%E4%B8%AD%E5%B5%8C%E5%A5%97%E8%AF%AD%E6%B3%95%E6%9B%B4%E7%AE%80%E5%8D%95">Sass中嵌套语法更简单</a></li>
+<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>CSS能解决什么样的问题</h2>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS：层叠样式表 | MDN</a> Cascading Style Sheets 用于设置网页的样式及布局——比如，可以更改内容的字体、颜色、大小以及间距，或是将其分列，或是添加动画及赋予内容其他装饰性的特征。<a href="https://cs50.harvard.edu/web/2020/notes/0/">CS50 HTML, CSS notes</a>  </p>
+<h2>分类</h2>
+<h3>inline styling</h3>
+<pre><code class="language-html">&lt;h1 style=&quot;color: blue; text-align: center;&quot;&gt;This is a heading.&lt;/h1&gt;
+</code></pre>
+<h3>internal CSS</h3>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;style&gt;
+    h1 {
+      color: blue;
+      text-align: center;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+</code></pre>
+<h3>external CSS</h3>
+<ul>
+<li>创建单独的 css 文件，如 style.css</li>
+<li>在&lt; head &gt;里用&lt; link &gt;引用，如：</li>
+</ul>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;link ref=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+<h2>features</h2>
+<h3>padding/margin</h3>
+<pre><code class="language-css">div {
+    background-color: orange;
+    width: 200px;
+    height: 200px;
+    padding: 20px; /*内边距*/
+    margin: 20px; /*外边距*/
+}
+</code></pre>
+<h3>font</h3>
+<pre><code class="language-css">div {
+    border: 2px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+</code></pre>
+<h3>Multiple Element Selector</h3>
+<pre><code class="language-css">table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+td, th { /*th 和 td 具有相同的样式，就直接用逗号连接放一起*/
+    border: 2px solid black;
+    padding: 5px;
+}
+</code></pre>
+<h3>id</h3>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;h1 id=&quot;foo&quot;&gt;Heading 1&lt;/h1&gt;
+&lt;h1&gt;Heading 2&lt;/h1&gt;
+&lt;h1&gt;Heading 3&lt;/h1&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">#foo{
+    color: blue;
+}
+</code></pre>
+<h3>class</h3>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;h1 class=&quot;baz&quot;&gt;Heading 1&lt;/h1&gt;
+&lt;h1 class=&quot;baz&quot;&gt;Heading 2&lt;/h1&gt;
+&lt;h1&gt;Heading 3&lt;/h1&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">.baz{
+    color: blue;
+}
+</code></pre>
+<h3>优先级</h3>
+<ol>
+<li>inline</li>
+<li>id</li>
+<li>class</li>
+<li>type</li>
+</ol>
+<h3>CSS Selector</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a, b</td>
+<td>Multiple Element Selector</td>
+</tr>
+<tr>
+<td>a b</td>
+<td>Descendant Selector</td>
+</tr>
+<tr>
+<td>a &gt; b</td>
+<td>Child Selector</td>
+</tr>
+<tr>
+<td>a + b</td>
+<td>Adjacent Sibling Selector</td>
+</tr>
+<tr>
+<td>[a=b]</td>
+<td>Attribute Selector</td>
+</tr>
+<tr>
+<td>a:b</td>
+<td>Pseudoclass Selector</td>
+</tr>
+<tr>
+<td>a::b</td>
+<td>Pseudoelement Selector</td>
+</tr>
+</tbody></table><h3>Child Selector</h3>
+<p>指定直系子代</p>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;ol&gt;
+   &lt;li&gt;list item one&lt;/li&gt;
+   &lt;li&gt;list item two&lt;/li&gt;
+   &lt;ul&gt;
+       &lt;li&gt;sublist item one&lt;/li&gt;
+       &lt;li&gt;sublist item two&lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;li&gt;list item three&lt;/li&gt;
+&lt;/ol&gt;&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">ul &gt; li{
+    color: blue;
+}
+</code></pre>
+<h3>Descendant Selector</h3>
+<p>选定所有后代元素</p>
+<pre><code class="language-css">ul li{
+    color: blue;
+}
+</code></pre>
+<h3>Attribute Selector</h3>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;ul&gt;
+   &lt;li&gt;&lt;a href=&quot;https:google.com&quot;&gt;Google&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/CSS&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">a {
+    color: blue;
+}
+a[href=&quot;https:google.com&quot;] {
+    color: red;
+}
+</code></pre>
+<h3>Pseudo Class</h3>
+<h4>hover  (悬停时)</h4>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;button&gt;Click Me&lt;/button&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">button {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    background-color: blue;
+}
+button:hover {
+    background-color: red;
+}
+</code></pre>
+<h2>Responsive Design</h2>
+<ul>
+<li>viewport</li>
+<li>Media Queries</li>
+<li>Flexbox</li>
+<li>Grids</li>
+</ul>
+<h3>viewport</h3>
+<p>viewport元素可以控制网页在不同设备上的显示方式和缩放比例。代码中，width=device-width表示将viewport的宽度设置为设备的屏幕宽度，initial-scale=1.0表示将网页的初始缩放比例设置为1.0，也就是不缩放。这样可以让网页适应不同大小的屏幕，实现响应式设计。</p>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;!-- 其他的head元素 --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 网页的内容 --&gt;
+&lt;/body&gt;
+</code></pre>
+<h3>Media Queries</h3>
+<p>Media Queries的作用是实现响应式网页设计，让网页能够适应不同大小和分辨率的屏幕和设备。</p>
+<pre><code class="language-css">@media (min-width:600px) {
+    body {
+        background-color: red;
+    }
+}          
+@media (max-width:599px) {
+    body {
+        background-color: blue;
+    }
+}
+</code></pre>
+<h3>Flexbox</h3>
+<p>Flexbox是CSS3中的一种布局模式，它可以让网页中的元素按照灵活的方式排列和对齐。</p>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;div id=&quot;container&quot;&gt;
+    &lt;div&gt;1.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;2.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;3.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;4.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;5.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;6.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;7.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+    &lt;div&gt;8.This is some sample text inside of a div to dome Flexbox.&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">#container {
+    display: flex; /* 设置为flex布局 */
+    flex-wrap: wrap; /* 允许项目换行 */
+}
+#container &gt; div {
+    background-color: springgreen;
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+}
+</code></pre>
+<h3>Grids</h3>
+<p>Grids是CSS3中的另一种布局模式，它可以让网页中的元素按照二维的方式排列和对齐。Grids的优点是可以创建复杂的网格结构，可以控制网格的行高和列宽，可以实现网页的响应式设计。</p>
+<p>HTML 中：</p>
+<pre><code class="language-html">&lt;div id=&quot;grid&quot;&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;3&lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;4&lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;5&lt;/div&gt;
+    &lt;div class=&quot;grid-item&quot;&gt;6&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>CSS 中：</p>
+<pre><code class="language-css">#grid {
+    background-color: green;
+    display: grid; /* 设置为grid布局 */
+    padding: 20px;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    grid-template-columns: 200px 200px auto;/* 设置三列的宽度 */
+}
+.grid-item {
+    background-color: springgreen;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+</code></pre>
+<h2>Bootstrap</h2>
+<p>BOOTSTRAP是一个开源的前端框架，它可以让开发者快速地创建响应式的网页和应用。BOOTSTRAP提供了丰富的CSS样式，组件和JavaScript插件，可以方便地实现网页的布局，导航，表单，按钮，图标，模态框，轮播图，警告框等功能。</p>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css&quot;&gt;
+&lt;/head&gt; 
+&lt;body&gt;
+    &lt;!-- 可直接使用Bootstrap组件里的代码 --&gt;
+    &lt;div class=&quot;alert alert-primary&quot; role=&quot;alert&quot;&gt;
+        A simple primary alert—check it out!
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h3>Bootstrap’s grid system</h3>
+<p>每行有12个模板列，允许您创建不同组合的元素，它们可以跨越任意数量的列。列类指示您想要使用的模板列的数量（例如，.col-4跨越四个列）。</p>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;title&gt;My Web Page!&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css&quot; integrity=&quot;sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;style&gt;
+        .row &gt; div {
+            padding: 20px;
+            background-color: teal;
+            border: 2px solid black;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-4&quot;&gt;
+                This is a section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-4&quot;&gt;
+                This is another section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-4&quot;&gt;
+                This is a third section.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;br/&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-3&quot;&gt;
+                This is a section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-6&quot;&gt;
+                This is another section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-3&quot;&gt;
+                This is a third section.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>根据不同的屏幕尺寸( lg / sm )控制容器和列的大小和行为。</p>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;title&gt;My Web Page!&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css&quot; integrity=&quot;sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;style&gt;
+        .row &gt; div {
+            padding: 20px;
+            background-color: teal;
+            border: 2px solid black;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-lg-3 col-sm-6&quot;&gt;
+                This is a section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-lg-3 col-sm-6&quot;&gt;
+                This is another section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-lg-3 col-sm-6&quot;&gt;
+                This is a third section.
+            &lt;/div&gt;
+            &lt;div class=&quot;col-lg-3 col-sm-6&quot;&gt;
+                This is a fourth section.
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h2>Sass</h2>
+<p>Syntactically Awesome Style Sheets 可以帮助您减少CSS的重复，节省时间，提高代码的可维护性。</p>
+<h3>Sass支持变量</h3>
+<ul>
+<li>创建单独的 Sass 文件，如 variables.scss</li>
+</ul>
+<pre><code class="language-scss">/* 定义变量 */
+$color: red;  /*如果颜色发生改变只需要改变变量即可*/
+
+ul {
+    font-size: 14px;
+    color: $color;
+}
+
+ol {
+    font-size: 18px;
+    color: $color;
+}
+</code></pre>
+<ul>
+<li>在&lt; head &gt;里用&lt; link &gt;引用，如：</li>
+</ul>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;variables.css&quot;&gt;
+</code></pre>
+<ul>
+<li>浏览器理解CSS但不理解Sass，为解决这个问题，可以在电脑上直接安装Sass，或在终端使用sass variables.scss:variables.css命令进行编译，将Sass代码编译成标准的CSS代码。</li>
+<li>终端使用sass --watch variables.scss:variables.css命令时，能在检测到Sass文件发生改变时，自动进行编译，将Sass代码编译成CSS代码，实现自动更新CSS代码。</li>
+</ul>
+<h3>Sass中嵌套语法更简单</h3>
+<p>While using Sass, we can also physically nest our styling rather than use the CSS selectors we talked about earlier. Sass中：</p>
+<pre><code class="language-scss">div {
+    font-size: 10px;
+
+    p {
+        color: blue;
+    }
+
+    ul {
+        color: green;
+    }
+}
+</code></pre>
+<p>编译后生成的CSS中：</p>
+<pre><code class="language-css">div {
+    font-size: 18px;
+}
+
+div p { /*Descendant Selector */
+    color: blue;
+}
+
+div ul { /*Descendant Selector */
+    color: green;
+}
+</code></pre>
+<h3>继承</h3>
+<p>Sass中：</p>
+<pre><code class="language-scss">%message { /*adding a % before a name of a class, adding some styling*/
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px;
+}
+
+.success { 
+    @extend %message; /*adding the line @extend %classname to the beginning of some styling*/
+    background-color: green;
+}
+
+.warning {
+    @extend %message;
+    background-color: orange;
+}
+
+.error {
+    @extend %message;
+    background-color: red;
+}
+</code></pre>
+<p>HTML中：</p>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;title&gt;My Web Page!&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;inheritance.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;success&quot;&gt;This is a success message.&lt;/div&gt;
+
+    &lt;div class=&quot;warning&quot;&gt;This is a warning message.&lt;/div&gt;
+
+    &lt;div class=&quot;error&quot;&gt;This is an error message.&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-01-07T17:06:26.708404+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
 <h2>HTML 能解决什么样的问题</h2>
 <p>HyperText Markup Language which is a language that we can use to describe the structure of the webpage.All of the buttons and the text, and the forms and other parts of the webpage that the user ultimately sees and interacts with. <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML（超文本标记语言） | MDN</a></p>
 <h2>1st HTML</h2>
@@ -143,7 +635,7 @@
 <li>datalist标签可以定义一个输入候选列表，option标签可以定义每个候选项的值。</li>
 <li>datalist标签需要和input标签配合使用，通过input标签的list属性来指定要关联的datalist标签的id属性。这样，当用户在input标签的输入框中输入或点击时，就会显示datalist标签中的候选列表，用户可以从中选择一个或者自己输入一个值。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-01-07T16:57:44.185901+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-01-07T17:06:26.900460+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -316,7 +808,7 @@
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-01-07T16:57:44.296882+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-01-07T17:06:27.057319+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -327,7 +819,7 @@
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-01-07T16:57:44.382556+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-01-07T17:06:27.226232+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -470,7 +962,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-01-07T16:57:44.488619+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-01-07T17:06:27.432124+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -2641,7 +3133,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-01-07T16:57:44.717790+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-01-07T17:06:27.752240+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -2657,7 +3149,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-01-07T16:57:44.803158+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-01-07T17:06:27.913279+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
