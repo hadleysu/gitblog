@@ -1,5 +1,149 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-01-04T03:18:34.927436+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-01-04T03:18:35.216229+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-01-07T16:57:43.878884+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-01-07T16:57:44.085667+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+<h2>HTML 能解决什么样的问题</h2>
+<p>HyperText Markup Language which is a language that we can use to describe the structure of the webpage.All of the buttons and the text, and the forms and other parts of the webpage that the user ultimately sees and interacts with. <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML（超文本标记语言） | MDN</a></p>
+<h2>1st HTML</h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hello!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        Hello,world!
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>DOM</h2>
+<p>Document Object Model(文档对象模型)The tree like structure that describes how all of these HTML elements are related to each other.</p>
+<h2>tags</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>h1</td>
+<td>heading，h1~h6</td>
+</tr>
+<tr>
+<td>ol</td>
+<td>ordered list</td>
+</tr>
+<tr>
+<td>ul</td>
+<td>unordered list</td>
+</tr>
+<tr>
+<td>li</td>
+<td>list item ，嵌套在ol/ul里使用</td>
+</tr>
+<tr>
+<td>img</td>
+<td>image，required attributes（src/alt/width）</td>
+</tr>
+<tr>
+<td>a</td>
+<td>anchor 超链接，attribute(href)</td>
+</tr>
+<tr>
+<td>table</td>
+<td>表格</td>
+</tr>
+<tr>
+<td>thead</td>
+<td>表头</td>
+</tr>
+<tr>
+<td>th</td>
+<td>表头单元格</td>
+</tr>
+<tr>
+<td>tbody</td>
+<td>表体</td>
+</tr>
+<tr>
+<td>tr</td>
+<td>table row</td>
+</tr>
+<tr>
+<td>td</td>
+<td>table data</td>
+</tr>
+<tr>
+<td>form</td>
+<td>表单</td>
+</tr>
+<tr>
+<td>input</td>
+<td>输入框，attribute(type/placeholder/name/list)</td>
+</tr>
+<tr>
+<td>datalist</td>
+<td>定义一个输入候选列表,需要和input标签配合使用</td>
+</tr>
+<tr>
+<td>option</td>
+<td>定义datalist列表中每个候选项的值，即下拉菜单的内容。</td>
+</tr>
+</tbody></table><h2>attributes</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src</td>
+<td>source</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>alternative text (用文字描述图片内容 )</td>
+</tr>
+<tr>
+<td>width</td>
+<td>宽度</td>
+</tr>
+<tr>
+<td>href</td>
+<td>hyperlink reference</td>
+</tr>
+<tr>
+<td>type</td>
+<td>表单控件类型（如text/submit/radio/password）</td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td>当没有值设定时，出现在表单控件上的文字</td>
+</tr>
+<tr>
+<td>name</td>
+<td>表单的控件名称，作为键值对的一部分与表单一同提交</td>
+</tr>
+<tr>
+<td>list</td>
+<td>input 标签的 list 属性是 datalist 标签的 id 属性的值，相互关联</td>
+</tr>
+</tbody></table><p>datalist标签和option标签的一个例子是：</p>
+<pre><code class="language-html">&lt;label for=&quot;city&quot;&gt;请选择您的城市：&lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;city&quot; list=&quot;city-list&quot;&gt;
+&lt;datalist id=&quot;city-list&quot;&gt;
+    &lt;option value=&quot;北京&quot;&gt;
+    &lt;option value=&quot;上海&quot;&gt;
+    &lt;option value=&quot;广州&quot;&gt;
+    &lt;option value=&quot;深圳&quot;&gt;
+&lt;/datalist&gt;
+</code></pre>
+<ul>
+<li>datalist标签可以定义一个输入候选列表，option标签可以定义每个候选项的值。</li>
+<li>datalist标签需要和input标签配合使用，通过input标签的list属性来指定要关联的datalist标签的id属性。这样，当用户在input标签的输入框中输入或点击时，就会显示datalist标签中的候选列表，用户可以从中选择一个或者自己输入一个值。</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-01-07T16:57:44.185901+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -172,7 +316,7 @@
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-01-04T03:18:35.358332+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-01-07T16:57:44.296882+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -183,7 +327,7 @@
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-01-04T03:18:35.496903+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-01-07T16:57:44.382556+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -326,7 +470,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-01-04T03:18:35.657028+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-01-07T16:57:44.488619+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -2497,7 +2641,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-01-04T03:18:35.944578+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-01-07T16:57:44.717790+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -2513,7 +2657,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-01-04T03:18:36.081914+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-01-07T16:57:44.803158+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
