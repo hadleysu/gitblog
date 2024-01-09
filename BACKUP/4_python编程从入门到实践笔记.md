@@ -63,7 +63,7 @@
   - [测试类](#测试类)
   - [使⽤夹具](#使夹具)
 
-## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_y0-es.html)
+## [Is Python interpreted or compiled? Yes.](https://nedbatchelder.com/blog/201803/is_python_interpreted_or_compiled_yes.html)
 
 ## 2 变量和简单的数据类型
 
