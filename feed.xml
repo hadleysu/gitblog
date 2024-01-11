@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-01-10T06:57:42.013394+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-01-10T06:57:42.233675+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-01-11T16:32:47.509104+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-01-11T16:32:47.836106+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
 <ul>
 <li>
 <a href="#css-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">CSS 基础笔记</a><ul>
@@ -48,13 +48,19 @@
 <li><a href="#sass%E6%94%AF%E6%8C%81%E5%8F%98%E9%87%8F">Sass支持变量</a></li>
 <li><a href="#sass%E4%B8%AD%E5%B5%8C%E5%A5%97%E8%AF%AD%E6%B3%95%E6%9B%B4%E7%AE%80%E5%8D%95">Sass中嵌套语法更简单</a></li>
 <li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
+<li>
+<a href="#%E7%88%B6%E9%80%89%E6%8B%A9%E5%99%A8--referencing-parent-selectors-">父选择器 &amp; (Referencing Parent Selectors: &amp;)</a><ul>
+<li><a href="#-%E6%9C%89%E4%BB%A5%E4%B8%8B%E5%87%A0%E7%A7%8D%E7%94%A8%E6%B3%95">&amp; 有以下几种用法</a></li>
+<li><a href="#%E9%97%AE%E9%A2%98">问题</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h2>CSS能解决什么样的问题</h2>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS：层叠样式表 | MDN</a> Cascading Style Sheets 用于设置网页的样式及布局——比如，可以更改内容的字体、颜色、大小以及间距，或是将其分列，或是添加动画及赋予内容其他装饰性的特征。<a href="https://cs50.harvard.edu/web/2020/notes/0/">CS50 HTML, CSS notes</a>  </p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS：层叠样式表 | MDN</a> Cascading Style Sheets 用于设置网页的样式及布局——比如，可以更改内容的字体、颜色、大小以及间距，或是将其分列，或是添加动画及赋予内容其他装饰性的特征。<a href="https://cs50.harvard.edu/web/2020/notes/0/">CS50W HTML, CSS notes</a>  </p>
 <h2>分类</h2>
 <h3>inline styling</h3>
 <pre><code class="language-html">&lt;h1 style=&quot;color: blue; text-align: center;&quot;&gt;This is a heading.&lt;/h1&gt;
@@ -491,7 +497,246 @@ div ul { /*Descendant Selector */
     &lt;div class=&quot;error&quot;&gt;This is an error message.&lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-01-10T06:57:42.358493+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+<h3>父选择器 &amp; (Referencing Parent Selectors: &amp;)</h3>
+<h4>&amp; 有以下几种用法</h4>
+<ul>
+<li>与伪类或伪元素结合：你可以用&amp;和伪类或伪元素配合使用，表示父选择器的某种状态或修饰。比如，你可以用&amp;:focus来表示input:focus，表示input元素获得焦点时的样式。你也可以用&amp;:hover来表示input[type=&quot;submit&quot;]:hover，表示input元素类型为submit并且鼠标悬停时的样式。</li>
+</ul>
+<pre><code class="language-scss">//定义一个input选择器，选择所有的&lt;input&gt;元素
+input {
+    font-size: 16px;
+    width: 300px;
+    padding: 13px 0;
+
+    //使用&amp;和:focus伪类结合，选择所有获得焦点的&lt;input&gt;元素
+    &amp;:focus {
+        outline: none;
+    }
+
+    //使用&amp;和属性选择器结合，选择所有类型为submit的&lt;input&gt;元素
+    &amp;[type=&quot;submit&quot;] {
+        font-size: 14px;
+        width: 185px;
+        /* Remove border */
+        border-width: 0px;
+        border-radius: 15px;
+        margin: 20px;
+
+        //使用&amp;和:hover伪类结合，选择所有鼠标悬停的类型为submit的&lt;input&gt;元素
+        &amp;:hover {
+            /* Add box-shadow when hovering button (border adds space) */
+            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+</code></pre>
+<p>编译后生成的CSS中：</p>
+<pre><code class="language-css">input {
+  font-size: 16px;
+  width: 300px;
+  padding: 13px 0;
+  /* Parent selector = &amp; */
+}
+input:focus {
+  outline: none;
+}
+input[type=submit] {
+  font-size: 14px;
+  width: 185px;
+  /* Remove border */
+  border-width: 0px;
+  border-radius: 15px;
+  margin: 20px;
+}
+input[type=submit]:hover {
+  /* Add box-shadow when hovering button (border adds space) */
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+}
+</code></pre>
+<ul>
+<li>与属性选择器结合：你可以用&amp;和属性选择器配合使用，表示父选择器具有某种属性或属性值。比如，你可以用&amp;[type=&quot;text&quot;]来表示input[type=&quot;text&quot;]，表示input元素类型为text的样式。你也可以用&amp;[type=&quot;submit&quot;]来表示input[type=&quot;submit&quot;]，表示input元素类型为submit的样式。</li>
+</ul>
+<pre><code class="language-scss">input {
+    font-size: 16px;
+    width: 300px;
+    padding: 13px 0;
+
+    //使用&amp;和属性选择器结合，选择所有类型为text的&lt;input&gt;元素
+    &amp;[type=&quot;text&quot;] {
+        /* Give input text a lighter color */
+        color: #464646;
+        margin: 0 0 0 5px;
+    }
+
+    &amp;[type=&quot;submit&quot;] {
+        font-size: 14px;
+        width: 185px;
+        /* Remove border */
+        border-width: 0px;
+        border-radius: 15px;
+        margin: 20px;
+    }
+}
+</code></pre>
+<p>编译后生成的CSS中：</p>
+<pre><code class="language-css">input {
+  font-size: 16px;
+  width: 300px;
+  padding: 13px 0;
+  /* Parent selector = &amp; */
+}
+input[type=text] {
+  /* Give input text a lighter color */
+  color: #464646;
+  margin: 0 0 0 5px;
+}
+input[type=submit] {
+  font-size: 14px;
+  width: 185px;
+  /* Remove border */
+  border-width: 0px;
+  border-radius: 15px;
+  margin: 20px;
+}
+</code></pre>
+<ul>
+<li>与类选择器结合：你可以用&amp;和类选择器配合使用，表示父选择器同时具有某个类名。比如，你可以用&amp;.blue-button来表示input.blue-button，表示input元素同时具有blue-button类名的样式。</li>
+</ul>
+<pre><code class="language-scss">input {
+    font-size: 16px;
+    width: 300px;
+    padding: 13px 0;
+ 
+    //使用&amp;和类选择器结合，选择所有同时具有blue-button类名的&lt;input&gt;元素
+    &amp;.blue-button {
+        background-color: dodgerblue;
+        color: white;
+        font-size: smaller;
+        max-width: 200px;
+        border-radius: 0px;
+        border: 1px solid #156bbd;
+        float: right;
+        padding: 10px 2px;
+        margin: 0;
+    }
+}
+</code></pre>
+<p>编译后生成的CSS中：</p>
+<pre><code class="language-css">input {
+  font-size: 16px;
+  width: 300px;
+  padding: 13px 0;
+  /* Parent selector = &amp; */
+}
+input.blue-button {
+  background-color: dodgerblue;
+  color: white;
+  font-size: smaller;
+  max-width: 200px;
+  border-radius: 0px;
+  border: 1px solid #156bbd;
+  float: right;
+  padding: 10px 2px;
+  margin: 0;
+}
+</code></pre>
+<ul>
+<li>与其他选择器拼接：你可以用&amp;和其他选择器拼接，表示父选择器的一部分。比如，你可以用&amp;-button来表示input-button，表示以input-button为选择器的样式。</li>
+</ul>
+<pre><code class="language-scss">//定义一个.header选择器，选择所有具有header类名的元素
+.header {
+    display: flex;
+    align-items: center;
+
+    //使用&amp;和其他选择器拼接，选择所有具有header-advanced类名的元素
+    &amp;-advanced {
+        @extend .header;
+        background-color: #f1f1f1;
+        height: 50px;
+    }
+
+    //使用&amp;和其他选择器拼接，选择所有具有header-advanced-logo类名的元素
+    &amp;-advanced-logo {
+        @extend .header;
+        padding: 10px;
+
+        //使用嵌套的img选择器，选择所有父元素具有header-advanced-logo类名的&lt;img&gt;元素
+        img {
+            height: 30px;
+        }
+    }
+
+    //使用&amp;和其他选择器拼接，选择所有具有header-links类名的元素
+    &amp;-links {
+        @extend .header;
+        margin-left: auto;
+    }
+}
+</code></pre>
+<p>编译后生成的CSS中：</p>
+<pre><code class="language-css">/*如果使用了@extend指令，就会生成后代选择器，如果没有使用，就不会生成后代选择器。*/
+.header, .header-links, .header-advanced-logo, .header-advanced {
+  display: flex;
+  align-items: center;
+}
+/*因为使用了@extend指令，就会生成后代选择器*/
+.header a, .header-links a, .header-advanced-logo a, .header-advanced a {
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+}
+.header-advanced {
+  background-color: #f1f1f1;
+  height: 50px;
+}
+.header-advanced-logo {
+  padding: 10px;
+}
+.header-advanced-logo img {
+  height: 30px;
+}
+.header-links {
+  margin-left: auto;
+}
+</code></pre>
+<ul>
+<li>与后代选择器结合：你可以用&amp;和后代选择器结合，表示父选择器的子孙元素。比如，你可以用.nav-menu &amp;来表示.nav-menu input，表示nav-menu类名下的input元素的样式。</li>
+</ul>
+<pre><code class="language-scss">//在sass中先写了子元素的效果，但在某种情况下需要进行覆盖时，可以使用选择器后面加&amp;，注意中间要加空格。
+a {
+    color: red;
+    
+    //选择nav-menu类名下的所有&lt;a&gt;元素
+    .nav-menu &amp; {
+        color: blue;
+    }
+}
+</code></pre>
+<p>编译后生成的CSS中：</p>
+<pre><code class="language-css">a {
+    color: red;
+}
+/*后代选择器*/
+.nav-menu a {
+    color: blue;
+}
+</code></pre>
+<h4>问题</h4>
+<ul>
+<li>
+<p>是不是在sass的嵌套代码里如果不使用&amp;，就会产生后代选择器呢？</p>
+<ul>
+<li>是的。如果你在sass的嵌套代码里不使用&amp;，就会产生后代选择器。</li>
+</ul>
+</li>
+<li>
+<p>什么情况下在sass的嵌套代码里不会产生后代选择器呢？</p>
+<ul>
+<li>如果你在sass的嵌套代码里使用了&amp;符号，就不会产生后代选择器，而是会产生其他类型的选择器，比如多类选择器，伪类选择器，属性选择器等。</li>
+</ul>
+</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-01-11T16:32:48.035275+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
 <h2>HTML 能解决什么样的问题</h2>
 <p>HyperText Markup Language which is a language that we can use to describe the structure of the webpage.All of the buttons and the text, and the forms and other parts of the webpage that the user ultimately sees and interacts with. <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML（超文本标记语言） | MDN</a></p>
 <h2>1st HTML</h2>
@@ -635,7 +880,7 @@ div ul { /*Descendant Selector */
 <li>datalist标签可以定义一个输入候选列表，option标签可以定义每个候选项的值。</li>
 <li>datalist标签需要和input标签配合使用，通过input标签的list属性来指定要关联的datalist标签的id属性。这样，当用户在input标签的输入框中输入或点击时，就会显示datalist标签中的候选列表，用户可以从中选择一个或者自己输入一个值。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-01-10T06:57:42.468086+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-01-11T16:32:48.178727+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -808,7 +1053,7 @@ div ul { /*Descendant Selector */
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-01-10T06:57:42.582827+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-01-11T16:32:48.344930+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -819,7 +1064,7 @@ div ul { /*Descendant Selector */
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-01-10T06:57:42.672349+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-01-11T16:32:48.476132+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -962,7 +1207,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-01-10T06:57:42.794570+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-01-11T16:32:48.657621+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -3133,7 +3378,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-01-10T06:57:43.048510+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-01-11T16:32:48.993801+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -3149,7 +3394,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-01-10T06:57:43.142516+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-01-11T16:32:49.129680+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>

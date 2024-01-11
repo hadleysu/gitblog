@@ -32,10 +32,13 @@
     - [Sass支持变量](#sass支持变量)
     - [Sass中嵌套语法更简单](#sass中嵌套语法更简单)
     - [继承](#继承)
+    - [父选择器 \& (Referencing Parent Selectors: \&)](#父选择器--referencing-parent-selectors-)
+      - [\& 有以下几种用法](#-有以下几种用法)
+      - [问题](#问题)
 
 ## CSS能解决什么样的问题
 
-[CSS：层叠样式表 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS) Cascading Style Sheets 用于设置网页的样式及布局——比如，可以更改内容的字体、颜色、大小以及间距，或是将其分列，或是添加动画及赋予内容其他装饰性的特征。[CS50 HTML, CSS notes](https://cs50.harvard.edu/web/2020/notes/0/)  
+[CSS：层叠样式表 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS) Cascading Style Sheets 用于设置网页的样式及布局——比如，可以更改内容的字体、颜色、大小以及间距，或是将其分列，或是添加动画及赋予内容其他装饰性的特征。[CS50W HTML, CSS notes](https://cs50.harvard.edu/web/2020/notes/0/)  
 
 ## 分类
 
@@ -560,3 +563,263 @@ HTML中：
     <div class="error">This is an error message.</div>
 </body>
 ```
+
+### 父选择器 & (Referencing Parent Selectors: &)
+
+#### & 有以下几种用法
+
+- 与伪类或伪元素结合：你可以用&和伪类或伪元素配合使用，表示父选择器的某种状态或修饰。比如，你可以用&:focus来表示input:focus，表示input元素获得焦点时的样式。你也可以用&:hover来表示input[type="submit"]:hover，表示input元素类型为submit并且鼠标悬停时的样式。
+
+```scss
+//定义一个input选择器，选择所有的<input>元素
+input {
+    font-size: 16px;
+    width: 300px;
+    padding: 13px 0;
+
+    //使用&和:focus伪类结合，选择所有获得焦点的<input>元素
+    &:focus {
+        outline: none;
+    }
+
+    //使用&和属性选择器结合，选择所有类型为submit的<input>元素
+    &[type="submit"] {
+        font-size: 14px;
+        width: 185px;
+        /* Remove border */
+        border-width: 0px;
+        border-radius: 15px;
+        margin: 20px;
+
+        //使用&和:hover伪类结合，选择所有鼠标悬停的类型为submit的<input>元素
+        &:hover {
+            /* Add box-shadow when hovering button (border adds space) */
+            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+        }
+    }
+}
+```
+
+编译后生成的CSS中：
+
+```css
+input {
+  font-size: 16px;
+  width: 300px;
+  padding: 13px 0;
+  /* Parent selector = & */
+}
+input:focus {
+  outline: none;
+}
+input[type=submit] {
+  font-size: 14px;
+  width: 185px;
+  /* Remove border */
+  border-width: 0px;
+  border-radius: 15px;
+  margin: 20px;
+}
+input[type=submit]:hover {
+  /* Add box-shadow when hovering button (border adds space) */
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+}
+```
+
+- 与属性选择器结合：你可以用&和属性选择器配合使用，表示父选择器具有某种属性或属性值。比如，你可以用&[type="text"]来表示input[type="text"]，表示input元素类型为text的样式。你也可以用&[type="submit"]来表示input[type="submit"]，表示input元素类型为submit的样式。
+  
+```scss
+input {
+    font-size: 16px;
+    width: 300px;
+    padding: 13px 0;
+
+    //使用&和属性选择器结合，选择所有类型为text的<input>元素
+    &[type="text"] {
+        /* Give input text a lighter color */
+        color: #464646;
+        margin: 0 0 0 5px;
+    }
+
+    &[type="submit"] {
+        font-size: 14px;
+        width: 185px;
+        /* Remove border */
+        border-width: 0px;
+        border-radius: 15px;
+        margin: 20px;
+    }
+}
+```
+
+编译后生成的CSS中：
+
+```css
+input {
+  font-size: 16px;
+  width: 300px;
+  padding: 13px 0;
+  /* Parent selector = & */
+}
+input[type=text] {
+  /* Give input text a lighter color */
+  color: #464646;
+  margin: 0 0 0 5px;
+}
+input[type=submit] {
+  font-size: 14px;
+  width: 185px;
+  /* Remove border */
+  border-width: 0px;
+  border-radius: 15px;
+  margin: 20px;
+}
+```
+
+- 与类选择器结合：你可以用&和类选择器配合使用，表示父选择器同时具有某个类名。比如，你可以用&.blue-button来表示input.blue-button，表示input元素同时具有blue-button类名的样式。
+  
+```scss
+input {
+    font-size: 16px;
+    width: 300px;
+    padding: 13px 0;
+ 
+    //使用&和类选择器结合，选择所有同时具有blue-button类名的<input>元素
+    &.blue-button {
+        background-color: dodgerblue;
+        color: white;
+        font-size: smaller;
+        max-width: 200px;
+        border-radius: 0px;
+        border: 1px solid #156bbd;
+        float: right;
+        padding: 10px 2px;
+        margin: 0;
+    }
+}
+```
+
+编译后生成的CSS中：
+
+```css
+input {
+  font-size: 16px;
+  width: 300px;
+  padding: 13px 0;
+  /* Parent selector = & */
+}
+input.blue-button {
+  background-color: dodgerblue;
+  color: white;
+  font-size: smaller;
+  max-width: 200px;
+  border-radius: 0px;
+  border: 1px solid #156bbd;
+  float: right;
+  padding: 10px 2px;
+  margin: 0;
+}
+```
+
+- 与其他选择器拼接：你可以用&和其他选择器拼接，表示父选择器的一部分。比如，你可以用&-button来表示input-button，表示以input-button为选择器的样式。
+  
+```scss
+//定义一个.header选择器，选择所有具有header类名的元素
+.header {
+    display: flex;
+    align-items: center;
+
+    //使用&和其他选择器拼接，选择所有具有header-advanced类名的元素
+    &-advanced {
+        @extend .header;
+        background-color: #f1f1f1;
+        height: 50px;
+    }
+
+    //使用&和其他选择器拼接，选择所有具有header-advanced-logo类名的元素
+    &-advanced-logo {
+        @extend .header;
+        padding: 10px;
+
+        //使用嵌套的img选择器，选择所有父元素具有header-advanced-logo类名的<img>元素
+        img {
+            height: 30px;
+        }
+    }
+
+    //使用&和其他选择器拼接，选择所有具有header-links类名的元素
+    &-links {
+        @extend .header;
+        margin-left: auto;
+    }
+}
+```
+
+编译后生成的CSS中：
+
+```css
+/*如果使用了@extend指令，就会生成后代选择器，如果没有使用，就不会生成后代选择器。*/
+.header, .header-links, .header-advanced-logo, .header-advanced {
+  display: flex;
+  align-items: center;
+}
+/*因为使用了@extend指令，就会生成后代选择器*/
+.header a, .header-links a, .header-advanced-logo a, .header-advanced a {
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+}
+.header-advanced {
+  background-color: #f1f1f1;
+  height: 50px;
+}
+.header-advanced-logo {
+  padding: 10px;
+}
+.header-advanced-logo img {
+  height: 30px;
+}
+.header-links {
+  margin-left: auto;
+}
+```
+
+- 与后代选择器结合：你可以用&和后代选择器结合，表示父选择器的子孙元素。比如，你可以用.nav-menu &来表示.nav-menu input，表示nav-menu类名下的input元素的样式。
+
+```scss
+//在sass中先写了子元素的效果，但在某种情况下需要进行覆盖时，可以使用选择器后面加&，注意中间要加空格。
+a {
+    color: red;
+    
+    //选择nav-menu类名下的所有<a>元素
+    .nav-menu & {
+        color: blue;
+    }
+}
+```
+
+编译后生成的CSS中：
+
+```css
+a {
+    color: red;
+}
+/*后代选择器*/
+.nav-menu a {
+    color: blue;
+}
+```
+
+#### 问题
+
+- 是不是在sass的嵌套代码里如果不使用&，就会产生后代选择器呢？
+  
+  - 是的。如果你在sass的嵌套代码里不使用&，就会产生后代选择器。
+
+- 什么情况下在sass的嵌套代码里不会产生后代选择器呢？
+  - 如果你在sass的嵌套代码里使用了&符号，就不会产生后代选择器，而是会产生其他类型的选择器，比如多类选择器，伪类选择器，属性选择器等。
+
+
+---
+
+Add Sass: Parent Selectors: &
