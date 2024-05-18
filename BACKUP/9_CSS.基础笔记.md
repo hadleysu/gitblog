@@ -4,18 +4,18 @@
 
 - [CSS 基础笔记](#css-基础笔记)
   - [CSS能解决什么样的问题](#css能解决什么样的问题)
+    - [参考文档](#参考文档)
   - [分类](#分类)
     - [inline styling](#inline-styling)
     - [internal CSS](#internal-css)
     - [external CSS](#external-css)
-  - [features](#features)
-    - [padding/margin](#paddingmargin)
-    - [font](#font)
+  - [CSS Selectors](#css-selectors)
+    - [Type Selector / Element Selector](#type-selector--element-selector)
+    - [Id Selector](#id-selector)
+    - [Class Selector](#class-selector)
     - [Multiple Element Selector](#multiple-element-selector)
-    - [id](#id)
-    - [class](#class)
-    - [优先级](#优先级)
-    - [CSS Selector](#css-selector)
+    - [CSS 优先级规则](#css-优先级规则)
+    - [CSS Selectors Table](#css-selectors-table)
     - [Child Selector](#child-selector)
     - [Descendant Selector](#descendant-selector)
     - [Attribute Selector](#attribute-selector)
@@ -30,15 +30,33 @@
     - [Bootstrap’s grid system](#bootstraps-grid-system)
   - [Sass](#sass)
     - [Sass支持变量](#sass支持变量)
-    - [Sass中嵌套语法更简单](#sass中嵌套语法更简单)
+    - [Sass 中嵌套语法更简单](#sass-中嵌套语法更简单)
     - [继承](#继承)
-    - [父选择器 \& (Referencing Parent Selectors: \&)](#父选择器--referencing-parent-selectors-)
+    - [父选择器 \& ( Referencing Parent Selectors: \& )](#父选择器---referencing-parent-selectors--)
       - [\& 有以下几种用法](#-有以下几种用法)
       - [问题](#问题)
 
 ## CSS能解决什么样的问题
 
 [CSS：层叠样式表 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS) Cascading Style Sheets 用于设置网页的样式及布局——比如，可以更改内容的字体、颜色、大小以及间距，或是将其分列，或是添加动画及赋予内容其他装饰性的特征。[CS50W HTML, CSS notes](https://cs50.harvard.edu/web/2020/notes/0/)  
+
+### 参考文档
+
+- [MDN - CSS selectors](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
+  
+- [W3Schools  - CSS Selectors](https://www.w3schools.com/CSS/css_selectors.asp)
+
+- [W3Schools  - CSS Flexbox](https://www.w3schools.com/css/css3_flexbox.asp)
+
+- [阮一峰 Flex 布局教程：语法篇](https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+
+- [阮一峰 Flex 布局教程：实例篇](https://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+
+- [阮一峰 Flexbox 布局的最简单表单](https://www.ruanyifeng.com/blog/2018/10/flexbox-form.html)
+
+- [阮一峰 CSS Grid 网格布局教程](https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
+
+- [W3Schools  - CSS Grid Layout Module](https://www.w3schools.com/css/css_grid.asp)
 
 ## 分类
 
@@ -72,9 +90,9 @@
 </head>
 ```
 
-## features
+## CSS Selectors
 
-### padding/margin
+### Type Selector / Element Selector
 
 ```css
 div {
@@ -84,11 +102,8 @@ div {
     padding: 20px; /*内边距*/
     margin: 20px; /*外边距*/
 }
-```
 
-### font
-
-```css
+/* font */
 div {
     border: 2px solid black;
     font-family: Arial, Helvetica, sans-serif;
@@ -97,20 +112,7 @@ div {
 }
 ```
 
-### Multiple Element Selector
-
-```css
-table {
-    border: 2px solid black;
-    border-collapse: collapse;
-}
-td, th { /*th 和 td 具有相同的样式，就直接用逗号连接放一起*/
-    border: 2px solid black;
-    padding: 5px;
-}
-```
-
-### id
+### Id Selector
 
 HTML 中：
 
@@ -128,7 +130,7 @@ CSS 中：
 }
 ```
 
-### class
+### Class Selector
 
 HTML 中：
 
@@ -146,14 +148,38 @@ CSS 中：
 }
 ```
 
-### 优先级
+### Multiple Element Selector
 
-1. inline
-2. id
-3. class
-4. type
+```css
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+td, th { /*th 和 td 具有相同的样式，就直接用逗号连接放一起*/
+    border: 2px solid black;
+    padding: 5px;
+}
+```
 
-### CSS Selector
+### CSS 优先级规则
+
+当同一个元素被多条 CSS 规则定义时,浏览器会根据一定的优先级规则来决定最终应用哪一条规则。这个优先级规则被称为 CSS 优先级。
+
+CSS 优先级的主要规则如下:
+
+1. **内联样式 > ID 选择器 > 类选择器 > 元素选择器**
+   - inline `如 style="..."`
+   - id `如 #my-element`
+   - class `如 .my-class`
+   - type `如 div`
+
+2. **就近原则**
+   - 当多条具有相同优先级的规则应用于同一元素时,就近原则生效,即最后定义的规则会覆盖先前的规则。
+
+3. **!important 关键字**
+   - 使用 `!important` 关键字可以提升某条 CSS 规则的优先级,使其覆盖其他规则。但应该谨慎使用,因为它会破坏 CSS 的级联机制。
+
+### CSS Selectors Table
 
 |     |                          |
 |-----|--------------------------|
@@ -256,7 +282,7 @@ button:hover {
 
 ### viewport
 
-viewport元素可以控制网页在不同设备上的显示方式和缩放比例。代码中，width=device-width表示将viewport的宽度设置为设备的屏幕宽度，initial-scale=1.0表示将网页的初始缩放比例设置为1.0，也就是不缩放。这样可以让网页适应不同大小的屏幕，实现响应式设计。
+`viewport` 元素可以控制网页在不同设备上的显示方式和缩放比例。代码中，`width=device-width` 表示将 viewport 的宽度设置为设备的屏幕宽度，`initial-scale=1.0` 表示将网页的初始缩放比例设置为1.0，也就是不缩放。这样可以让网页适应不同大小的屏幕，实现响应式设计。
 
 ```html
 <head>
@@ -270,7 +296,7 @@ viewport元素可以控制网页在不同设备上的显示方式和缩放比例
 
 ### Media Queries
 
-Media Queries的作用是实现响应式网页设计，让网页能够适应不同大小和分辨率的屏幕和设备。
+`Media Queries` 的作用是实现响应式网页设计，让网页能够适应不同大小和分辨率的屏幕和设备。
 
 ```css
 @media (min-width:600px) {
@@ -287,7 +313,7 @@ Media Queries的作用是实现响应式网页设计，让网页能够适应不�
 
 ### Flexbox
 
-Flexbox是CSS3中的一种布局模式，它可以让网页中的元素按照灵活的方式排列和对齐。
+`Flexbox` 是CSS3中的一种布局模式，它可以让网页中的元素按照灵活的方式排列和对齐。
 
 HTML 中：
 
@@ -321,7 +347,7 @@ CSS 中：
 
 ### Grids
 
-Grids是CSS3中的另一种布局模式，它可以让网页中的元素按照二维的方式排列和对齐。Grids的优点是可以创建复杂的网格结构，可以控制网格的行高和列宽，可以实现网页的响应式设计。
+`Grids` 是 CSS3 中的另一种布局模式，它可以让网页中的元素按照二维的方式排列和对齐。Grids 的优点是可以创建复杂的网格结构，可以控制网格的行高和列宽，可以实现网页的响应式设计。
 
 HTML 中：
 
@@ -357,7 +383,7 @@ CSS 中：
 
 ## Bootstrap
 
-BOOTSTRAP是一个开源的前端框架，它可以让开发者快速地创建响应式的网页和应用。BOOTSTRAP提供了丰富的CSS样式，组件和JavaScript插件，可以方便地实现网页的布局，导航，表单，按钮，图标，模态框，轮播图，警告框等功能。
+`BOOTSTRAP` 是一个开源的前端框架，它可以让开发者快速地创建响应式的网页和应用。BOOTSTRAP 提供了丰富的 `CSS` 样式，组件和 `JavaScript` 插件，可以方便地实现网页的布局，导航，表单，按钮，图标，模态框，轮播图，警告框等功能。
 
 ```html
 <head>
@@ -373,7 +399,7 @@ BOOTSTRAP是一个开源的前端框架，它可以让开发者快速地创建�
 
 ### Bootstrap’s grid system
 
-每行有12个模板列，允许您创建不同组合的元素，它们可以跨越任意数量的列。列类指示您想要使用的模板列的数量（例如，.col-4跨越四个列）。
+每行有 **12 个模板列**，允许您创建不同组合的元素，它们可以跨越任意数量的列。列类指示您想要使用的模板列的数量（例如，`.col-4` 跨越四个列）。
 
 ```html
 <head>
@@ -454,11 +480,11 @@ BOOTSTRAP是一个开源的前端框架，它可以让开发者快速地创建�
 
 ## Sass
 
-Syntactically Awesome Style Sheets 可以帮助您减少CSS的重复，节省时间，提高代码的可维护性。
+Syntactically Awesome Style Sheets 可以帮助您减少 CSS 的重复，节省时间，提高代码的可维护性。
 
 ### Sass支持变量
 
-- 创建单独的 Sass 文件，如 variables.scss
+- 创建单独的 Sass 文件，如 `variables.scss`
 
 ```scss
 /* 定义变量 */
@@ -481,10 +507,10 @@ ol {
 <link rel="stylesheet" href="variables.css">
 ```
 
-- 浏览器理解CSS但不理解Sass，为解决这个问题，可以在电脑上直接安装Sass，或在终端使用sass variables.scss:variables.css命令进行编译，将Sass代码编译成标准的CSS代码。
-- 终端使用sass --watch variables.scss:variables.css命令时，能在检测到Sass文件发生改变时，自动进行编译，将Sass代码编译成CSS代码，实现自动更新CSS代码。
+- **浏览器理解 CSS 但不理解 Sass** ，为解决这个问题，可以在电脑上直接安装 Sass ，或在终端使用 `sass variables.scss:variables.css` 命令进行**编译**，将Sass代码编译成标准的 CSS 代码。
+- 终端使用 `sass --watch variables.scss:variables.css` 命令时，能在检测到 Sass 文件发生改变时，自动进行编译，将Sass代码编译成 CSS 代码，实现自动更新 CSS 代码。
 
-### Sass中嵌套语法更简单
+### Sass 中嵌套语法更简单
 
 While using Sass, we can also physically nest our styling rather than use the CSS selectors we talked about earlier. Sass中：
 
@@ -502,7 +528,7 @@ div {
 }
 ```
 
-编译后生成的CSS中：
+编译后生成的 CSS 中：
 
 ```css
 div {
@@ -520,7 +546,7 @@ div ul { /*Descendant Selector */
 
 ### 继承
 
- Sass中：
+ Sass 中：
 
 ```scss
 %message { /*adding a % before a name of a class, adding some styling*/
@@ -548,7 +574,7 @@ div ul { /*Descendant Selector */
 }
 ```
 
-HTML中：
+HTML 中：
 
 ```html
 <head>
@@ -564,11 +590,13 @@ HTML中：
 </body>
 ```
 
-### 父选择器 & (Referencing Parent Selectors: &)
+### 父选择器 & ( Referencing Parent Selectors: & )
 
 #### & 有以下几种用法
 
-- 与伪类或伪元素结合：你可以用&和伪类或伪元素配合使用，表示父选择器的某种状态或修饰。比如，你可以用&:focus来表示input:focus，表示input元素获得焦点时的样式。你也可以用&:hover来表示input[type="submit"]:hover，表示input元素类型为submit并且鼠标悬停时的样式。
+- 与伪类或伪元素结合：你可以用&和伪类或伪元素配合使用，表示父选择器的某种状态或修饰。比如，你可以用 `&:focus` 来表示 `input:focus` ，表示 input 元素获得焦点时的样式。你也可以用 `&:hover` 来表示 `input[type="submit"]:hover` ，表示 input 元素类型为 submit 并且鼠标悬停时的样式。
+
+Sass 中：
 
 ```scss
 //定义一个input选择器，选择所有的<input>元素
@@ -600,7 +628,7 @@ input {
 }
 ```
 
-编译后生成的CSS中：
+编译后生成的 CSS 中：
 
 ```css
 input {
@@ -626,7 +654,9 @@ input[type=submit]:hover {
 }
 ```
 
-- 与属性选择器结合：你可以用&和属性选择器配合使用，表示父选择器具有某种属性或属性值。比如，你可以用&[type="text"]来表示input[type="text"]，表示input元素类型为text的样式。你也可以用&[type="submit"]来表示input[type="submit"]，表示input元素类型为submit的样式。
+- 与属性选择器结合：你可以用 `&` 和属性选择器配合使用，表示父选择器具有某种属性或属性值。比如，你可以用 `&[type="text"]` 来表示 `input[type="text"]` ，表示 input 元素类型为 text 的样式。你也可以用 `&[type="submit"]` 来表示 `input[type="submit"]` ，表示 input 元素类型为 submit 的样式。
+
+Sass 中：
   
 ```scss
 input {
@@ -652,7 +682,7 @@ input {
 }
 ```
 
-编译后生成的CSS中：
+编译后生成的 CSS 中：
 
 ```css
 input {
@@ -676,7 +706,9 @@ input[type=submit] {
 }
 ```
 
-- 与类选择器结合：你可以用&和类选择器配合使用，表示父选择器同时具有某个类名。比如，你可以用&.blue-button来表示input.blue-button，表示input元素同时具有blue-button类名的样式。
+- 与类选择器结合：你可以用 `&` 和类选择器配合使用，表示父选择器同时具有某个类名。比如，你可以用 `&.blue-button` 来表示 `input.blue-button` ，表示 input 元素同时具有 blue-button 类名的样式。
+
+Sass 中：
   
 ```scss
 input {
@@ -699,7 +731,7 @@ input {
 }
 ```
 
-编译后生成的CSS中：
+编译后生成的 CSS 中：
 
 ```css
 input {
@@ -721,8 +753,10 @@ input.blue-button {
 }
 ```
 
-- 与其他选择器拼接：你可以用&和其他选择器拼接，表示父选择器的一部分。比如，你可以用&-button来表示input-button，表示以input-button为选择器的样式。
-  
+- 与其他选择器拼接：你可以用 `&` 和其他选择器拼接，表示父选择器的一部分。比如，你可以用 `&-button` 来表示 `input-button` ，表示以 input-button 为选择器的样式。
+
+Sass 中：
+
 ```scss
 //定义一个.header选择器，选择所有具有header类名的元素
 .header {
@@ -755,7 +789,7 @@ input.blue-button {
 }
 ```
 
-编译后生成的CSS中：
+编译后生成的 CSS 中：
 
 ```css
 /*如果使用了@extend指令，就会生成后代选择器，如果没有使用，就不会生成后代选择器。*/
@@ -784,7 +818,9 @@ input.blue-button {
 }
 ```
 
-- 与后代选择器结合：你可以用&和后代选择器结合，表示父选择器的子孙元素。比如，你可以用.nav-menu &来表示.nav-menu input，表示nav-menu类名下的input元素的样式。
+- 与后代选择器结合：你可以用 `&` 和后代选择器结合，表示父选择器的子孙元素。比如，你可以用 `.nav-menu &` 来表示 `.nav-menu input` ，表示 nav-menu 类名下的 input 元素的样式。
+
+Sass 中：
 
 ```scss
 //在sass中先写了子元素的效果，但在某种情况下需要进行覆盖时，可以使用选择器后面加&，注意中间要加空格。
@@ -798,7 +834,7 @@ a {
 }
 ```
 
-编译后生成的CSS中：
+编译后生成的 CSS 中：
 
 ```css
 a {
@@ -812,12 +848,12 @@ a {
 
 #### 问题
 
-- 是不是在sass的嵌套代码里如果不使用&，就会产生后代选择器呢？
+- 是不是在 `sass` 的嵌套代码里如果不使用 `&` ，就会产生后代选择器呢？
   
-  - 是的。如果你在sass的嵌套代码里不使用&，就会产生后代选择器。
+  - 是的。如果你在 `sass` 的嵌套代码里不使用 `&`，就会产生后代选择器。
 
-- 什么情况下在sass的嵌套代码里不会产生后代选择器呢？
-  - 如果你在sass的嵌套代码里使用了&符号，就不会产生后代选择器，而是会产生其他类型的选择器，比如多类选择器，伪类选择器，属性选择器等。
+- 什么情况下在 `sass` 的嵌套代码里不会产生后代选择器呢？
+  - 如果你在 `sass` 的嵌套代码里使用了 `&` 符号，就不会产生后代选择器，而是会产生其他类型的选择器，比如多类选择器，伪类选择器，属性选择器等。
 
 
 ---
