@@ -1,5 +1,227 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-05-18T03:10:46.443634+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-05-18T03:10:46.628988+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-05-18T06:12:36.376776+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-05-18T06:12:36.539236+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
+<ul>
+<li>
+<a href="#html%E5%92%8Ccss%E5%AE%9E%E7%8E%B0google-image-search%E6%A0%B7%E5%BC%8F">HTML和CSS实现Google Image Search样式</a><ul>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3">参考文档</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码</a></li>
+<li>
+<a href="#%E5%AE%9E%E7%8E%B0-google-%E5%9B%BE%E6%A0%87%E4%B8%8E-images-%E4%B9%8B%E9%97%B4%E7%9A%84%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE%E4%B8%94%E6%95%B4%E4%BD%93%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">实现 Google 图标与 images 之间的相对位置，且整体水平居中</a><ul>
+<li><a href="#%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE">相对位置</a></li>
+<li>
+<a href="#%E5%AE%B9%E5%99%A8%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">容器水平居中</a><ul>
+<li><a href="#%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95%E6%98%AF%E4%BD%BF%E7%94%A8-css-%E7%9A%84-transform-%E5%B1%9E%E6%80%A7">一种方法是使用 CSS 的 <code>transform</code> 属性</a></li>
+<li><a href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E6%96%B9%E6%B3%95%E6%98%AF%E4%BD%BF%E7%94%A8-margin-0-auto-%E9%85%8D%E5%90%88%E5%9B%BA%E5%AE%9A%E5%AE%BD%E5%BA%A6">另一种方法是使用 <code>margin: 0 auto;</code> 配合固定宽度</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>参考文档</h2>
+<ul>
+<li>
+<p><a href="https://www.w3schools.com/css/css_positioning.asp">W3Schools - css position</a></p>
+</li>
+<li>
+<p><a href="https://www.ruanyifeng.com/blog/2019/11/css-position.html">阮一峰 CSS 定位详解</a></p>
+<ul>
+<li><code>static</code> <code>relative</code> <code>fixed</code> <code>absolute</code> <code>sticky</code></li>
+</ul>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">MDN - css display</a></p>
+<ul>
+<li><code>block</code> <code>inline</code> <code>inline-block</code> <code>flex</code> <code>grid</code></li>
+</ul>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">MDN - css transform</a></p>
+</li>
+<li>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">MDN -css margin</a></p>
+<ul>
+<li><code>margin-top</code> <code>margin-right</code> <code>margin-bottom</code> <code>margin-left</code></li>
+</ul>
+</li>
+<li>
+<p><a href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap - Grid</a></p>
+</li>
+<li>
+<p><a href="https://getbootstrap.com/docs/5.3/layout/columns/">Bootstrap - Columns</a></p>
+</li>
+</ul>
+<h2>代码</h2>
+<p>HTML:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Images&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;ul class=&quot;nav nav-underline justify-content-end p-2&quot;&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link text-dark&quot; href=&quot;index.html&quot;&gt;Google&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link text-dark&quot; href=&quot;advanced.html&quot;&gt;Advanced&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class=&quot;image-logo&quot;&gt;
+            &lt;!-- Google图标 --&gt;
+            &lt;img src=&quot;https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png&quot; class=&quot;rounded mx-auto d-block&quot; alt=&quot;Google Images&quot;&gt;
+            &lt;!-- &quot;images&quot;文字 --&gt;
+            &lt;div class=&quot;images-text text-primary&quot;&gt;
+                &lt;span&gt;images&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;  
+        &lt;div class=&quot;mt-4 text-center&quot;&gt;
+            &lt;form id=&quot;searchForm&quot; class=&quot; row justify-content-center&quot; action=&quot;https://www.google.com/search&quot;&gt;
+                &lt;div class=&quot;col-md-6&quot;&gt;
+                    &lt;div class=&quot;input-group&quot;&gt;
+                        &lt;span class=&quot;input-group-text&quot;&gt;
+                            &lt;i class=&quot;bi bi-search&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                        &lt;input type=&quot;text&quot; class=&quot;form-control form-control-lg&quot; name=&quot;q&quot;&gt;
+                        &lt;input type=&quot;hidden&quot; name=&quot;tbm&quot; value=&quot;isch&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;button type=&quot;submit&quot; form=&quot;searchForm&quot; class=&quot;btn btn-light me-2 mt-4&quot;&gt;Images Search&lt;/button&gt;
+                &lt;/div&gt;    
+            &lt;/form&gt;
+        &lt;/div&gt; 
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>CSS:</p>
+<pre><code class="language-css">.image-logo {
+    position: relative; /* 相对定位，为内部绝对定位元素提供参照 */
+    display: inline-block; /* 使容器的宽度适应内容 */
+    transform: translateX(-50%);/*将容器水平移动自身宽度的一半,达到水平居中的效果。*/
+    left: 50%;/*将容器的左边缘移动到页面中心*/
+}
+
+.google-logo {
+    width: 272px; 
+    height: auto; /* 高度自动，保持宽高比 */
+}
+
+.images-text {
+    position: absolute; /* 绝对定位 */
+    bottom: 0; 
+    right: 1px; 
+}
+
+/* 另一种方法是使用 margin: 0 auto; 配合固定宽度。
+.image-logo 容器被设置为 position: relative; 
+并且有一个固定的宽度。使用 margin: 0 auto; 将容器水平居中。*/
+/* 
+.image-logo {
+    position: relative;
+    width: 272px; 设置固定宽度
+    margin: 0 auto; 水平居中
+}
+
+.google-logo {
+    width: 100%;
+    height: auto;
+}
+
+.images-text {
+    position: absolute;
+    bottom: 0;
+    right: 1px;
+} */
+</code></pre>
+<h2>实现 Google 图标与 images 之间的相对位置，且整体水平居中</h2>
+<h3>相对位置</h3>
+<p>将问题转化为我们有一个大容器元素和一个小容器元素,需要将小容器放置在大容器的右下角某个位置。我们可以使用 CSS 的绝对定位属性来实现这一目标。</p>
+<p>具体步骤如下:</p>
+<ol>
+<li>
+<p><strong>设置父容器为相对定位</strong></p>
+<ul>
+<li>将大容器的 <code>position</code> 属性设置为 <code>relative</code>。这样可以为子元素提供一个相对定位的参考点。</li>
+</ul>
+</li>
+<li>
+<p><strong>设置子容器为绝对定位</strong></p>
+<ul>
+<li>将小容器的 <code>position</code> 属性设置为 <code>absolute</code>。这样可以脱离文档流,使其可以相对于父容器进行定位。</li>
+</ul>
+</li>
+<li>
+<p><strong>定位子容器的位置</strong></p>
+<ul>
+<li>使用 <code>right</code> 和 <code>bottom</code> 属性来控制小容器相对于父容器的水平和垂直位置。例如 <code>right: 20px; bottom: 30px;</code> 将把小容器放置在父容器的右下角,距离边缘分别为 20px 和 30px。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>还有重要的一点，父容器的大小要正好是 Google 图标的大小，这样才好调整 images 文字的位置</strong>。这样的样式设置才能保证，Google 图标与 images 之间的相对位置不会随着屏幕大小的改变而改变。</p>
+<ul>
+<li><code>display: inline-block;</code> or <code>width: 272px;</code> 要么使容器的宽度适应内容，而非占整行的宽度；要么设置固定宽度（即Google图标的宽度）。</li>
+</ul>
+</li>
+</ul>
+<h3>容器水平居中</h3>
+<h4>一种方法是使用 CSS 的 <code>transform</code> 属性</h4>
+<pre><code class="language-css">.image-logo {
+    position: relative;/* 相对定位，为内部绝对定位元素提供参照 */
+    display: inline-block; /* 使容器的宽度适应内容 */
+    transform: translateX(-50%);/*将容器水平移动自身宽度的一半,达到水平居中的效果。*/
+    left: 50%;/*将容器的左边缘移动到页面中心*/
+}
+
+.google-logo {
+    width: 272px;
+    height: auto;/* 高度自动，保持宽高比 */
+}
+
+.images-text {
+    position: absolute;/* 绝对定位 */
+    bottom: 0;
+    right: 1px;
+}
+</code></pre>
+<p>在这个例子中:</p>
+<ol>
+<li><code>.image-logo</code> 容器被设置为 <code>position: relative;</code>。</li>
+<li>使用 <code>transform: translateX(-50%);</code> 将容器水平移动自身宽度的一半,达到水平居中的效果。</li>
+<li>同时设置 <code>left: 50%;</code> 将容器的左边缘移动到页面中心。</li>
+</ol>
+<h4>另一种方法是使用 <code>margin: 0 auto;</code> 配合固定宽度</h4>
+<pre><code class="language-css">.image-logo {
+    position: relative;
+    width: 272px; /* 设置固定宽度 */
+    margin: 0 auto; /* 水平居中 */
+}
+
+.google-logo {
+    width: 100%;
+    height: auto;
+}
+
+.images-text {
+    position: absolute;
+    bottom: 0;
+    right: 1px;
+}
+</code></pre>
+<p>在这个例子中:</p>
+<ol>
+<li><code>.image-logo</code> 容器被设置为 <code>position: relative;</code> 并且有一个明确的宽度。</li>
+<li>使用 <code>margin: 0 auto;</code> 将margin的水平值设为auto，实现容器水平居中。</li>
+</ol>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-05-18T06:12:36.633340+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
 <ul>
 <li>
 <a href="#css-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">CSS 基础笔记</a><ul>
@@ -790,7 +1012,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-05-18T03:10:46.774881+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-05-18T06:12:36.755293+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
 <h2>HTML 能解决什么样的问题</h2>
 <p>HyperText Markup Language which is a language that we can use to describe the structure of the webpage.All of the buttons and the text, and the forms and other parts of the webpage that the user ultimately sees and interacts with. <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML（超文本标记语言） | MDN</a></p>
 <h2>1st HTML</h2>
@@ -934,7 +1156,7 @@ a {
 <li>datalist标签可以定义一个输入候选列表，option标签可以定义每个候选项的值。</li>
 <li>datalist标签需要和input标签配合使用，通过input标签的list属性来指定要关联的datalist标签的id属性。这样，当用户在input标签的输入框中输入或点击时，就会显示datalist标签中的候选列表，用户可以从中选择一个或者自己输入一个值。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-05-18T03:10:46.861033+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-05-18T06:12:36.829015+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -1107,7 +1329,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-05-18T03:10:46.951284+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-05-18T06:12:36.911549+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -1118,7 +1340,7 @@ a {
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-05-18T03:10:47.039454+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-05-18T06:12:36.985166+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -1261,7 +1483,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-05-18T03:10:47.157793+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-05-18T06:12:37.102002+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -3432,7 +3654,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-05-18T03:10:47.389464+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-05-18T06:12:37.311947+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -3448,7 +3670,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-05-18T03:10:47.470431+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-05-18T06:12:37.387389+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
