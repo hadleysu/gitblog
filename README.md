@@ -3,7 +3,7 @@ My personal blog using issues and GitHub Actions
 [RSS Feed](https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml)
 
 ## 最近更新
-- [# Setting up Prettier and Snippets](https://github.com/hadleysu/gitblog/issues/12)--2024-09-01
+- [Setting up Prettier and Snippets](https://github.com/hadleysu/gitblog/issues/12)--2024-09-01
 - [JavaScript Fundamentals](https://github.com/hadleysu/gitblog/issues/11)--2024-09-01
 - [HTML和CSS实现Google Image Search样式](https://github.com/hadleysu/gitblog/issues/10)--2024-05-18
 - [CSS 基础笔记](https://github.com/hadleysu/gitblog/issues/9)--2024-01-07
@@ -14,7 +14,7 @@ My personal blog using issues and GitHub Actions
 ## 一些记录
 - [感谢yihong老师的gitblog项目](https://github.com/hadleysu/gitblog/issues/2)--2023-09-10
 ## 技术相关
-- [# Setting up Prettier and Snippets](https://github.com/hadleysu/gitblog/issues/12)--2024-09-01
+- [Setting up Prettier and Snippets](https://github.com/hadleysu/gitblog/issues/12)--2024-09-01
 - [JavaScript Fundamentals](https://github.com/hadleysu/gitblog/issues/11)--2024-09-01
 - [HTML和CSS实现Google Image Search样式](https://github.com/hadleysu/gitblog/issues/10)--2024-05-18
 - [CSS 基础笔记](https://github.com/hadleysu/gitblog/issues/9)--2024-01-07
