@@ -1,5 +1,157 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-09-01T15:08:34.497727+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/11</id><title>JavaScript Fundamentals</title><updated>2024-09-01T15:08:34.691494+00:00</updated><content type="html"><![CDATA[<h1>JavaScript Fundamentals</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-09-01T15:19:53.659739+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/12</id><title># Setting up Prettier and Snippets</title><updated>2024-09-01T15:19:54.007334+00:00</updated><content type="html"><![CDATA[<h1>Setting up Prettier and Snippets</h1>
+<ul>
+<li>
+<a href="#setting-up-prettier-and-snippets">Setting up Prettier and Snippets</a><ul>
+<li>
+<a href="#prettier-%E6%8F%92%E4%BB%B6">Prettier 插件</a><ul>
+<li><a href="#1-%E5%AE%89%E8%A3%85-prettier-%E6%8F%92%E4%BB%B6"><strong>1. 安装 Prettier 插件</strong></a></li>
+<li><a href="#2-%E9%85%8D%E7%BD%AE-prettier-%E4%BD%9C%E4%B8%BA%E9%BB%98%E8%AE%A4%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%B7%A5%E5%85%B7"><strong>2. 配置 Prettier 作为默认格式化工具</strong></a></li>
+<li><a href="#3-%E9%85%8D%E7%BD%AE-prettier-%E8%AE%BE%E7%BD%AE"><strong>3. 配置 Prettier 设置</strong></a></li>
+<li><a href="#4-%E5%88%9B%E5%BB%BA-prettierrc-%E6%96%87%E4%BB%B6"><strong>4. 创建 <code>.prettierrc</code> 文件</strong></a></li>
+<li><a href="#5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><strong>5. 常见问题和解决方法</strong></a></li>
+<li><a href="#6-%E6%80%BB%E7%BB%93"><strong>6. 总结</strong></a></li>
+</ul>
+</li>
+<li>
+<a href="#snippets">Snippets</a><ul>
+<li><a href="#1-%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5snippets%E6%A6%82%E8%BF%B0"><strong>1. 代码片段（Snippets）概述</strong></a></li>
+<li><a href="#2-%E4%BD%BF%E7%94%A8-vs-code-%E7%9A%84%E5%86%85%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><strong>2. 使用 VS Code 的内置代码片段</strong></a></li>
+<li><a href="#3-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><strong>3. 自定义代码片段</strong></a></li>
+<li><a href="#4-%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><strong>4. 使用代码片段</strong></a></li>
+<li><a href="#5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-1"><strong>5. 常见问题和解决方法</strong></a></li>
+<li><a href="#6-%E6%80%BB%E7%BB%93-1"><strong>6. 总结</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Prettier 插件</h2>
+<h3><strong>1. 安装 Prettier 插件</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li>打开 VS Code，点击左侧的扩展（Extensions）图标。</li>
+<li>在搜索框中输入 &quot;Prettier - Code Formatter&quot;。</li>
+<li>点击 “Install” 安装该插件。</li>
+</ul>
+<p><strong>笔记</strong>：
+Prettier 是一个代码格式化工具，可以自动格式化代码，使其更加统一和易读。在 VS Code 中安装 Prettier 插件后，我们可以自动或手动格式化代码文件。</p>
+<hr />
+<h3><strong>2. 配置 Prettier 作为默认格式化工具</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li>打开 VS Code 的设置（Settings），可以使用快捷键 <code>Ctrl + ,</code>。</li>
+<li>在设置页面的搜索框中输入 “Format on Save”。</li>
+<li>勾选 “Editor: Format on Save” 选项。</li>
+<li>在设置页面的搜索框中输入 “default formatter”。</li>
+<li>“Editor:Default Formatter”下拉菜单选择“Prettier-Code formatter”</li>
+</ul>
+<p><strong>笔记</strong>：
+启用“Format on Save”选项后，每当我们保存文件时，Prettier 将自动格式化代码，这样可以省去手动格式化的步骤。</p>
+<hr />
+<h3><strong>3. 配置 Prettier 设置</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li><a href="https://prettier.io/docs/en/options">prettier 文档查看相关设置</a></li>
+<li>
+常用设置包括：<ul>
+<li><code>tabWidth</code>: 设置缩进的空格数，默认值为 <code>2</code>。</li>
+<li><code>singleQuote</code>: 是否使用单引号，默认值为 <code>false</code>。</li>
+<li><code>semi</code>: 是否在语句末尾添加分号，默认值为 <code>true</code>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>笔记</strong>：
+在 VS Code 的 Prettier 设置中，我们可以根据团队的代码规范或个人习惯调整格式化规则。常见的配置包括缩进大小、是否使用单引号等。</p>
+<hr />
+<h3><strong>4. 创建 <code>.prettierrc</code> 文件</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li>
+<p>在项目根目录下创建 <code>.prettierrc</code> 文件。</p>
+</li>
+<li>
+<p>在文件中定义 Prettier 的配置，例如：</p>
+<pre><code class="language-json">{
+  &quot;singleQuote&quot;: true,
+  &quot;arrowParens&quot;: &quot;avoid&quot;
+}
+</code></pre>
+</li>
+</ul>
+<p><strong>笔记</strong>：
+<code>.prettierrc</code> 文件允许我们为特定项目配置 Prettier 格式化规则。这对于团队合作尤为重要，确保所有开发者的代码风格一致。</p>
+<hr />
+<h3><strong>5. 常见问题和解决方法</strong></h3>
+<p><strong>问题</strong>：VS Code 没有自动格式化代码。</p>
+<ul>
+<li><strong>解决方法</strong>：确保 “Format on Save” 选项已启用，并检查是否将 Prettier 设置为默认格式化工具。</li>
+</ul>
+<p><strong>笔记</strong>：
+遇到问题时，可以先检查设置是否正确，确保 Prettier 插件已安装，并且在设置中启用了自动格式化选项。</p>
+<hr />
+<h3><strong>6. 总结</strong></h3>
+<p>设置 Prettier 和 VS Code 的过程其实是为了提高代码质量和开发效率。通过自动格式化代码，可以减少团队成员之间的代码风格差异，也让我们在编写代码时更加专注于逻辑，而不是格式。</p>
+<h2>Snippets</h2>
+<h3><strong>1. 代码片段（Snippets）概述</strong></h3>
+<p><strong>概念</strong>：
+代码片段（Snippets）是一种预定义的代码模板，可以快速插入到代码中，从而提高编写代码的效率和一致性。在 VS Code 中，代码片段可以帮助我们快速插入常用的代码结构或模板。</p>
+<p><strong>笔记</strong>：
+代码片段可以包括占位符和变量，用于动态生成代码。例如，输入一个简短的缩写，按下 Tab 键即可展开成完整的代码模板。</p>
+<hr />
+<h3><strong>2. 使用 VS Code 的内置代码片段</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li>打开 VS Code，创建一个新的 JavaScript 文件（例如 <code>index.js</code>）。</li>
+<li>输入缩写，如 <code>for</code>，然后按 <code>Tab</code> 键，会展开成一个 <code>for</code> 循环的代码模板。</li>
+</ul>
+<p><strong>笔记</strong>：
+VS Code 内置了许多常用语言的代码片段，这些片段可以大大减少编写常见代码结构的时间。</p>
+<hr />
+<h3><strong>3. 自定义代码片段</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li>
+<p>打开命令面板（<code>Ctrl + Shift + P</code>），输入 <code>Preferences: Configure User Snippets</code> 并选择。</p>
+</li>
+<li>
+<p>选择 <code>New Global Snippets file</code> 创建一个新的全局代码片段文件，或者选择特定语言进行设置（如 <code>JavaScript</code>）。</p>
+</li>
+<li>
+<p>在打开的 JSON 文件中定义新的代码片段。例如：</p>
+<pre><code class="language-json">{
+  &quot;Print to Console&quot;: {
+    &quot;prefix&quot;: &quot;log&quot;,
+    &quot;body&quot;: [&quot;console.log($1);&quot;],
+    &quot;description&quot;: &quot;Log output to console&quot;
+  }
+}
+</code></pre>
+</li>
+</ul>
+<p><strong>笔记</strong>：
+创建自定义代码片段时，可以定义 <code>prefix</code>（触发代码片段的缩写）、<code>body</code>（代码片段的内容）、和 <code>description</code>（描述）。可以使用 <code>$1</code>, <code>$2</code> 等占位符来插入动态内容。</p>
+<hr />
+<h3><strong>4. 使用代码片段</strong></h3>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li>在 JavaScript 文件中输入自定义的 <code>prefix</code>，如 <code>log</code>。</li>
+<li>按 <code>Tab</code> 或 <code>enter</code> 键，代码片段将展开为 <code>console.log();</code>，光标会自动跳到占位符位置以便继续编辑。</li>
+</ul>
+<p><strong>笔记</strong>：
+使用自定义代码片段可以快速插入常用的代码结构，减少重复输入，提高开发效率。</p>
+<hr />
+<h3><strong>5. 常见问题和解决方法</strong></h3>
+<p><strong>问题</strong>：自定义代码片段无法正常工作。</p>
+<ul>
+<li><strong>解决方法</strong>：检查 JSON 文件的语法是否正确，确保文件保存了更新，并重新加载 VS Code。</li>
+</ul>
+<p><strong>笔记</strong>：
+遇到问题时，检查代码片段定义的 JSON 文件是否有语法错误，并确保文件路径和命名正确。如果自定义代码片段未生效，可以尝试重新加载 VS Code。</p>
+<hr />
+<h3><strong>6. 总结</strong></h3>
+<p>掌握代码片段的使用不仅可以提高编写代码的速度，还可以确保代码的规范性和一致性。利用 VS Code 的代码片段功能可以大大减少重复工作，提高开发效率。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/12"/><category term="技术相关"/><published>2024-09-01T15:19:26+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/11</id><title>JavaScript Fundamentals</title><updated>2024-09-01T15:19:54.190574+00:00</updated><content type="html"><![CDATA[<h1>JavaScript Fundamentals</h1>
 <ul>
 <li>
 <a href="#javascript-fundamentals">JavaScript Fundamentals</a><ul>
@@ -2501,7 +2653,7 @@ for (let char of str) {
 <li><strong>嵌套循环的使用</strong>：了解嵌套循环的基本概念和注意事项，避免不必要的性能开销。</li>
 <li><strong>性能优化</strong>：在编写循环时，关注代码的执行效率，避免低效的循环嵌套和不必要的计算。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/11"/><category term="技术相关"/><published>2024-09-01T15:08:11+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-09-01T15:08:35.067432+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/11"/><category term="技术相关"/><published>2024-09-01T15:08:11+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-09-01T15:19:54.647755+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
 <ul>
 <li>
 <a href="#html%E5%92%8Ccss%E5%AE%9E%E7%8E%B0google-image-search%E6%A0%B7%E5%BC%8F">HTML和CSS实现Google Image Search样式</a><ul>
@@ -2723,7 +2875,7 @@ for (let char of str) {
 <li><code>.image-logo</code> 容器被设置为 <code>position: relative;</code> 并且有一个明确的宽度。</li>
 <li>使用 <code>margin: 0 auto;</code> 将margin的水平值设为auto，实现容器水平居中。</li>
 </ol>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-09-01T15:08:35.179973+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-09-01T15:19:54.836475+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
 <ul>
 <li>
 <a href="#css-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">CSS 基础笔记</a><ul>
@@ -3514,7 +3666,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-09-01T15:08:35.293083+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-09-01T15:19:55.035293+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
 <h2>HTML 能解决什么样的问题</h2>
 <p>HyperText Markup Language which is a language that we can use to describe the structure of the webpage.All of the buttons and the text, and the forms and other parts of the webpage that the user ultimately sees and interacts with. <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML（超文本标记语言） | MDN</a></p>
 <h2>1st HTML</h2>
@@ -3658,7 +3810,7 @@ a {
 <li>datalist标签可以定义一个输入候选列表，option标签可以定义每个候选项的值。</li>
 <li>datalist标签需要和input标签配合使用，通过input标签的list属性来指定要关联的datalist标签的id属性。这样，当用户在input标签的输入框中输入或点击时，就会显示datalist标签中的候选列表，用户可以从中选择一个或者自己输入一个值。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-09-01T15:08:35.384306+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-09-01T15:19:55.190306+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -3831,7 +3983,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-09-01T15:08:35.462328+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-09-01T15:19:55.348832+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -3842,7 +3994,7 @@ a {
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-09-01T15:08:35.541816+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-09-01T15:19:55.524143+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -3985,7 +4137,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-09-01T15:08:35.654406+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-09-01T15:19:55.701500+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -6156,7 +6308,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-09-01T15:08:35.874253+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-09-01T15:19:56.023994+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -6172,7 +6324,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-09-01T15:08:35.947134+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-09-01T15:19:56.199442+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
