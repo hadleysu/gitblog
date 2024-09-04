@@ -1,5 +1,139 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-09-04T15:30:17.151849+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/15</id><title>Google Chrome 调试器使用笔记</title><updated>2024-09-04T15:30:17.621316+00:00</updated><content type="html"><![CDATA[<h1>Google Chrome 调试器使用笔记</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-09-04T15:34:52.260639+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/16</id><title>Use the Problem-Solving Framework</title><updated>2024-09-04T15:34:52.481724+00:00</updated><content type="html"><![CDATA[<h1>Use the Problem-Solving Framework</h1>
+<h2>Problem-Solving Framework: <strong>Understand the Problem</strong> and <strong>Break it up into Sub-Problems</strong></h2>
+<ol>
+<li>Understanding the problem</li>
+<li>Breaking it up into sub-problems</li>
+</ol>
+<hr />
+<h3>例 1</h3>
+<p><strong>PROBLEM 1</strong> ：</p>
+<p>We work for a company building a smart home thermometer. Our most recent task is this: &quot;Given an array of temperatures of one day, calculate the temperature amplitude. Keep in mind that sometimes there might be a sensor error.&quot;</p>
+<p>const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];</p>
+<hr />
+<ol>
+<li>
+<p><strong>Understanding the problem</strong></p>
+<ul>
+<li>What is temp amplitude? Answer: difference between highest and lowest temp</li>
+<li>How to compute max and min temperatures?</li>
+<li>What's a sensor error? And what do do?</li>
+</ul>
+</li>
+<li>
+<p><strong>Breaking up into sub-problems</strong></p>
+<ul>
+<li>How to ignore errors?</li>
+<li>Find max value in temp array</li>
+<li>Find min value in temp array</li>
+<li>Subtract min from max (amplitude) and return it</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-javascript">const calcTempAmplitude = function (temps) {
+  let max = temps[0];
+  let min = temps[0];
+
+  for (let i = 0; i &lt; temps.length; i++) {
+    const curTemp = temps[i];
+    if (typeof curTemp !== &quot;number&quot;) continue;
+
+    if (curTemp &gt; max) max = curTemp;
+    if (curTemp &lt; min) min = curTemp;
+  }
+  console.log(max, min);
+  return max - min;
+};
+const amplitude = calcTempAmplitude(temperatures);
+console.log(amplitude);
+</code></pre>
+<p><strong>PROBLEM 2</strong> :</p>
+<p>Function should now receive 2 arrays of temps</p>
+<hr />
+<ol>
+<li>
+<p><strong>Understanding the problem</strong></p>
+<ul>
+<li>With 2 arrays, should we implement functionality twice? NO! Just merge two arrays</li>
+</ul>
+</li>
+<li>
+<p><strong>Breaking up into sub-problems</strong></p>
+<ul>
+<li>Merge 2 arrays</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-javascript">const calcTempAmplitudeNew = function (t1, t2) {
+  const temps = t1.concat(t2);
+  console.log(temps);
+
+  let max = temps[0];
+  let min = temps[0];
+
+  for (let i = 0; i &lt; temps.length; i++) {
+    const curTemp = temps[i];
+    if (typeof curTemp !== &quot;number&quot;) continue;
+
+    if (curTemp &gt; max) max = curTemp;
+    if (curTemp &lt; min) min = curTemp;
+  }
+  console.log(max, min);
+  return max - min;
+};
+const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
+console.log(amplitudeNew);
+</code></pre>
+<h3>例 2</h3>
+<p><strong>PROBLEM</strong> :</p>
+<p>Given an array of forecasted maximum temperatures, the thermometer displays a string with these temperatures.</p>
+<p>Example: [17, 21, 23] will print &quot;... 17ºC in 1 days ... 21ºC in 2 days ... 23ºC in 3 days ...&quot;</p>
+<p>Create a function 'printForecast' which takes in an array 'arr' and logs a string like the above to the console.</p>
+<p>Use the problem-solving framework: Understand the problem and break it up into sub-problems!</p>
+<p>TEST DATA 1: [17, 21, 23]
+TEST DATA 2: [12, 5, -5, 0, 4]</p>
+<hr />
+<ol>
+<li>
+<p><strong>Understanding the problem</strong></p>
+<ul>
+<li>Array transformed to string, separated by ...</li>
+<li>What is the X days? Answer: index + 1</li>
+</ul>
+</li>
+<li>
+<p><strong>Breaking up into sub-problems</strong></p>
+<ul>
+<li>Transform array into string</li>
+<li>Transform each element to string with ºC</li>
+<li>Strings needs to contain day (index + 1)</li>
+<li>Add ... between elements and start and end of string</li>
+<li>Log string to console</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-javascript">const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+
+console.log(`... ${data1[0]}ºC ... ${data1[1]}ºC ... ${data1[2]}ºC ...`);
+
+const printForecast = function (arr) {
+  let str = &quot;&quot;;
+  for (let i = 0; i &lt; arr.length; i++) {
+    str += `${arr[i]}ºC in ${i + 1} days ... `;
+  }
+  console.log(&quot;...&quot; + str);
+};
+printForecast(data1);
+</code></pre>
+<hr />
+<h3><strong>总结</strong></h3>
+<ul>
+<li><strong>Understanding the Problem</strong>: Break down the problem by asking the right questions.</li>
+<li><strong>Sub-Problems</strong>: Split the problem into smaller steps that are easier to solve.</li>
+<li><strong>Reusing Logic</strong>: For similar problems, you can often reuse code by making small adjustments.</li>
+</ul>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/16"/><category term="技术相关"/><published>2024-09-04T15:34:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/15</id><title>Google Chrome 调试器使用笔记</title><updated>2024-09-04T15:34:52.586512+00:00</updated><content type="html"><![CDATA[<h1>Google Chrome 调试器使用笔记</h1>
 <h2>1. <strong>调试器的基本概念</strong></h2>
 <ul>
 <li><strong>调试器</strong> (Debugger) 是开发者工具的一部分，用于逐行检查代码的执行过程。</li>
@@ -88,7 +222,7 @@ calculateSum(5, 10);
 <ul>
 <li><a href="https://developer.chrome.com/docs/devtools/">Google Chrome Developer Tools Documentation</a></li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/15"/><category term="技术相关"/><published>2024-09-04T15:29:47+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/14</id><title>npm 安装与使用 live-server</title><updated>2024-09-04T15:30:17.798057+00:00</updated><content type="html"><![CDATA[<h1>npm 安装与使用 <code>live-server</code></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/15"/><category term="技术相关"/><published>2024-09-04T15:29:47+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/14</id><title>npm 安装与使用 live-server</title><updated>2024-09-04T15:34:52.673027+00:00</updated><content type="html"><![CDATA[<h1>npm 安装与使用 <code>live-server</code></h1>
 <h2>1. 什么是 <code>live-server</code>？</h2>
 <p><code>live-server</code> 是一个轻量级的开发服务器，具有实时重载功能。它可以在你修改 HTML/CSS/JavaScript 文件时自动刷新浏览器，非常适合快速开发和调试静态网站。</p>
 <h2>2. 安装 <code>live-server</code></h2>
@@ -194,7 +328,7 @@ live-server
 <ul>
 <li><a href="https://github.com/tapio/live-server">live-server GitHub 仓库</a></li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/14"/><category term="技术相关"/><published>2024-09-02T14:27:30+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/13</id><title>在 Windows 安装 Node.js</title><updated>2024-09-04T15:30:17.975665+00:00</updated><content type="html"><![CDATA[<h1>在 Windows 安装 Node.js</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/14"/><category term="技术相关"/><published>2024-09-02T14:27:30+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/13</id><title>在 Windows 安装 Node.js</title><updated>2024-09-04T15:34:52.766998+00:00</updated><content type="html"><![CDATA[<h1>在 Windows 安装 Node.js</h1>
 <h2>参考文档</h2>
 <ul>
 <li>
@@ -282,7 +416,7 @@ live-server
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/13"/><category term="技术相关"/><published>2024-09-02T14:20:05+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/12</id><title>Setting up Prettier and Snippets</title><updated>2024-09-04T15:30:18.140164+00:00</updated><content type="html"><![CDATA[<h1>Setting up Prettier and Snippets</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/13"/><category term="技术相关"/><published>2024-09-02T14:20:05+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/12</id><title>Setting up Prettier and Snippets</title><updated>2024-09-04T15:34:52.871995+00:00</updated><content type="html"><![CDATA[<h1>Setting up Prettier and Snippets</h1>
 <ul>
 <li>
 <a href="#setting-up-prettier-and-snippets">Setting up Prettier and Snippets</a><ul>
@@ -434,7 +568,7 @@ VS Code 内置了许多常用语言的代码片段，这些片段可以大大减
 <hr />
 <h3><strong>6. 总结</strong></h3>
 <p>掌握代码片段的使用不仅可以提高编写代码的速度，还可以确保代码的规范性和一致性。利用 VS Code 的代码片段功能可以大大减少重复工作，提高开发效率。</p>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/12"/><category term="技术相关"/><published>2024-09-01T15:19:26+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/11</id><title>JavaScript Fundamentals</title><updated>2024-09-04T15:30:18.342563+00:00</updated><content type="html"><![CDATA[<h1>JavaScript Fundamentals</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/12"/><category term="技术相关"/><published>2024-09-01T15:19:26+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/11</id><title>JavaScript Fundamentals</title><updated>2024-09-04T15:34:52.980831+00:00</updated><content type="html"><![CDATA[<h1>JavaScript Fundamentals</h1>
 <ul>
 <li>
 <a href="#javascript-fundamentals">JavaScript Fundamentals</a><ul>
@@ -2936,7 +3070,7 @@ for (let char of str) {
 <li><strong>嵌套循环的使用</strong>：了解嵌套循环的基本概念和注意事项，避免不必要的性能开销。</li>
 <li><strong>性能优化</strong>：在编写循环时，关注代码的执行效率，避免低效的循环嵌套和不必要的计算。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/11"/><category term="技术相关"/><published>2024-09-01T15:08:11+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-09-04T15:30:18.814736+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/11"/><category term="技术相关"/><published>2024-09-01T15:08:11+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-09-04T15:34:53.362401+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
 <ul>
 <li>
 <a href="#html%E5%92%8Ccss%E5%AE%9E%E7%8E%B0google-image-search%E6%A0%B7%E5%BC%8F">HTML和CSS实现Google Image Search样式</a><ul>
@@ -3158,7 +3292,7 @@ for (let char of str) {
 <li><code>.image-logo</code> 容器被设置为 <code>position: relative;</code> 并且有一个明确的宽度。</li>
 <li>使用 <code>margin: 0 auto;</code> 将margin的水平值设为auto，实现容器水平居中。</li>
 </ol>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-09-04T15:30:18.983651+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-09-04T15:34:53.470213+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
 <ul>
 <li>
 <a href="#css-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">CSS 基础笔记</a><ul>
@@ -3949,7 +4083,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-09-04T15:30:19.199649+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-09-04T15:34:53.680362+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
 <h2>HTML 能解决什么样的问题</h2>
 <p>HyperText Markup Language which is a language that we can use to describe the structure of the webpage.All of the buttons and the text, and the forms and other parts of the webpage that the user ultimately sees and interacts with. <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML（超文本标记语言） | MDN</a></p>
 <h2>1st HTML</h2>
@@ -4093,7 +4227,7 @@ a {
 <li>datalist标签可以定义一个输入候选列表，option标签可以定义每个候选项的值。</li>
 <li>datalist标签需要和input标签配合使用，通过input标签的list属性来指定要关联的datalist标签的id属性。这样，当用户在input标签的输入框中输入或点击时，就会显示datalist标签中的候选列表，用户可以从中选择一个或者自己输入一个值。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-09-04T15:30:19.381752+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-09-04T15:34:53.783668+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -4266,7 +4400,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-09-04T15:30:19.555824+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-09-04T15:34:53.912136+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -4277,7 +4411,7 @@ a {
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-09-04T15:30:19.744787+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-09-04T15:34:53.988684+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -4420,7 +4554,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-09-04T15:30:19.978862+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-09-04T15:34:54.156676+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -6591,7 +6725,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-09-04T15:30:20.292895+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-09-04T15:34:54.379224+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -6607,7 +6741,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-09-04T15:30:20.463502+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-09-04T15:34:54.465617+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
