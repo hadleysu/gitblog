@@ -1,5 +1,980 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-09-07T14:39:35.321707+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/16</id><title>Use the Problem-Solving Framework</title><updated>2024-09-07T14:39:35.551341+00:00</updated><content type="html"><![CDATA[<h1>Use the Problem-Solving Framework</h1>
+<feed xmlns="http://www.w3.org/2005/Atom"><id>https://github.com/hadleysu/gitblog</id><title>RSS feed of hadleysu's gitblog</title><updated>2024-09-07T14:51:09.604126+00:00</updated><link href="https://github.com/hadleysu/gitblog"/><link href="https://raw.githubusercontent.com/hadleysu/gitblog/main/feed.xml" rel="self"/><generator uri="https://lkiesow.github.io/python-feedgen" version="1.0.0">python-feedgen</generator><entry><id>https://github.com/hadleysu/gitblog/issues/17</id><title>JavaScript in the Browser : DOM and Events Fundamentals 笔记</title><updated>2024-09-07T14:51:09.840864+00:00</updated><content type="html"><![CDATA[<h1><strong>JavaScript in the Browser : DOM and Events Fundamentals 笔记</strong></h1>
+<ul>
+<li>
+<a href="#javascript-in-the-browser--dom-and-events-fundamentals-%E7%AC%94%E8%AE%B0"><strong>JavaScript in the Browser : DOM and Events Fundamentals 笔记</strong></a><ul>
+<li><a href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-dom">1. <strong>什么是 DOM？</strong></a></li>
+<li><a href="#2-dom-%E6%A0%91%E7%9A%84%E7%BB%93%E6%9E%84">2. <strong>DOM 树的结构</strong></a></li>
+<li><a href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88-dom--javascript">3. <strong>为什么 DOM != JavaScript</strong></a></li>
+<li><a href="#4-%E4%BB%80%E4%B9%88%E6%98%AF-web-api">4. <strong>什么是 Web API？</strong></a></li>
+<li><a href="#5-dom-%E5%92%8C%E4%BA%8B%E4%BB%B6">5. <strong>DOM 和事件</strong></a></li>
+<li><a href="#6-%E8%8E%B7%E5%8F%96-input-%E8%BE%93%E5%85%A5%E6%A1%86%E4%B8%AD%E7%9A%84%E5%80%BC%E4%BD%BF%E7%94%A8-value-%E4%B8%8E-textcontent-%E7%9A%84%E5%AF%B9%E6%AF%94">6. <strong>获取 <code>input</code> 输入框中的值：使用 <code>.value</code> 与 <code>.textContent</code> 的对比</strong></a></li>
+<li><a href="#7-refactoring%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84">7. <strong>Refactoring（代码重构）</strong></a></li>
+<li><a href="#8-%E6%94%B9%E5%8F%98%E9%A1%B5%E9%9D%A2%E4%B8%8A%E5%85%83%E7%B4%A0%E7%9A%84%E5%A4%96%E8%A7%82%E4%BD%BF%E7%94%A8-classlist-%E6%93%8D%E4%BD%9C%E7%B1%BB">8. <strong>改变页面上元素的外观：使用 <code>classList</code> 操作类</strong></a></li>
+<li>
+<a href="#9-javascript--classlist-%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3">9. <strong>JavaScript : <code>classList</code> 操作详解</strong></a><ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0"><strong>1. 概述</strong></a></li>
+<li>
+<a href="#2-classlist-%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><strong>2. <code>classList</code> 的常用方法</strong></a><ul>
+<li><a href="#21-add"><strong>2.1 <code>add()</code></strong></a></li>
+<li><a href="#22-remove"><strong>2.2 <code>remove()</code></strong></a></li>
+<li><a href="#23-toggle"><strong>2.3 <code>toggle()</code></strong></a></li>
+<li><a href="#24-contains"><strong>2.4 <code>contains()</code></strong></a></li>
+<li><a href="#25-replace"><strong>2.5 <code>replace()</code></strong></a></li>
+</ul>
+</li>
+<li>
+<a href="#3-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><strong>3. 使用场景</strong></a><ul>
+<li><a href="#31-%E5%8A%A8%E6%80%81%E6%94%B9%E5%8F%98%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F"><strong>3.1 动态改变元素样式</strong></a></li>
+<li><a href="#32-%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><strong>3.2 表单验证</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-%E4%B8%8E-classname-%E7%9A%84%E5%AF%B9%E6%AF%94"><strong>4. 与 <code>className</code> 的对比</strong></a></li>
+<li><a href="#5-%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%BD%BF%E7%94%A8-classlist-%E5%AE%9E%E7%8E%B0%E6%9D%A1%E4%BB%B6%E6%A0%B7%E5%BC%8F"><strong>5. 小技巧：使用 <code>classList</code> 实现条件样式</strong></a></li>
+<li><a href="#6-%E6%80%BB%E7%BB%93"><strong>6. 总结</strong></a></li>
+</ul>
+</li>
+<li><a href="#10-%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%99%A8%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%82%E6%95%B0">10. <strong>传递函数作为事件监听器方法的参数</strong></a></li>
+<li>
+<a href="#11-dom-%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%85%83%E7%B4%A0%E9%80%89%E6%8B%A9">11. <strong>DOM 操作与元素选择</strong></a><ul>
+<li>
+<a href="#1-documentgetelementsbyclassname-%E4%B8%8E-documentqueryselector-%E5%AF%B9%E6%AF%94">1. <strong><code>document.getElementsByClassName()</code> 与 <code>document.querySelector()</code> 对比</strong></a><ul>
+<li><a href="#11-documentgetelementsbyclassname"><strong>1.1 <code>document.getElementsByClassName()</code></strong></a></li>
+<li><a href="#12-documentqueryselector"><strong>1.2 <code>document.querySelector()</code></strong></a></li>
+<li><a href="#13-%E8%83%BD%E7%9B%B8%E4%BA%92%E6%9B%BF%E6%8D%A2%E5%90%97"><strong>1.3 能相互替换吗？</strong></a></li>
+</ul>
+</li>
+<li>
+<a href="#2-documentqueryselector-%E5%92%8C-documentqueryselectorall-%E5%AF%B9%E6%AF%94">2. <strong><code>document.querySelector()</code> 和 <code>document.querySelectorAll()</code> 对比</strong></a><ul>
+<li><a href="#21-documentqueryselector"><strong>2.1 <code>document.querySelector()</code></strong></a></li>
+<li><a href="#22-documentqueryselectorall"><strong>2.2 <code>document.querySelectorAll()</code></strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94">3. <strong>总结对比</strong></a></li>
+</ul>
+</li>
+<li>
+<a href="#12-dom-%E4%B8%8E-htmlcssjavascript-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB">12. <strong>DOM 与 HTML、CSS、JavaScript 之间的关系</strong></a><ul>
+<li><a href="#dom-%E5%9C%A8%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><strong>DOM 在知识图谱中的位置</strong></a></li>
+<li><a href="#dom-%E4%B8%8E-htmlcssjavascript-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><strong>DOM 与 HTML、CSS、JavaScript 之间的关系</strong></a></li>
+<li><a href="#%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%9A%84%E4%B8%B2%E8%81%94"><strong>知识地图上的串联</strong></a></li>
+<li><a href="#%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE%E6%80%BB%E7%BB%93"><strong>知识地图总结</strong></a></li>
+</ul>
+</li>
+<li>
+<a href="#13-keyboard-events-keydown-keyup-and-keypress">13. <strong>Keyboard Events: <code>keydown</code>, <code>keyup</code>, and <code>keypress</code>&quot;</strong></a><ul>
+<li><a href="#1-%E6%A6%82%E8%BF%B0-1"><strong>1. 概述</strong></a></li>
+<li><a href="#2-%E5%B8%B8%E8%A7%81%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>2. 常见键盘事件的区别</strong></a></li>
+<li>
+<a href="#3-keydown-%E5%92%8C-keyup-%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><strong>3. <code>keydown</code> 和 <code>keyup</code> 的应用场景</strong></a><ul>
+<li><a href="#keydown-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><strong><code>keydown</code> 应用场景：</strong></a></li>
+<li><a href="#keyup-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><strong><code>keyup</code> 应用场景：</strong></a></li>
+<li><a href="#%E7%A4%BA%E4%BE%8B%E6%8D%95%E8%8E%B7%E7%94%A8%E6%88%B7%E5%9C%A8%E8%BE%93%E5%85%A5%E6%A1%86%E4%B8%AD%E7%9A%84%E6%8C%89%E9%94%AE%E5%8A%A8%E4%BD%9C">示例：捕获用户在输入框中的按键动作</a></li>
+</ul>
+</li>
+<li><a href="#4-keypress-%E4%B8%8E-keydown-%E7%9A%84%E5%AF%B9%E6%AF%94"><strong>4. <code>keypress</code> 与 <code>keydown</code> 的对比</strong></a></li>
+<li><a href="#5-%E9%94%AE%E5%80%BC%E5%B1%9E%E6%80%A7"><strong>5. 键值属性</strong></a></li>
+<li><a href="#6-%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E6%8C%89%E9%94%AE%E7%9A%84%E5%BD%B1%E5%93%8D"><strong>6. 如何避免重复按键的影响</strong></a></li>
+<li><a href="#7-%E6%80%BB%E7%BB%93"><strong>7. 总结</strong></a></li>
+</ul>
+</li>
+<li>
+<a href="#14-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93">14. <strong>学习总结</strong></a><ul>
+<li><a href="#%E5%AE%9E%E9%99%85%E4%BB%A3%E7%A0%81%E4%BE%8B%E5%AD%90"><strong>实际代码例子</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%83%E4%B9%A0"><strong>练习</strong></a></li>
+</ul>
+</li>
+</ul>
+<h2>1. <strong>什么是 DOM？</strong></h2>
+<ul>
+<li>
+<p><strong>DOM</strong>：Document Object Model（文档对象模型），是浏览器中加载 HTML 文档后形成的树状结构 ( DOM Tree )。</p>
+<ul>
+<li><strong>HTML</strong> 文件加载后，浏览器会将每个 HTML 标签转换成一个个对象，形成一个<strong>树状结构</strong>。</li>
+<li>
+<strong>DOM != JavaScript</strong>：<ul>
+<li>JavaScript 是一种编程语言，负责执行逻辑和控制行为。</li>
+<li>DOM 是浏览器中的一个<strong>接口</strong>，允许 JavaScript 与 HTML 和 CSS 进行交互，修改页面的结构、样式和内容。</li>
+</ul>
+</li>
+<li><strong>DOM</strong> 不是 JavaScript 的一部分，而是浏览器提供给 JavaScript 的<strong>Web API</strong>。</li>
+</ul>
+<p><strong>工作原理</strong>：</p>
+<ul>
+<li>当浏览器解析 HTML 时，生成 DOM 树，树中的每个节点对应一个页面元素（标签）。</li>
+<li>通过 DOM API，JavaScript 可以选择、修改和操作这些元素。</li>
+<li>浏览器会自动监听 JavaScript 对 DOM 的任何修改，并即时更新页面的显示（如增删 HTML 元素，修改样式等）。</li>
+</ul>
+</li>
+</ul>
+<h2>2. <strong>DOM 树的结构</strong></h2>
+<ul>
+<li>
+<p><strong>根节点</strong>是<code>document</code> <strong>对象</strong>，它是整个 DOM 的入口，提供对 HTML 文档的全局访问。通过 <code>document</code> 对象，可以访问和操控页面中的元素、节点。</p>
+</li>
+<li>
+<p><code>&lt;html&gt;</code> <strong>元素是</strong> <code>document</code> <strong>对象的子节点</strong>，是实际的页面内容的根元素。</p>
+</li>
+<li>
+<p>每个 HTML 元素（如 <code>&lt;body&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>）都被表示为一个<strong>节点</strong>（Node）。</p>
+</li>
+<li>
+<p><strong>DOM 树</strong>的层次结构：</p>
+<ul>
+<li><strong>Document</strong>（文档对象）：<code>document</code> 对象是根节点。</li>
+<li><strong>Element 节点</strong>：每个 HTML 标签都对应一个元素节点。</li>
+<li><strong>Text 节点</strong>：每个元素节点内的文本内容。</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to JavaScript&lt;/h1&gt;
+    &lt;p&gt;This is an example paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>对应的 DOM 树：</p>
+<pre><code class="language-markdown">- document
+  - html
+    - body
+      - h1
+        - &quot;Welcome to JavaScript&quot;
+      - p
+        - &quot;This is an example paragraph.&quot;
+</code></pre>
+</li>
+</ul>
+<h2>3. <strong>为什么 DOM != JavaScript</strong></h2>
+<ul>
+<li>
+<p><strong>DOM</strong> 是一种浏览器实现的 API，用于表示和操作 HTML 文档的结构。</p>
+</li>
+<li>
+<p><strong>JavaScript</strong> 是一种编程语言，负责操作 DOM 的逻辑和行为。</p>
+</li>
+<li>
+<p>JavaScript 使用 DOM 来<strong>访问、操作和修改</strong>网页的结构和样式，但 DOM 不是 JavaScript 的一部分。</p>
+<p><strong>类比</strong>：JavaScript 可以像遥控器一样控制电视（DOM），但遥控器本身并不等同于电视。</p>
+</li>
+</ul>
+<h2>4. <strong>什么是 Web API？</strong></h2>
+<ul>
+<li>
+<p><strong>Web API</strong>：Web 应用编程接口，是浏览器提供给 JavaScript 使用的一组功能和接口，帮助开发者与浏览器功能互动。</p>
+<ul>
+<li><strong>DOM</strong> 就是一个 Web API，它允许 JavaScript 访问并修改 HTML 文档的结构。</li>
+<li>其他常见的 Web API 还包括 <code>fetch</code>（用于网络请求），<code>localStorage</code>（用于存储数据）等。</li>
+</ul>
+<p><strong>Web API 的作用</strong>：</p>
+<ul>
+<li>
+<p>它们是浏览器为开发者提供的工具，使 JavaScript 能够与浏览器的底层功能进行交互。</p>
+</li>
+<li>
+<p>JavaScript 本身并不包含与网络、文件、用户交互等相关的功能，这些都是通过 Web API 实现的。<strong>Web API</strong> 的作用是使 JavaScript 能够：</p>
+<ul>
+<li>操作 <strong>DOM 树</strong>（如操作 HTML、CSS 样式、属性等）。</li>
+<li>处理 <strong>事件</strong>（如点击、鼠标移动、键盘输入等）。</li>
+<li>使用 <strong>其他浏览器功能</strong>（如 Fetch API、Local Storage、Geolocation、Notification 等）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>常见 Web API 示例</strong>：</p>
+<ol>
+<li><strong>DOM API</strong> : <code>document.querySelector()</code>,<code>getElementById()</code></li>
+<li><strong>事件 API</strong> : <code>addEventListener()</code></li>
+<li><strong>网络 API</strong> : <code>fetch()</code></li>
+<li><strong>存储 API</strong> : <code>localStorage.setItem()</code></li>
+</ol>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>
+<p>使用 DOM API 选择元素：</p>
+<pre><code class="language-javascript">const header = document.querySelector(&quot;h1&quot;);
+console.log(header.textContent); // 输出: Welcome to JavaScript
+</code></pre>
+</li>
+<li>
+<p>使用 <code>localStorage</code> 存储数据：</p>
+<pre><code class="language-javascript">localStorage.setItem(&quot;name&quot;, &quot;John Doe&quot;);
+console.log(localStorage.getItem(&quot;name&quot;)); // 输出: John Doe
+</code></pre>
+</li>
+<li>
+<p>使用 <code>addEventListener</code> 事件监听，使用 <code>fetch</code> 发送 HTTP 请求：</p>
+<pre><code class="language-javascript">document.getElementById(&quot;button&quot;).addEventListener(&quot;click&quot;, function () {
+  alert(&quot;Button clicked!&quot;); // 事件监听
+});
+
+fetch(&quot;https://api.example.com/data&quot;) // 发送HTTP请求
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; console.log(data)); // 处理服务器返回的数据
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2>5. <strong>DOM 和事件</strong></h2>
+<ul>
+<li>
+<p><strong>事件</strong>：用户与页面交互（如点击、输入、滚动等）时，浏览器会产生<strong>事件</strong>，这些事件可以通过 JavaScript 进行处理。</p>
+<ul>
+<li>常见事件包括 <code>click</code>，<code>submit</code>，<code>keydown</code> 等。</li>
+</ul>
+<p><strong>事件监听器</strong>：</p>
+<ul>
+<li>可以通过 JavaScript 给 DOM 元素添加事件监听器，处理用户交互。</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<pre><code class="language-javascript">const button = document.querySelector(&quot;button&quot;);
+button.addEventListener(&quot;click&quot;, function () {
+  alert(&quot;Button was clicked!&quot;);
+});
+</code></pre>
+</li>
+<li>
+<p><strong>事件流</strong>：</p>
+<ul>
+<li>事件在 DOM 中有一个传播顺序，从最外层到最内层（捕获阶段），再从内层返回到外层（冒泡阶段）。</li>
+<li>JavaScript 可以选择在哪个阶段处理事件。</li>
+</ul>
+</li>
+</ul>
+<h2>6. <strong>获取 <code>input</code> 输入框中的值：使用 <code>.value</code> 与 <code>.textContent</code> 的对比</strong></h2>
+<ul>
+<li>
+<p><strong><code>input.value</code></strong>:</p>
+<ul>
+<li>
+<p>用于获取 <code>&lt;input&gt;</code> 元素的值。适用于表单控件，如输入框、选择框等。</p>
+</li>
+<li>
+<p><strong>用法</strong>: <code>document.querySelector(&#x27;input&#x27;).value</code></p>
+</li>
+<li>
+<p><strong>示例</strong>:</p>
+<pre><code class="language-html">&lt;input type=&quot;text&quot; id=&quot;nameInput&quot; value=&quot;John&quot; /&gt;
+&lt;script&gt;
+  const inputValue = document.getElementById(&quot;nameInput&quot;).value;
+  console.log(inputValue); // 输出: John
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>element.textContent</code></strong>:</p>
+<ul>
+<li>
+<p>用于获取或设置元素的文本内容，适用于非表单元素，如<code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>等。</p>
+</li>
+<li>
+<p><strong>用法</strong>: <code>document.querySelector(&#x27;p&#x27;).textContent</code></p>
+</li>
+<li>
+<p><strong>示例</strong>:</p>
+<pre><code class="language-html">&lt;p id=&quot;textElement&quot;&gt;Hello World&lt;/p&gt;
+&lt;script&gt;
+  const textContent = document.getElementById(&quot;textElement&quot;).textContent;
+  console.log(textContent); // 输出: Hello World
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>对比</strong>:</p>
+<ul>
+<li><strong><code>value</code></strong> 仅适用于 <code>&lt;input&gt;</code>、<code>&lt;textarea&gt;</code> 等表单控件。</li>
+<li><strong><code>textContent</code></strong> 则适用于所有元素，且用于操作元素中的文本，而不是用户输入的值。</li>
+</ul>
+</li>
+</ul>
+<h2>7. <strong>Refactoring（代码重构）</strong></h2>
+<ul>
+<li>
+<p><strong>Refactoring</strong> 是指优化代码的过程，使代码更加简洁、可读、易于维护，而不改变程序的功能。</p>
+</li>
+<li>
+<p><strong>目的</strong>:</p>
+<ul>
+<li>增加代码的可读性</li>
+<li>消除重复代码</li>
+<li>提高代码的可维护性</li>
+</ul>
+</li>
+<li>
+<p><strong>Refactoring 示例</strong>：</p>
+<ul>
+<li>
+<p><strong>重构前</strong>：</p>
+<pre><code class="language-javascript">function calculateRectangleArea(width, height) {
+  const area = width * height;
+  return area;
+}
+
+function calculateCircleArea(radius) {
+  const area = Math.PI * radius * radius;
+  return area;
+}
+</code></pre>
+</li>
+<li>
+<p><strong>重构后</strong>：</p>
+<pre><code class="language-javascript">function calculateArea(shape, value1, value2 = null) {
+  if (shape === &quot;rectangle&quot;) {
+    return value1 * value2;
+  } else if (shape === &quot;circle&quot;) {
+    return Math.PI * value1 * value1;
+  }
+}
+</code></pre>
+</li>
+<li>
+<p><strong>解释</strong>：重构后，代码将不同形状的面积计算封装到一个函数中，避免重复代码，并增强了代码的可扩展性。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>8. <strong>改变页面上元素的外观：使用 <code>classList</code> 操作类</strong></h2>
+<p>当我们想要改变页面元素的外观时，可以将样式导出到一个 <code>class</code> 中，使用 <code>element.classList.add()</code> 或 <code>element.classList.remove()</code> 来动态操作类。</p>
+<ul>
+<li>
+<p><strong>用法</strong>：</p>
+<pre><code class="language-javascript">element.classList.add(&quot;newClass&quot;);
+element.classList.remove(&quot;oldClass&quot;);
+</code></pre>
+</li>
+<li>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-html">&lt;div id=&quot;box&quot; class=&quot;red-box&quot;&gt;我是一个盒子&lt;/div&gt;
+&lt;button onclick=&quot;changeBox()&quot;&gt;改变颜色&lt;/button&gt;
+
+&lt;style&gt;
+  .red-box {
+    background-color: red;
+  }
+
+  .blue-box {
+    background-color: blue;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  function changeBox() {
+    const box = document.getElementById(&quot;box&quot;);
+    box.classList.remove(&quot;red-box&quot;);
+    box.classList.add(&quot;blue-box&quot;);
+  }
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li><strong>解释</strong>：在按钮点击时，我们移除 <code>red-box</code> 类，并添加 <code>blue-box</code> 类，从而改变盒子的背景颜色。</li>
+</ul>
+</li>
+</ul>
+<h2>9. <strong>JavaScript : <code>classList</code> 操作详解</strong></h2>
+<h3><strong>1. 概述</strong></h3>
+<p><code>classList</code> 是 DOM 中用来操作元素 <code>class</code> 属性的一个属性。它为开发者提供了一系列方法，简化了对 <code>class</code> 的增删查改。相较于直接操作 <code>className</code>，<code>classList</code> 更加简洁和高效。</p>
+<hr />
+<h3><strong>2. <code>classList</code> 的常用方法</strong></h3>
+<h4><strong>2.1 <code>add()</code></strong></h4>
+<ul>
+<li>
+<p><strong>功能：</strong> 为元素添加一个或多个类名。</p>
+</li>
+<li>
+<p><strong>语法：</strong></p>
+<pre><code class="language-javascript">element.classList.add(class1, class2, ...);
+</code></pre>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-javascript">const element = document.querySelector(&quot;.my-element&quot;);
+element.classList.add(&quot;new-class&quot;);
+console.log(element.classList); // [&quot;existing-class&quot;, &quot;new-class&quot;]
+</code></pre>
+</li>
+</ul>
+<h4><strong>2.2 <code>remove()</code></strong></h4>
+<ul>
+<li>
+<p><strong>功能：</strong> 从元素中移除一个或多个类名。</p>
+</li>
+<li>
+<p><strong>语法：</strong></p>
+<pre><code class="language-javascript">element.classList.remove(class1, class2, ...);
+</code></pre>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-javascript">element.classList.remove(&quot;new-class&quot;);
+console.log(element.classList); // 移除了 &#x27;new-class&#x27;
+</code></pre>
+</li>
+</ul>
+<h4><strong>2.3 <code>toggle()</code></strong></h4>
+<ul>
+<li>
+<p><strong>功能：</strong> 如果类名存在就移除类名，不存在则添加类名。可以接受一个可选的布尔值，决定是否添加或移除类名。</p>
+</li>
+<li>
+<p><strong>语法：</strong></p>
+<pre><code class="language-javascript">element.classList.toggle(className [, force]);
+</code></pre>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-javascript">element.classList.toggle(&quot;hidden&quot;);
+console.log(element.classList); // 如果 &#x27;hidden&#x27; 存在就移除，否则添加
+</code></pre>
+</li>
+</ul>
+<h4><strong>2.4 <code>contains()</code></strong></h4>
+<ul>
+<li>
+<p><strong>功能：</strong> 检查元素是否包含指定的类名。</p>
+</li>
+<li>
+<p><strong>语法：</strong></p>
+<pre><code class="language-javascript">element.classList.contains(className);
+</code></pre>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-javascript">const hasClass = element.classList.contains(&quot;new-class&quot;);
+console.log(hasClass); // true 或 false
+</code></pre>
+</li>
+</ul>
+<h4><strong>2.5 <code>replace()</code></strong></h4>
+<ul>
+<li>
+<p><strong>功能：</strong> 将元素的某个类名替换为另一个类名。</p>
+</li>
+<li>
+<p><strong>语法：</strong></p>
+<pre><code class="language-javascript">element.classList.replace(oldClass, newClass);
+</code></pre>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-javascript">element.classList.replace(&quot;old-class&quot;, &quot;new-class&quot;);
+console.log(element.classList); // 将 &#x27;old-class&#x27; 替换为 &#x27;new-class&#x27;
+</code></pre>
+</li>
+</ul>
+<hr />
+<h3><strong>3. 使用场景</strong></h3>
+<h4><strong>3.1 动态改变元素样式</strong></h4>
+<ul>
+<li>
+<p><strong>场景：</strong> 当用户进行交互（如点击按钮、悬停）时，动态地为元素添加或移除类，改变其样式。</p>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-html">&lt;button id=&quot;toggleButton&quot;&gt;Toggle Class&lt;/button&gt;
+&lt;div id=&quot;content&quot; class=&quot;visible&quot;&gt;This is some content&lt;/div&gt;
+
+&lt;style&gt;
+  .visible {
+    display: block;
+  }
+  .hidden {
+    display: none;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  const button = document.getElementById(&quot;toggleButton&quot;);
+  const content = document.getElementById(&quot;content&quot;);
+
+  button.addEventListener(&quot;click&quot;, function () {
+    content.classList.toggle(&quot;hidden&quot;);
+  });
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h4><strong>3.2 表单验证</strong></h4>
+<ul>
+<li>
+<p><strong>场景：</strong> 在表单提交前对输入进行验证，如果验证失败，可以为输入框添加错误样式。</p>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<pre><code class="language-javascript">const input = document.querySelector(&quot;#username&quot;);
+if (input.value === &quot;&quot;) {
+  input.classList.add(&quot;error&quot;);
+} else {
+  input.classList.remove(&quot;error&quot;);
+}
+</code></pre>
+</li>
+</ul>
+<hr />
+<h3><strong>4. 与 <code>className</code> 的对比</strong></h3>
+<ul>
+<li><strong><code>className</code>:</strong> 会替换整个 <code>class</code> 属性的值，不方便操作多个类名，容易造成覆盖问题。</li>
+<li><strong><code>classList</code>:</strong> 支持多个类名的动态操作，可以增加、移除、切换、检查类名，灵活高效。</li>
+</ul>
+<p><strong>示例对比：</strong></p>
+<pre><code class="language-javascript">// 使用 className 操作
+element.className = &quot;new-class&quot;; // 覆盖掉所有其他类
+
+// 使用 classList 操作
+element.classList.add(&quot;new-class&quot;); // 保留其他类名，只添加新的类
+</code></pre>
+<hr />
+<h3><strong>5. 小技巧：使用 <code>classList</code> 实现条件样式</strong></h3>
+<p>你可以通过 <code>classList</code> 在某些交互事件中动态应用样式。例如，点击按钮时切换模式（暗模式和亮模式）。</p>
+<p><strong>示例：</strong></p>
+<pre><code class="language-html">&lt;button id=&quot;themeToggle&quot;&gt;Toggle Theme&lt;/button&gt;
+&lt;div id=&quot;pageContent&quot;&gt;This is the content&lt;/div&gt;
+
+&lt;style&gt;
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  const toggleButton = document.getElementById(&quot;themeToggle&quot;);
+  const content = document.getElementById(&quot;pageContent&quot;);
+
+  toggleButton.addEventListener(&quot;click&quot;, function () {
+    content.classList.toggle(&quot;dark-mode&quot;);
+  });
+&lt;/script&gt;
+</code></pre>
+<hr />
+<h3><strong>6. 总结</strong></h3>
+<ul>
+<li><strong><code>classList</code></strong> 提供了一系列操作类名的便捷方法，如 <code>add()</code>、<code>remove()</code>、<code>toggle()</code> 等，大大简化了操作类名的逻辑。</li>
+<li>使用 <code>classList</code> 更安全和高效，避免了直接修改 <code>className</code> 可能带来的覆盖问题。</li>
+</ul>
+<h2>10. <strong>传递函数作为事件监听器方法的参数</strong></h2>
+<p>在 JavaScript 中，将函数作为事件监听器时，不能加上括号 <code>()</code>，因为加上括号意味着立即调用函数，而不是将函数传递给事件。</p>
+<ul>
+<li>
+<p><strong>错误示例</strong>：</p>
+<pre><code class="language-javascript">button.addEventListener(&quot;click&quot;, myFunction()); // 错误，会立即调用
+</code></pre>
+</li>
+<li>
+<p><strong>正确示例</strong>：</p>
+<pre><code class="language-javascript">button.addEventListener(&quot;click&quot;, myFunction); // 正确，传递函数引用
+</code></pre>
+</li>
+<li>
+<p><strong>示例</strong>：</p>
+<pre><code class="language-html">&lt;button id=&quot;myButton&quot;&gt;点击我&lt;/button&gt;
+
+&lt;script&gt;
+  function showAlert() {
+    alert(&quot;按钮被点击了！&quot;);
+  }
+
+  const button = document.getElementById(&quot;myButton&quot;);
+  button.addEventListener(&quot;click&quot;, showAlert); // 传递函数，不加括号
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li><strong>解释</strong>：如果在 <code>addEventListener</code> 中使用 <code>myFunction()</code>，函数会立即执行，而不是在事件触发时调用。因此需要传递函数的引用，即 <code>myFunction</code>。</li>
+</ul>
+</li>
+</ul>
+<h2>11. <strong>DOM 操作与元素选择</strong></h2>
+<h3>1. <strong><code>document.getElementsByClassName()</code> 与 <code>document.querySelector()</code> 对比</strong></h3>
+<h4><strong>1.1 <code>document.getElementsByClassName()</code></strong></h4>
+<ul>
+<li>
+<p><strong>作用</strong>: 选择具有特定 <code>class</code> 的所有元素，返回的是一个<strong>动态的 HTMLCollection</strong>。</p>
+</li>
+<li>
+<p><strong>用法</strong>:</p>
+<ul>
+<li>只接受类名作为参数，不需要任何前缀符号。
+例如：</li>
+</ul>
+<pre><code class="language-javascript">const elements = document.getElementsByClassName(&quot;highscore&quot;);
+console.log(elements);
+</code></pre>
+</li>
+<li>
+<p><strong>特性</strong>:</p>
+<ul>
+<li>返回 <strong>HTMLCollection</strong>，这是一个类数组对象，包含所有符合条件的元素。</li>
+<li>该方法会实时更新，如果 DOM 中有新元素添加到符合该 <code>class</code>，该集合会动态更新。</li>
+<li>只能通过 <code>class</code> 选择元素，不能选择 ID、标签或其他选择器。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4><strong>1.2 <code>document.querySelector()</code></strong></h4>
+<ul>
+<li>
+<p><strong>作用</strong>: 选择符合 CSS 选择器的<strong>第一个元素</strong>，返回的是<strong>单个元素对象</strong>。</p>
+</li>
+<li>
+<p><strong>用法</strong>:</p>
+<ul>
+<li>需要传入完整的 CSS 选择器，包括类名、ID 或标签等选择器的前缀符号。</li>
+<li>类名选择器前加 <code>.</code>，ID 选择器前加 <code>#</code>，标签直接使用标签名。</li>
+</ul>
+<pre><code class="language-javascript">const element = document.querySelector(&quot;.highscore&quot;);
+console.log(element);
+</code></pre>
+</li>
+<li>
+<p><strong>特性</strong>:</p>
+<ul>
+<li>返回符合条件的<strong>第一个元素</strong>，只返回一个 DOM 节点。</li>
+<li>支持复杂的 CSS 选择器，不仅限于 <code>class</code>，也可以用来选择 ID (<code>#id</code>)、标签 (<code>p</code>)，甚至复杂的组合选择器 (<code>div &gt; p</code> 等)。</li>
+<li>不会动态更新，如果页面上元素发生变化，不会反映在结果中。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4><strong>1.3 能相互替换吗？</strong></h4>
+<ul>
+<li><strong>不完全可以</strong>。<code>getElementsByClassName()</code> 返回的是<strong>所有具有该类名的元素</strong>，是一个类数组，适用于处理多个元素。而 <code>querySelector()</code> 只返回<strong>第一个匹配的元素</strong>。</li>
+<li><strong>哪个更常用？</strong>：在现代开发中，<code>document.querySelector()</code> 更常用，因为它的功能更强大，支持复杂的 CSS 选择器，并且可以选择任意类型的元素（不仅仅是通过 <code>class</code> 选择）。如果需要选择多个元素，通常使用 <code>querySelectorAll()</code>。</li>
+</ul>
+<hr />
+<h3>2. <strong><code>document.querySelector()</code> 和 <code>document.querySelectorAll()</code> 对比</strong></h3>
+<h4><strong>2.1 <code>document.querySelector()</code></strong></h4>
+<ul>
+<li><strong>作用</strong>: 选择<strong>第一个</strong>符合 CSS 选择器的元素。</li>
+<li><strong>返回值</strong>: 返回<strong>单个元素对象</strong>或 <code>null</code>（如果没有找到匹配的元素）。</li>
+<li><strong>适用场景</strong>: 适合当只需选择一个元素时使用，如表单中的特定输入框、页面中的唯一按钮等。</li>
+</ul>
+<hr />
+<h4><strong>2.2 <code>document.querySelectorAll()</code></strong></h4>
+<ul>
+<li>
+<p><strong>作用</strong>: 选择<strong>所有</strong>符合 CSS 选择器的元素，返回的是一个<strong>静态的 NodeList</strong>。</p>
+</li>
+<li>
+<p><strong>用法</strong>:</p>
+<ul>
+<li>需要传入完整的 CSS 选择器，包括类名、ID 或标签等选择器的前缀符号。</li>
+<li>类名选择器前加 <code>.</code>，ID 选择器前加 <code>#</code>，标签直接使用标签名。</li>
+</ul>
+<pre><code class="language-javascript">const elements = document.querySelectorAll(&quot;.highscore&quot;);
+console.log(elements);
+</code></pre>
+</li>
+<li>
+<p><strong>返回值</strong>: 返回一个<strong>NodeList</strong>，可以包含多个元素。</p>
+<ul>
+<li><strong>NodeList</strong> 是静态的：页面中元素的增减不会动态更新这个集合。</li>
+</ul>
+</li>
+<li>
+<p><strong>适用场景</strong>: 当需要处理多个符合条件的元素时使用。</p>
+</li>
+</ul>
+<h3>3. <strong>总结对比</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>querySelector()</code></th>
+<th><code>querySelectorAll()</code></th>
+<th><code>getElementsByClassName()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>参数形式</strong></td>
+<td>CSS 选择器 (<code>.class</code>, <code>#id</code>, <code>tag</code>)</td>
+<td>CSS 选择器 (<code>.class</code>, <code>#id</code>, <code>tag</code>)</td>
+<td>只接受类名 (<code>className</code>)</td>
+</tr>
+<tr>
+<td><strong>返回类型</strong></td>
+<td>单个 DOM 元素</td>
+<td><code>NodeList</code>（静态集合）</td>
+<td><code>HTMLCollection</code>（动态集合）</td>
+</tr>
+<tr>
+<td><strong>返回数量</strong></td>
+<td>只返回第一个匹配的元素</td>
+<td>返回所有匹配的元素</td>
+<td>返回所有具有该类名的元素</td>
+</tr>
+<tr>
+<td><strong>动态性</strong></td>
+<td>静态，不会实时更新</td>
+<td>静态，不会实时更新</td>
+<td>动态，会随 DOM 变化自动更新</td>
+</tr>
+</tbody></table><h2>12. <strong>DOM 与 HTML、CSS、JavaScript 之间的关系</strong></h2>
+<h3><strong>DOM 在知识图谱中的位置</strong></h3>
+<ul>
+<li><strong>类别</strong>：浏览器 API / Web API</li>
+<li><strong>作用</strong>：提供接口，允许 JavaScript 操作和修改 HTML 和 CSS，从而动态更新网页内容和样式。</li>
+</ul>
+<hr />
+<h3><strong>DOM 与 HTML、CSS、JavaScript 之间的关系</strong></h3>
+<ol>
+<li>
+<p><strong>HTML (结构)</strong>：</p>
+<ul>
+<li>
+<p>HTML 定义了网页的<strong>结构</strong>，包括标签、元素、文本等内容。</p>
+</li>
+<li>
+<p>DOM 将 HTML 转换为<strong>树状结构</strong>，称为 DOM 树，这样每个 HTML 元素在树上都有一个对应的节点。HTML 是页面的静态结构，DOM 则将其转化为可操作的对象。</p>
+</li>
+<li>
+<p><strong>关系</strong>：HTML 是 DOM 的基础。浏览器加载 HTML 后，会将其解析为 DOM 树，JavaScript 就可以通过 DOM 操作 HTML 结构。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>HTML：<code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code></li>
+<li>DOM：通过 <code>document.getElementById(&#x27;app&#x27;)</code> 可以操作该 <code>div</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CSS (样式)</strong>：</p>
+<ul>
+<li>
+<p>CSS 用来描述 HTML 元素如何呈现的语言。（如颜色、布局、字体等）。</p>
+</li>
+<li>
+<p>虽然 CSS 不能直接操作 DOM，但通过 JavaScript 修改 DOM 树上的样式属性时，可以动态影响元素的显示样式。</p>
+</li>
+<li>
+<p><strong>关系</strong>：CSS 可以与 DOM 结合使用，改变样式；DOM 的节点结构也可以动态影响 CSS 的应用（例如通过类名或内联样式）。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>使用 JavaScript 修改 DOM 中的样式：<code>document.getElementById(&#x27;app&#x27;).style.color = &#x27;red&#x27;;</code></li>
+<li>使用 DOM 操作类名：<code>document.getElementById(&#x27;app&#x27;).classList.add(&#x27;highlight&#x27;);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>JavaScript (行为)</strong>：</p>
+<ul>
+<li>
+<p>JavaScript 是用来与 DOM 交互的脚本语言，能够通过 DOM API 获取、修改和删除 HTML 元素，并添加事件、动画等。</p>
+</li>
+<li>
+<p><strong>关系</strong>：JavaScript 通过 DOM 操作 HTML 和 CSS，实现动态内容更新、用户交互和响应事件等行为。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>动态添加元素：<code>document.body.appendChild(newElement);</code></li>
+<li>修改内容：<code>document.getElementById(&#x27;app&#x27;).textContent = &#x27;Hello World&#x27;;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3><strong>知识地图上的串联</strong></h3>
+<ol>
+<li>
+<p><strong>HTML (基础层)</strong>:</p>
+<ul>
+<li>定义页面的<strong>内容和结构</strong>。所有页面的元素最初都来源于 HTML。</li>
+<li><strong>关键词</strong>：元素、属性、标签。</li>
+</ul>
+</li>
+<li>
+<p><strong>CSS (表现层)</strong>:</p>
+<ul>
+<li><strong>作用</strong>：定义页面的样式，如颜色、字体、布局等。</li>
+<li><strong>如何与 DOM 交互</strong>：通过 DOM API 操作类名、样式。</li>
+<li><strong>关键词</strong>：选择器、属性、样式规则。</li>
+</ul>
+</li>
+<li>
+<p><strong>DOM (中介层)</strong>:</p>
+<ul>
+<li><strong>作用</strong>：浏览器将 HTML 解析为 DOM 树，提供接口让 JavaScript 操作 HTML 元素和样式。</li>
+<li><strong>特点</strong>：JavaScript 可通过 DOM API 操作页面上的所有内容。</li>
+<li><strong>关键词</strong>：节点、DOM 树、DOM API。</li>
+</ul>
+</li>
+<li>
+<p><strong>JavaScript (行为层)</strong>:</p>
+<ul>
+<li><strong>作用</strong>：通过 DOM 操作 HTML 和 CSS，控制页面的行为和交互。</li>
+<li><strong>如何与 DOM 交互</strong>：通过 DOM API 进行页面元素、属性、样式等操作。</li>
+<li><strong>关键词</strong>：事件、操作、逻辑。</li>
+</ul>
+</li>
+</ol>
+<pre><code class="language-plaintext">  HTML (结构)
+    ↓
+  DOM (树状模型，浏览器将 HTML 解析成 DOM)
+    ↔ JavaScript (通过 DOM 操作 HTML，修改页面结构、样式、内容)
+    ↔ CSS (通过 DOM 修改样式，实现动态显示效果)
+</code></pre>
+<h3><strong>知识地图总结</strong></h3>
+<ul>
+<li><strong>HTML</strong> 提供结构 → <strong>DOM</strong> 将 HTML 转换为可操作的对象模型 → <strong>CSS</strong> 提供样式，通过 <strong>DOM API</strong> 动态修改 → <strong>JavaScript</strong> 提供动态交互，通过 <strong>DOM API</strong> 操作 <strong>HTML</strong> 和 <strong>CSS</strong>。</li>
+</ul>
+<p>这个模型是前端开发的核心，所有动态页面交互的实现都依赖于 <strong>DOM</strong> 作为中间桥梁，将 <strong>HTML</strong>、<strong>CSS</strong> 和 <strong>JavaScript</strong> 串联起来。</p>
+<h2>13. <strong>Keyboard Events: <code>keydown</code>, <code>keyup</code>, and <code>keypress</code>&quot;</strong></h2>
+<h3><strong>1. 概述</strong></h3>
+<p>在网页开发中，监听用户键盘输入是很常见的需求。JavaScript 提供了三种主要的键盘事件：</p>
+<ul>
+<li><strong><code>keydown</code>:</strong> 在键被按下时触发。</li>
+<li><strong><code>keypress</code>:</strong> 在按下可产生字符的键时触发（已经被废弃，不推荐使用）。</li>
+<li><strong><code>keyup</code>:</strong> 在键松开时触发。</li>
+</ul>
+<p>这三个事件都有助于捕获用户在键盘上的行为，并根据输入进行响应。</p>
+<hr />
+<h3><strong>2. 常见键盘事件的区别</strong></h3>
+<ul>
+<li>
+<p><strong><code>keydown</code>:</strong> 只要按下键盘的任意键，无论是字符键还是功能键（如 <code>Shift</code>、<code>Ctrl</code>、方向键），都会触发。适合捕获所有按键事件。</p>
+</li>
+<li>
+<p><strong><code>keypress</code>:</strong> 只会在按下可打印字符（例如字母、数字、符号）时触发，且不适用于功能键。由于浏览器的 API 变化，<code>keypress</code> 已经逐渐被弃用。</p>
+</li>
+<li>
+<p><strong><code>keyup</code>:</strong> 键被释放时触发。常用于需要检测按键结束后的操作。</p>
+</li>
+</ul>
+<hr />
+<h3><strong>3. <code>keydown</code> 和 <code>keyup</code> 的应用场景</strong></h3>
+<h4><strong><code>keydown</code> 应用场景：</strong></h4>
+<ul>
+<li><strong>游戏控制：</strong> 当按下某个方向键，控制游戏角色移动。</li>
+<li><strong>快捷键处理：</strong> 当按下特定组合键（例如 <code>Ctrl + S</code>），触发保存功能。</li>
+</ul>
+<h4><strong><code>keyup</code> 应用场景：</strong></h4>
+<ul>
+<li><strong>检测完成输入：</strong> 当用户松开键盘后，可以检查输入的内容并做进一步处理。</li>
+<li><strong>在表单中：</strong> 当松开某个键时自动提交表单或进行验证。</li>
+</ul>
+<h4>示例：捕获用户在输入框中的按键动作</h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Keyboard Events Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;input type=&quot;text&quot; id=&quot;textInput&quot; placeholder=&quot;Type something...&quot; /&gt;
+
+    &lt;script&gt;
+      const inputField = document.getElementById(&quot;textInput&quot;);
+
+      // 使用 keydown 监听用户按下的键
+      inputField.addEventListener(&quot;keydown&quot;, function (event) {
+        console.log(&quot;Key down:&quot;, event.key);
+      });
+
+      // 使用 keyup 监听用户松开的键
+      inputField.addEventListener(&quot;keyup&quot;, function (event) {
+        console.log(&quot;Key up:&quot;, event.key);
+      });
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr />
+<h3><strong>4. <code>keypress</code> 与 <code>keydown</code> 的对比</strong></h3>
+<ul>
+<li><strong><code>keypress</code>:</strong> 仅适用于捕获可打印字符（如字母、数字），并且在现代开发中已逐渐被弃用。</li>
+<li><strong><code>keydown</code>:</strong> 能够捕获所有按键（包括功能键），在绝大多数情况下更推荐使用。</li>
+</ul>
+<h3><strong>5. 键值属性</strong></h3>
+<p>每个键盘事件对象都包含了一个 <code>event</code> 对象，其中 <code>event.key</code> 返回按下的键的值。例如：</p>
+<ul>
+<li><code>event.key = &quot;a&quot;</code> 代表用户按下了字母键 “A”。</li>
+<li><code>event.key = &quot;Enter&quot;</code> 代表用户按下了回车键。</li>
+</ul>
+<pre><code class="language-javascript">document.addEventListener(&quot;keydown&quot;, function (event) {
+  console.log(`You pressed: ${event.key}`);
+});
+</code></pre>
+<hr />
+<h3><strong>6. 如何避免重复按键的影响</strong></h3>
+<p>有时候，<code>keydown</code> 事件可能会因为按住键盘不松手而多次触发。因此，在某些应用场景下可能需要判断按键是否已经被处理，避免重复触发。</p>
+<pre><code class="language-javascript">let isKeyPressed = false;
+
+document.addEventListener(&quot;keydown&quot;, function (event) {
+  if (!isKeyPressed) {
+    console.log(`Key pressed: ${event.key}`);
+    isKeyPressed = true;
+  }
+});
+
+document.addEventListener(&quot;keyup&quot;, function () {
+  isKeyPressed = false;
+});
+</code></pre>
+<hr />
+<h3><strong>7. 总结</strong></h3>
+<ul>
+<li><strong><code>keydown</code> 和 <code>keyup</code></strong> 是现代开发中最常使用的键盘事件，可以捕获所有按键。</li>
+<li><strong><code>keypress</code></strong> 已经被弃用，不建议再使用。</li>
+<li>键盘事件适合用于表单处理、快捷键设置、游戏控制等场景，能够提升用户交互体验。</li>
+</ul>
+<h2>14. <strong>学习总结</strong></h2>
+<ol>
+<li><strong>DOM</strong> 是 JavaScript 用来与网页结构交互的重要接口，允许通过树状结构访问和操作 HTML 元素。</li>
+<li><strong>DOM != JavaScript</strong>：DOM 是一种 Web API，用来表示和修改文档，而 JavaScript 是一种操作该 API 的语言。</li>
+<li><strong>Web API</strong> 提供了许多 JavaScript 直接调用的功能接口，帮助其与浏览器的底层机制进行交互。</li>
+<li><strong>事件</strong> 是用户与网页交互的重要部分，事件监听器帮助开发者捕获用户的操作并做出响应。</li>
+<li><strong>获取值</strong>: 使用 <code>input.value</code> 获取输入框的值，<code>element.textContent</code> 获取元素文本内容。</li>
+<li><strong>重构</strong>: 重构代码以减少重复、提高可读性。</li>
+<li><strong>类操作</strong>: 使用 <code>element.classList.add()</code> 和 <code>element.classList.remove()</code> 来改变元素的外观。</li>
+<li><strong><code>classList</code></strong> 提供了一系列操作类名的便捷方法，如 <code>add()</code>、<code>remove()</code>、<code>toggle()</code> 等，大大简化了操作类名的逻辑。</li>
+<li><strong>事件监听</strong>: 当传递函数作为事件监听器时，不要加括号，传递的是函数引用而不是函数的调用。</li>
+<li><strong>传参</strong>：<code>getElementsByClassName()</code> 只传类名，而 <code>querySelector()</code> 和 <code>querySelectorAll()</code> 需要传入完整的 CSS 选择器。</li>
+<li><strong>返回</strong>：<code>querySelector()</code> 返回单个元素，<code>querySelectorAll()</code> 返回 <code>NodeList</code>（静态），<code>getElementsByClassName()</code> 返回 <code>HTMLCollection</code>（动态）。</li>
+<li>DOM 是连接 HTML、CSS 和 JavaScript 的桥梁，负责将静态的 HTML 和样式通过 JavaScript 变得动态、可交互。</li>
+<li><strong><code>keydown</code> 和 <code>keyup</code></strong> 是现代开发中最常使用的键盘事件，可以捕获所有按键。</li>
+</ol>
+<hr />
+<h3><strong>实际代码例子</strong></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;DOM Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to JavaScript DOM&lt;/h1&gt;
+    &lt;button&gt;Click Me!&lt;/button&gt;
+
+    &lt;script&gt;
+      // Selecting DOM element
+      const button = document.querySelector(&quot;button&quot;);
+
+      // Adding an event listener to the button
+      button.addEventListener(&quot;click&quot;, function () {
+        alert(&quot;Button was clicked!&quot;);
+      });
+
+      // Working with DOM tree - modifying content
+      const header = document.querySelector(&quot;h1&quot;);
+      header.textContent = &quot;DOM and Events in Action&quot;;
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2><strong>练习</strong></h2>
+<ol>
+<li>使用 <code>document.querySelector()</code> 选择页面元素，修改其文本内容。</li>
+<li>尝试添加不同事件（如 <code>click</code>、<code>mouseover</code>）来练习事件监听器的使用。</li>
+</ol>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/17"/><category term="技术相关"/><published>2024-09-07T14:50:47+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/16</id><title>Use the Problem-Solving Framework</title><updated>2024-09-07T14:51:10.054979+00:00</updated><content type="html"><![CDATA[<h1>Use the Problem-Solving Framework</h1>
 <h2>Problem-Solving Framework: <strong>Understand the Problem</strong> and <strong>Break it up into Sub-Problems</strong></h2>
 <ol>
 <li>Understanding the problem</li>
@@ -133,7 +1108,7 @@ printForecast(data1);
 <li><strong>Sub-Problems</strong>: Split the problem into smaller steps that are easier to solve.</li>
 <li><strong>Reusing Logic</strong>: For similar problems, you can often reuse code by making small adjustments.</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/16"/><category term="技术相关"/><published>2024-09-04T15:34:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/15</id><title>Google Chrome 调试器使用笔记</title><updated>2024-09-07T14:39:35.654846+00:00</updated><content type="html"><![CDATA[<h1>Google Chrome 调试器使用笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/16"/><category term="技术相关"/><published>2024-09-04T15:34:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/15</id><title>Google Chrome 调试器使用笔记</title><updated>2024-09-07T14:51:10.153124+00:00</updated><content type="html"><![CDATA[<h1>Google Chrome 调试器使用笔记</h1>
 <h2>1. <strong>调试器的基本概念</strong></h2>
 <ul>
 <li><strong>调试器</strong> (Debugger) 是开发者工具的一部分，用于逐行检查代码的执行过程。</li>
@@ -222,7 +1197,7 @@ calculateSum(5, 10);
 <ul>
 <li><a href="https://developer.chrome.com/docs/devtools/">Google Chrome Developer Tools Documentation</a></li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/15"/><category term="技术相关"/><published>2024-09-04T15:29:47+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/14</id><title>npm 安装与使用 live-server</title><updated>2024-09-07T14:39:35.746104+00:00</updated><content type="html"><![CDATA[<h1>npm 安装与使用 <code>live-server</code></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/15"/><category term="技术相关"/><published>2024-09-04T15:29:47+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/14</id><title>npm 安装与使用 live-server</title><updated>2024-09-07T14:51:10.262460+00:00</updated><content type="html"><![CDATA[<h1>npm 安装与使用 <code>live-server</code></h1>
 <h2>1. 什么是 <code>live-server</code>？</h2>
 <p><code>live-server</code> 是一个轻量级的开发服务器，具有实时重载功能。它可以在你修改 HTML/CSS/JavaScript 文件时自动刷新浏览器，非常适合快速开发和调试静态网站。</p>
 <h2>2. 安装 <code>live-server</code></h2>
@@ -328,7 +1303,7 @@ live-server
 <ul>
 <li><a href="https://github.com/tapio/live-server">live-server GitHub 仓库</a></li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/14"/><category term="技术相关"/><published>2024-09-02T14:27:30+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/13</id><title>在 Windows 安装 Node.js</title><updated>2024-09-07T14:39:35.872131+00:00</updated><content type="html"><![CDATA[<h1>在 Windows 安装 Node.js</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/14"/><category term="技术相关"/><published>2024-09-02T14:27:30+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/13</id><title>在 Windows 安装 Node.js</title><updated>2024-09-07T14:51:10.353003+00:00</updated><content type="html"><![CDATA[<h1>在 Windows 安装 Node.js</h1>
 <h2>参考文档</h2>
 <ul>
 <li>
@@ -416,7 +1391,7 @@ live-server
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/13"/><category term="技术相关"/><published>2024-09-02T14:20:05+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/12</id><title>Setting up Prettier and Snippets</title><updated>2024-09-07T14:39:35.972902+00:00</updated><content type="html"><![CDATA[<h1>Setting up Prettier and Snippets</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/13"/><category term="技术相关"/><published>2024-09-02T14:20:05+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/12</id><title>Setting up Prettier and Snippets</title><updated>2024-09-07T14:51:10.461595+00:00</updated><content type="html"><![CDATA[<h1>Setting up Prettier and Snippets</h1>
 <ul>
 <li>
 <a href="#setting-up-prettier-and-snippets">Setting up Prettier and Snippets</a><ul>
@@ -568,7 +1543,7 @@ VS Code 内置了许多常用语言的代码片段，这些片段可以大大减
 <hr />
 <h3><strong>6. 总结</strong></h3>
 <p>掌握代码片段的使用不仅可以提高编写代码的速度，还可以确保代码的规范性和一致性。利用 VS Code 的代码片段功能可以大大减少重复工作，提高开发效率。</p>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/12"/><category term="技术相关"/><published>2024-09-01T15:19:26+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/11</id><title>JavaScript Fundamentals</title><updated>2024-09-07T14:39:36.097494+00:00</updated><content type="html"><![CDATA[<h1>JavaScript Fundamentals</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/12"/><category term="技术相关"/><published>2024-09-01T15:19:26+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/11</id><title>JavaScript Fundamentals</title><updated>2024-09-07T14:51:10.583348+00:00</updated><content type="html"><![CDATA[<h1>JavaScript Fundamentals</h1>
 <ul>
 <li>
 <a href="#javascript-fundamentals">JavaScript Fundamentals</a><ul>
@@ -3070,7 +4045,7 @@ for (let char of str) {
 <li><strong>嵌套循环的使用</strong>：了解嵌套循环的基本概念和注意事项，避免不必要的性能开销。</li>
 <li><strong>性能优化</strong>：在编写循环时，关注代码的执行效率，避免低效的循环嵌套和不必要的计算。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/11"/><category term="技术相关"/><published>2024-09-01T15:08:11+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-09-07T14:39:36.528854+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/11"/><category term="技术相关"/><published>2024-09-01T15:08:11+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/10</id><title>HTML和CSS实现Google Image Search样式</title><updated>2024-09-07T14:51:10.979914+00:00</updated><content type="html"><![CDATA[<h1>HTML和CSS实现Google Image Search样式</h1>
 <ul>
 <li>
 <a href="#html%E5%92%8Ccss%E5%AE%9E%E7%8E%B0google-image-search%E6%A0%B7%E5%BC%8F">HTML和CSS实现Google Image Search样式</a><ul>
@@ -3292,7 +4267,7 @@ for (let char of str) {
 <li><code>.image-logo</code> 容器被设置为 <code>position: relative;</code> 并且有一个明确的宽度。</li>
 <li>使用 <code>margin: 0 auto;</code> 将margin的水平值设为auto，实现容器水平居中。</li>
 </ol>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-09-07T14:39:36.758969+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/10"/><category term="技术相关"/><published>2024-05-18T06:12:09+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/9</id><title>CSS 基础笔记</title><updated>2024-09-07T14:51:11.085001+00:00</updated><content type="html"><![CDATA[<h1>CSS 基础笔记</h1>
 <ul>
 <li>
 <a href="#css-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">CSS 基础笔记</a><ul>
@@ -4262,7 +5237,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-09-07T14:39:36.955233+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/9"/><category term="技术相关"/><published>2024-01-07T17:05:54+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/8</id><title>HTML 基础笔记</title><updated>2024-09-07T14:51:11.236888+00:00</updated><content type="html"><![CDATA[<h1>HTML 基础笔记</h1>
 <ul>
 <li>
 <a href="#html-%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0">HTML 基础笔记</a><ul>
@@ -4508,7 +5483,7 @@ a {
 <ul>
 <li><strong><code>class</code> 和 <code>id</code> 不仅用于 CSS 样式的定义</strong>，它们还可以帮助 <strong>JavaScript 操作 DOM</strong>、<strong>锚点导航</strong>、<strong>表单提交</strong>，以及 <strong>改善页面可访问性</strong> 等多方面的功能。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-09-07T14:39:37.103321+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/8"/><category term="技术相关"/><published>2024-01-07T16:57:21+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/7</id><title>怎么用电脑键盘打日语（罗马音输入法）</title><updated>2024-09-07T14:51:11.399668+00:00</updated><content type="html"><![CDATA[<h1>怎么用电脑键盘打日语（罗马音输入法）</h1>
 <h2>50音</h2>
 <table>
 <thead>
@@ -4681,7 +5656,7 @@ a {
 </ul>
 </li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-09-07T14:39:37.220626+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/7"/><category term="nihongo"/><published>2023-12-19T15:46:22+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/6</id><title>そう～～ 的用法</title><updated>2024-09-07T14:51:11.507541+00:00</updated><content type="html"><![CDATA[<h1>そう～～ 的用法</h1>
 <ul>
 <li>そう　在对话中代指对方刚说的那句话，“你说的刚才那句话”的意思。</li>
 <li>そうです　 “是的，你说得对” ，表同意、肯定。</li>
@@ -4692,7 +5667,7 @@ a {
 <li>そうなんです　～～なんです　相当于中文“其实”的感觉，“其实是这样的”</li>
 <li>そうなんですか　～～なんですか　经常带有<strong>惊讶</strong>的语气，“诶？这样吗？”，“诶，真的是这样吗？”</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-09-07T14:39:37.310234+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/6"/><category term="nihongo"/><published>2023-12-18T11:30:27+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/5</id><title>设计模式</title><updated>2024-09-07T14:51:11.593636+00:00</updated><content type="html"><![CDATA[<h1>设计模式</h1>
 <ul>
 <li>
 <a href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a><ul>
@@ -4835,7 +5810,7 @@ UML结构主要包括以下几个部分：</p>
 </li>
 </ul>
 <h2>第二部分：创建型模型</h2>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-09-07T14:39:37.447780+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/5"/><category term="技术相关"/><published>2023-10-16T14:19:29+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/4</id><title>python编程从入门到实践笔记</title><updated>2024-09-07T14:51:11.752430+00:00</updated><content type="html"><![CDATA[<h1>python编程从入门到实践笔记<!-- omit in toc --></h1>
 <ul>
 <li><a href="#is-python-interpreted-or-compiled-yes">Is Python interpreted or compiled? Yes.</a></li>
 <li>
@@ -7006,7 +7981,7 @@ def test_store_three_responses(language_survey):
 <li>在这个⽰例中，language_survey() 函数向 test_store_single_response() 和 test_store_three_responses() 提供了⼀个 language_survey 实例。</li>
 <li>在想要使⽤夹具时，可编写⼀个函数来⽣成供多个测试函数使⽤的资源，再对这个函数应⽤装饰器 @pytest.fixture，并让使⽤该资源的每个测试函数都接受⼀个与该函数同名的形参。这样，测试将更简洁，编写和维护起来也将更容易。</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-09-07T14:39:37.684271+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/4"/><category term="技术相关"/><published>2023-09-14T08:20:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/3</id><title>Markdown相关</title><updated>2024-09-07T14:51:11.987360+00:00</updated><content type="html"><![CDATA[<p>资料：</p>
 <ul>
 <li><a href="https://github.com/google/styleguide/blob/gh-pages/docguide/style.md">Google Markdown  Style Guide</a></li>
 <li><a href="https://cirosantilli.com/markdown-style-guide/">Markdown  Style Guide</a></li>
@@ -7022,7 +7997,7 @@ def test_store_three_responses(language_survey):
 <li>生成目录后，每次更新保存后将自动更新目录。</li>
 <li>测试</li>
 </ul>
-]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-09-07T14:39:37.783824+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
+]]></content><link href="https://github.com/hadleysu/gitblog/issues/3"/><category term="技术相关"/><published>2023-09-12T13:49:32+00:00</published></entry><entry><id>https://github.com/hadleysu/gitblog/issues/2</id><title>感谢yihong老师的gitblog项目</title><updated>2024-09-07T14:51:12.120262+00:00</updated><content type="html"><![CDATA[<p>感谢yihong老师的gitblog项目，我可以开启我的写issue博客之旅了。</p>
 <p><a href="https://github.com/yihong0618/gitblog">yihong老师的gitblog项目</a>
 <a href="https://github.com/yihong0618/gitblog/issues/177">这个博客开源了</a></p>
 ]]></content><link href="https://github.com/hadleysu/gitblog/issues/2"/><category term="一些记录"/><published>2023-09-10T13:21:29+00:00</published></entry></feed>
